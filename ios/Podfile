@@ -1,0 +1,46 @@
+# Uncomment the next line to define a global platform for your project
+ platform :ios, '9.0'
+
+target 'myapp' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # React Native
+  rn_path = '../node_modules/react-native'
+
+  pod 'yoga', :path => "#{rn_path}/ReactCommon/yoga"
+  pod 'React', path: "#{rn_path}", :subspecs => [
+  'Core',
+  'CxxBridge',
+  'RCTActionSheet',
+  'RCTAnimation',
+  'RCTGeolocation',
+  'RCTImage',
+  'RCTLinkingIOS',
+  'RCTNetwork',
+  'RCTSettings',
+  'RCTText',
+  'RCTVibration',
+  'RCTWebSocket',
+  'DevSupport'
+  ]
+  pod 'DoubleConversion', :podspec => "#{rn_path}/third-party-podspecs/DoubleConversion.podspec"
+  pod 'glog', :podspec => "#{rn_path}/third-party-podspecs/glog.podspec"
+  pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
+
+#  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
+  inherit! :search_paths
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+end
+
+#post_install do |installer|
+#  installer.pods_project.targets.each do |target|
+#    targets_to_ignore = %w(React yoga)
+#    if targets_to_ignore.include? target.name
+#      target.remove_from_project
+#    end
+#  end
+#end
+
