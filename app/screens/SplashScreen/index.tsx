@@ -21,7 +21,7 @@ export default class SplashScreen extends React.Component<AppProps> {
     await navigationService.ready();
     const { userStore } = this.props.rootStore;
     const user = await authService.validateAuthUser();
-    // NativeSplashScreen.hide();
+    NativeSplashScreen.hide();
     if (user) {
       userStore.setAuthUser(user);
       navigationService.navigate('AuthorizedStack')
