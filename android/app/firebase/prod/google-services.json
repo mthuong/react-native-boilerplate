@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "609621789532",
+    "firebase_url": "https://mobile-sc-f83b1.firebaseio.com",
+    "project_id": "mobile-sc-f83b1",
+    "storage_bucket": "mobile-sc-f83b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:609621789532:android:9f35ad080c260e60b24f99",
+        "android_client_info": {
+          "package_name": "com.mobilesc.isuzuapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "609621789532-gl9c0nk6pbhoh2tp1u9um03km3glq1ot.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mobilesc.isuzuapp",
+            "certificate_hash": "a9da5332bad48716fe4203829b30086f87a76a77"
+          }
+        },
+        {
+          "client_id": "609621789532-vmdnvvheh717rcebkh6tf2aan5c9smgv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_r3Cp8HuQd7WJmGbco-QQZvTwL4YsoWo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "609621789532-vmdnvvheh717rcebkh6tf2aan5c9smgv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "609621789532-dldpa3mb9nd3o78aej917il45g432ki8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.cujs.mobilesc",
+                "app_store_id": "1507332070"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

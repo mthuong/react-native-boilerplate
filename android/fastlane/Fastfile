@@ -1,0 +1,150 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+# Firebase console => Settings => General => Scroll to android app
+firebase_android_app = "1:aaaaa"
+
+# Get firebase_cli_token at https://firebase.google.com/docs/cli#cli-ci-systems
+firebase_cli_token = "aaaa"
+
+# SLACK
+slack_url = 'https://hooks.slack.com/services/path'
+channel = 'Slack channel'
+
+platform :android do
+
+  desc "Build Dev"
+  lane :adhoc_development do
+    gradle(
+      task: "clean assembleRelease",
+      system_properties: {
+        "ENVFILE": "../.env.dev"
+      }
+    )
+  end
+
+  desc "Build QA"
+  lane :adhoc_qa do
+    gradle(
+      task: "clean assembleRelease",
+      system_properties: {
+        "ENVFILE": "../.env.qa"
+      }
+    )
+  end
+
+  desc "Build PRODUCTION"
+  lane :adhoc_production do
+    gradle(
+      task: "clean assembleRelease",
+      system_properties: {
+        "ENVFILE": "../.env"
+      }
+    )
+  end
+
+  desc "Submit a new DEV Build to Firebase App Distribution"
+  lane :development do
+    gradle(
+      task: "clean assembleRelease",
+      system_properties: {
+        "ENVFILE": "../.env.dev"
+      }
+    )
+
+    changelog = File.read("../../changelog.dev.txt")
+    
+    firebase_android_app = firebase_android_app
+    firebase_app_distribution(
+      app: firebase_android_app,
+      firebase_cli_token: firebase_cli_token,
+      release_notes: changelog,
+      apk_path: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+      groups: groups
+    )
+
+    slack(
+        slack_url: slack_url,
+        channel: channel,
+        use_webhook_configured_username_and_icon: true,
+        message: "Fastlane Android: Release new `DEV` build
+CHANGE LOG: #{changelog}",
+      )
+  end
+
+  desc "Submit a new QA Build to Firebase App Distribution"
+  lane :qa do
+    gradle(
+      task: "clean assembleRelease",
+      system_properties: {
+        "ENVFILE": "../.env.qa"
+      }
+    )
+
+    changelog = File.read("../../changelog.qa.txt")
+
+    firebase_android_app = firebase_android_app
+    firebase_app_distribution(
+      app: firebase_android_app,
+      firebase_cli_token: firebase_cli_token,
+      release_notes: changelog,
+      apk_path: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+      # groups: qa_groups
+      groups: groups
+    )
+
+    slack(
+        slack_url: slack_url,
+        channel: channel,
+        use_webhook_configured_username_and_icon: true,
+        message: "Fastlane Android: Release new `QA` build
+CHANGE LOG: #{changelog}",
+      )
+  end
+
+  desc "Submit a new PRODUCTION Build to Firebase App Distribution"
+  lane :production do
+    gradle(
+      task: "clean assembleRelease",
+      system_properties: {
+        "ENVFILE": "../.env"
+      }
+    )
+
+    changelog = File.read("../../changelog.production.txt")
+
+    firebase_app_distribution(
+      app: firebase_android_app,
+      firebase_cli_token: firebase_cli_token,
+      release_notes: changelog,
+      apk_path: lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH],
+      groups: prod_groups
+      # groups: groups
+    )
+
+    slack(
+        slack_url: slack_url,
+        channel: channel,
+        use_webhook_configured_username_and_icon: true,
+        message: "Fastlane Android: Release new `PRODUCTION` build
+CHANGE LOG: #{changelog}",
+      )
+  end
+
+end
+
+

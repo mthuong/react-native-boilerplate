@@ -1,0 +1,494 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+# SLACK
+slack_url = 'https://hooks.slack.com/services/path/....'
+channel = 'your_slack_channel'
+
+# App ID, ITC ID, Team ID
+# itc_team_id = CredentialsManager::AppfileConfig.try_fetch_value(:itc_team_id)
+# team_id = CredentialsManager::AppfileConfig.try_fetch_value(:team_id)
+# app_identifier = CredentialsManager::AppfileConfig.try_fetch_value(:app_identifier)
+dev_app_identifier = 'com.app.dev'
+dev_itc_team_id = '594483'
+dev_team_id = 'F95LK3E6F3'
+
+qa_app_identifier = 'com.app.qa'
+qa_itc_team_id = '594483'
+qa_team_id = 'F95LK3E6F3'
+
+prod_app_identifier = 'com.app.prod'
+prod_itc_team_id = '121175403'
+prod_team_id = '7M7YR3239T'
+
+# Match project name
+match_git_branch = 'match_project_name'
+
+# AppStoreConnect API
+asc_key_id = "ABCXYZ"
+asc_issuer_id = "69a6de73-aaaa"
+asc_key_filepath = "fastlane/config/AuthKey_AAA.p8"
+
+# Beta App Review Info
+beta_app_review_info = {
+  contact_email: "email@gmail.com",
+  contact_first_name: "First_name",
+  contact_last_name: "Last_name",
+  contact_phone: "+84xxxxxx",
+  demo_account_name: "Account_name",
+  demo_account_password: "Pwd123456"
+}
+
+# XCode config
+xcode_path = './reactnativeboilerplate.xcodeproj'
+xcode_target = ["reactnativeboilerplate"]
+xcode_workspace = "reactnativeboilerplate.xcworkspace"
+
+# Scheme
+scheme_dev = "reactnativeboilerplate-dev"
+scheme_qa = "reactnativeboilerplate-qa"
+scheme_prod = "reactnativeboilerplate-prod"
+
+# Firebase service paths
+firebase_gsp_dev = './reactnativeboilerplate/Firebase/dev/GoogleService-Info.plist'
+firebase_gsp_qa = './reactnativeboilerplate/Firebase/qa/GoogleService-Info.plist'
+firebase_gsp_prod = './reactnativeboilerplate/Firebase/prod/GoogleService-Info.plist'
+
+platform :ios do
+
+  lane :add_devices do
+    team_id = prod_team_id
+    register_devices(
+      devices: {
+        "itads - Tom - ip7" => ""
+      },
+      team_id: team_id
+    )
+  end
+
+  desc "Generate required certs"
+  lane :generate_certs do
+    # app_identifier = prod_app_identifier
+    # team_id = prod_team_id
+    # git_branch = match_git_branch
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'development', git_branch: git_branch)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'appstore', git_branch: git_branch)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'adhoc', git_branch: git_branch)
+
+    # app_identifier = dev_app_identifier
+    # team_id = dev_team_id
+    # git_branch = match_git_branch
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'development', git_branch: git_branch)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'appstore', git_branch: git_branch)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'adhoc', git_branch: git_branch)
+
+    # app_identifier = qa_app_identifier
+    # team_id = qa_team_id
+    # git_branch = match_git_branch
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'development', git_branch: git_branch)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'appstore', git_branch: git_branch)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'adhoc', git_branch: git_branch)
+  end
+
+  desc "Renew provisionings"
+  lane :renew_profiles do
+    # app_identifier = prod_app_identifier
+    # team_id = prod_team_id
+    # git_branch = match_git_branch
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'development', git_branch: git_branch, force: true)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'appstore', git_branch: git_branch, force: true)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'adhoc', git_branch: git_branch, force: true)
+
+    # app_identifier = dev_app_identifier
+    # team_id = dev_team_id
+    # git_branch = match_git_branch
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'development', git_branch: git_branch, force: true)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'appstore', git_branch: git_branch, force: true)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'adhoc', git_branch: git_branch, force: true)
+
+    # app_identifier = qa_app_identifier
+    # team_id = qa_team_id
+    # git_branch = match_git_branch
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'development', git_branch: git_branch, force: true)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'appstore', git_branch: git_branch, force: true)
+    # match(team_id: team_id, app_identifier: app_identifier, type: 'adhoc', git_branch: git_branch, force: true)
+  end
+
+  desc "Sync certs to local environment"
+  lane :sync_certs do
+    app_identifier = prod_app_identifier
+    team_id = prod_team_id
+    git_branch = match_git_branch
+    match(team_id: team_id, app_identifier: app_identifier, type: 'development', git_branch: git_branch, readonly: true)
+    match(team_id: team_id, app_identifier: app_identifier, type: 'appstore', git_branch: git_branch, readonly: true)
+    match(team_id: team_id, app_identifier: app_identifier, type: 'adhoc', git_branch: git_branch, readonly: true)
+
+    app_identifier = dev_app_identifier
+    team_id = dev_team_id
+    git_branch = match_git_branch
+    match(team_id: team_id, app_identifier: app_identifier, type: 'development', git_branch: git_branch, readonly: true)
+    match(team_id: team_id, app_identifier: app_identifier, type: 'appstore', git_branch: git_branch, readonly: true)
+    match(team_id: team_id, app_identifier: app_identifier, type: 'adhoc', git_branch: git_branch, readonly: true)
+
+    app_identifier = qa_app_identifier
+    team_id = qa_team_id
+    git_branch = match_git_branch
+    match(team_id: team_id, app_identifier: app_identifier, type: 'development', git_branch: git_branch, readonly: true)
+    match(team_id: team_id, app_identifier: app_identifier, type: 'appstore', git_branch: git_branch, readonly: true)
+    match(team_id: team_id, app_identifier: app_identifier, type: 'adhoc', git_branch: git_branch, readonly: true)
+  end
+
+  desc "AdHoc DEV"
+  lane :adhoc_dev do
+    # Configurations
+    app_identifier = dev_app_identifier
+    team_id = dev_team_id
+    git_branch = match_git_branch
+    
+    match(team_id: team_id, app_identifier: "#{app_identifier}", type: 'adhoc', git_branch: git_branch, readonly: true)
+    matchProvisioningUUID = ENV["sigh_#{app_identifier}_adhoc"]
+
+    update_code_signing_settings(
+      path: xcode_path,
+      use_automatic_signing: false,
+      team_id: team_id,
+      targets: xcode_target,
+      code_sign_identity: 'iPhone Distribution',
+      profile_uuid: matchProvisioningUUID
+    )
+
+    build_app(
+      clean: true,
+      scheme: scheme_dev,
+      configuration: "Release",
+      workspace: xcode_workspace,
+      export_team_id: team_id,
+      export_options: {
+        method: "ad-hoc",
+        provisioningProfiles: {
+          "#{app_identifier}" => "match AdHoc #{app_identifier}",
+        }
+      },
+    )
+
+    # upload dsym
+    upload_symbols_to_crashlytics(
+      binary_path: './Pods/FirebaseCrashlytics/upload-symbols',
+      dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+      platform: 'ios',
+      gsp_path: firebase_gsp_dev
+      )
+  end
+
+  desc "AdHoc QA"
+  lane :adhoc_qa do
+    # Configurations
+    app_identifier = qa_app_identifier
+    team_id = qa_team_id
+    git_branch = match_git_branch
+
+    match(team_id: team_id, app_identifier: "#{app_identifier}", type: 'adhoc', git_branch: git_branch, readonly: true)
+    matchProvisioningUUID = ENV["sigh_#{app_identifier}_adhoc"]
+
+    update_code_signing_settings(
+      path: xcode_path,
+      use_automatic_signing: false,
+      team_id: team_id,
+      targets: xcode_target,
+      code_sign_identity: 'iPhone Distribution',
+      profile_uuid: matchProvisioningUUID
+    )
+
+    build_app(
+      clean: true,
+      scheme: scheme_qa,
+      configuration: "Release",
+      workspace: xcode_workspace,
+      export_team_id: team_id,
+      export_options: {
+        method: "ad-hoc",
+        provisioningProfiles: {
+          "#{app_identifier}" => "match AdHoc #{app_identifier}",
+        }
+      },
+    )
+
+    # upload dsym
+    upload_symbols_to_crashlytics(
+      binary_path: './Pods/FirebaseCrashlytics/upload-symbols',
+      dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+      platform: 'ios',
+      gsp_path: firebase_gsp_qa
+      )
+  end
+
+  desc "AdHoc PRODUCTION"
+  lane :adhoc_production do
+    # Configurations
+    app_identifier = prod_app_identifier
+    team_id = prod_team_id
+    git_branch = match_git_branch
+
+    match(team_id: team_id, app_identifier: "#{app_identifier}", type: 'adhoc', git_branch: git_branch, readonly: true)
+    matchProvisioningUUID = ENV["sigh_#{app_identifier}_adhoc"]
+
+    update_code_signing_settings(
+      path: xcode_path,
+      use_automatic_signing: false,
+      team_id: team_id,
+      targets: xcode_target,
+      code_sign_identity: 'iPhone Distribution',
+      profile_uuid: matchProvisioningUUID
+    )
+
+    build_app(
+      clean: true,
+      scheme: scheme_prod,
+      configuration: "Release",
+      workspace: xcode_workspace,
+      export_team_id: team_id,
+      export_options: {
+        method: "ad-hoc",
+        provisioningProfiles: {
+          "#{app_identifier}" => "match AdHoc #{app_identifier}",
+        }
+      },
+    )
+
+    # upload dsym
+    upload_symbols_to_crashlytics(
+      binary_path: './Pods/FirebaseCrashlytics/upload-symbols',
+      dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+      platform: 'ios',
+      gsp_path: firebase_gsp_prod
+      )
+  end
+
+  desc "Push a new DEV build to TestFlight"
+  lane :development do
+    # Configurations
+    app_identifier = dev_app_identifier
+    team_id = dev_team_id
+    itc_team_id = dev_itc_team_id
+    git_branch = match_git_branch
+
+    match(team_id: team_id, app_identifier: "#{app_identifier}", type: 'appstore', git_branch: git_branch, readonly: true)
+    matchProvisioningUUID = ENV["sigh_#{app_identifier}_appstore"]
+
+    update_code_signing_settings(
+      path: xcode_path,
+      use_automatic_signing: false,
+      team_id: team_id,
+      targets: xcode_target,
+      code_sign_identity: 'iPhone Distribution',
+      profile_uuid: matchProvisioningUUID
+    )
+
+    build_app(
+      clean: true,
+      scheme: scheme_dev,
+      configuration: "Release",
+      workspace: xcode_workspace,
+      export_team_id: team_id,
+      export_options: {
+        method: "app-store",
+        provisioningProfiles: {
+          "#{app_identifier}" => "match AppStore #{app_identifier}",
+        }
+      },
+    )
+
+    # upload dsym
+    upload_symbols_to_crashlytics(
+      binary_path: './Pods/FirebaseCrashlytics/upload-symbols',
+      dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+      platform: 'ios',
+      gsp_path: firebase_gsp_dev
+    )
+
+    changelog = File.read("../../changelog.dev.txt")
+    
+    app_store_connect_api_key(
+      key_id: asc_key_id,
+      issuer_id: asc_issuer_id,
+      key_filepath: asc_key_filepath,
+      duration: 1200, # optional
+      in_house: false, # optional but may be required if using match/sigh
+    )
+
+    upload_to_testflight(
+      app_identifier: app_identifier,
+      team_id: itc_team_id,
+      skip_waiting_for_build_processing: false,
+      changelog: changelog,
+      # groups: ["Internal"],
+      # distribute_external: true,
+      demo_account_required: true,
+      beta_app_review_info: beta_app_review_info
+    )
+
+    slack(
+      slack_url: slack_url,
+      channel: channel,
+      use_webhook_configured_username_and_icon: true,
+      message: "Fastlane iOS: Release new `DEV` build
+CHANGE LOG: #{changelog}",
+    )
+  end
+
+  desc "Push a new QA build to TestFlight"
+  lane :qa do
+    # Configurations
+    app_identifier = qa_app_identifier
+    team_id = qa_team_id
+    itc_team_id = qa_itc_team_id
+    git_branch = match_git_branch
+
+    match(team_id: team_id, app_identifier: "#{app_identifier}", type: 'appstore', git_branch: git_branch, readonly: true)
+    matchProvisioningUUID = ENV["sigh_#{app_identifier}_appstore"]
+
+    update_code_signing_settings(
+      path: xcode_path,
+      use_automatic_signing: false,
+      team_id: team_id,
+      targets: xcode_target,
+      code_sign_identity: 'iPhone Distribution',
+      profile_uuid: matchProvisioningUUID
+    )
+
+    build_app(
+      clean: true,
+      scheme: scheme_qa,
+      configuration: "Release",
+      workspace: xcode_workspace,
+      export_team_id: team_id,
+      export_options: {
+        method: "app-store",
+        provisioningProfiles: {
+          "#{app_identifier}" => "match AppStore #{app_identifier}",
+        }
+      },
+    )
+
+    # upload dsym
+    upload_symbols_to_crashlytics(
+      binary_path: './Pods/FirebaseCrashlytics/upload-symbols',
+      dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+      platform: 'ios',
+      gsp_path: firebase_gsp_qa
+      )
+
+    changelog = File.read("../../changelog.qa.txt")
+    
+    app_store_connect_api_key(
+      key_id: asc_key_id,
+      issuer_id: asc_issuer_id,
+      key_filepath: asc_key_filepath,
+      duration: 1200, # optional
+      in_house: false, # optional but may be required if using match/sigh
+    )
+
+    upload_to_testflight(
+      team_id: itc_team_id,
+      skip_waiting_for_build_processing: false,
+      changelog: changelog,
+      # groups: ["Internal"],
+      # distribute_external: true,
+      demo_account_required: true,
+      beta_app_review_info: beta_app_review_info
+    )
+
+    slack(
+      slack_url: slack_url,
+      channel: channel,
+      use_webhook_configured_username_and_icon: true,
+      message: "Fastlane iOS: Release new `QA` build
+CHANGE LOG: #{changelog}",
+    )
+  end
+
+  desc "Push a new PRODUCTION build to TestFlight"
+  lane :production do
+    # Configurations
+    app_identifier = prod_app_identifier
+    team_id = prod_team_id
+    itc_team_id = prod_itc_team_id
+    git_branch = match_git_branch
+
+    match(team_id: team_id, app_identifier: "#{app_identifier}", type: 'appstore', git_branch: git_branch, readonly: true)
+    matchProvisioningUUID = ENV["sigh_#{app_identifier}_appstore"]
+
+    update_code_signing_settings(
+      path: xcode_path,
+      use_automatic_signing: false,
+      team_id: team_id,
+      targets: xcode_target,
+      code_sign_identity: 'iPhone Distribution',
+      profile_uuid: matchProvisioningUUID
+    )
+
+    build_app(
+      clean: true,
+      scheme: scheme_prod,
+      configuration: "Release",
+      workspace: xcode_workspace,
+      export_team_id: team_id,
+      export_options: {
+        method: "app-store",
+        provisioningProfiles: {
+          "#{app_identifier}" => "match AppStore #{app_identifier}",
+        }
+      },
+    )
+
+    # upload dsym
+    upload_symbols_to_crashlytics(
+      binary_path: './Pods/FirebaseCrashlytics/upload-symbols',
+      dsym_path: lane_context[SharedValues::DSYM_OUTPUT_PATH],
+      platform: 'ios',
+      gsp_path: firebase_gsp_prod
+      )
+
+    changelog = File.read("../../changelog.production.txt")
+    
+    app_store_connect_api_key(
+      key_id: asc_key_id,
+      issuer_id: asc_issuer_id,
+      key_filepath: asc_key_filepath,
+      duration: 1200, # optional
+      in_house: false, # optional but may be required if using match/sigh
+    )
+
+    upload_to_testflight(
+      team_id: itc_team_id,
+      skip_waiting_for_build_processing: false,
+      changelog: changelog,
+      # groups: ["Internal"],
+      # distribute_external: true,
+      demo_account_required: true,
+      beta_app_review_info: beta_app_review_info
+    )
+
+    slack(
+      slack_url: slack_url,
+      channel: channel,
+      use_webhook_configured_username_and_icon: true,
+      message: "Fastlane iOS: Release new `PRODUCTION` build
+CHANGE LOG: #{changelog}",
+    )
+  end
+end

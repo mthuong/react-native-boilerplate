@@ -131,3 +131,6 @@ iOSInjectionProject/
 ### Objective-C Patch ###
 
 # End of https://www.gitignore.io/api/objective-c
+
+# react-native-config codegen
+ios/tmp.xcconfig
