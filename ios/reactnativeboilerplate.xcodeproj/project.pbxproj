@@ -47,7 +47,7 @@
 		0367AE3825F8D56300111423 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		06F4A09B614F730074DBA3BD /* Pods-reactnativeboilerplate-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate-tvOS.release.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate-tvOS/Pods-reactnativeboilerplate-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 		109DD8B48660232E15DF067D /* Pods-reactnativeboilerplate-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate-tvOSTests/Pods-reactnativeboilerplate-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* reactnativeboilerplate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = reactnativeboilerplate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* App Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = reactnativeboilerplate/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = reactnativeboilerplate/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = reactnativeboilerplate/Images.xcassets; sourceTree = "<group>"; };
@@ -176,7 +176,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* reactnativeboilerplate.app */,
+				13B07F961A680F5B00A75B9A /* App Dev.app */,
 				00E356EE1AD99517003FC87E /* reactnativeboilerplateTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* reactnativeboilerplate-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* reactnativeboilerplate-tvOSTests.xctest */,
@@ -240,7 +240,7 @@
 			);
 			name = reactnativeboilerplate;
 			productName = reactnativeboilerplate;
-			productReference = 13B07F961A680F5B00A75B9A /* reactnativeboilerplate.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* App Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* reactnativeboilerplate-tvOS */ = {
@@ -665,8 +665,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = reactnativeboilerplate;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_IDENTIFIER)";
+				PRODUCT_NAME = "${APP_NAME}";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -687,8 +687,8 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = reactnativeboilerplate;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(APP_IDENTIFIER)";
+				PRODUCT_NAME = "${APP_NAME}";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
