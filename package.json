@@ -16,7 +16,9 @@
     "aprod": "ENVFILE=.env npx react-native run-android"
   },
   "dependencies": {
+    "@react-native-masked-view/masked-view": "^0.2.2",
     "@react-navigation/native": "^6.0.0-next.1",
+    "@react-navigation/stack": "^6.0.0-next.3",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-config": "^1.4.2",
@@ -34,10 +36,14 @@
     "@types/react-test-renderer": "^16.9.2",
     "babel-jest": "^25.1.0",
     "eslint": "^6.5.1",
+    "eslint-config-airbnb-typescript-prettier": "^4.1.0",
+    "eslint-plugin-no-inline-styles": "^1.0.5",
+    "eslint-plugin-prettier": "^3.3.1",
     "jest": "^25.1.0",
     "metro-react-native-babel-preset": "^0.59.0",
     "react-test-renderer": "16.13.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "typescript-eslint": "^0.0.1-alpha.0"
   },
   "resolutions": {
     "@types/react": "^16"
