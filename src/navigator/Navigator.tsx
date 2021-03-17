@@ -14,7 +14,7 @@ export type RootStackParamList = {
 
 const MainStack = createStackNavigator<RootStackParamList>()
 
-export function Navigator() {
+function Navigator() {
   return (
     <NavigationContainer>
       <MainStack.Navigator>
@@ -32,3 +32,5 @@ export function Navigator() {
     </NavigationContainer>
   )
 }
+
+export default Navigator

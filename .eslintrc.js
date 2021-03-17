@@ -6,7 +6,11 @@ module.exports = {
     tsconfigRootDir: __dirname,
   },
   plugins: ['@typescript-eslint', 'eslint-plugin-no-inline-styles', 'jest'],
-  extends: ['airbnb-typescript-prettier'],
+  extends: [
+    'airbnb-typescript-prettier',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+  ],
   globals: {
     __DEV__: true,
     device: false,
@@ -53,5 +57,6 @@ module.exports = {
     'react/no-array-index-key': 0,
     '@typescript-eslint/no-non-null-assertion': 0,
     'react-hooks/exhaustive-deps': 0,
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
 }

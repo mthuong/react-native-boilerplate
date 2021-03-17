@@ -8,17 +8,17 @@
  * @format
  */
 
-import React from "react";
-import { enableScreens } from "react-native-screens";
-import { Navigator } from "./src/navigator/Navigator";
+import React from 'react'
+import { enableScreens } from 'react-native-screens'
+import Navigator from './src/navigator/Navigator'
 
 // Enable screens support before any of your navigation screens renders
-enableScreens();
+enableScreens()
 
-declare const global: { HermesInternal: null | {} };
+// declare const global: { HermesInternal: null | {} }
 
 const App = () => {
-  return <Navigator />;
-};
+  return <Navigator />
+}
 
-export default App;
+export default App
