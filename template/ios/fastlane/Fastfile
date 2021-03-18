@@ -154,6 +154,10 @@ platform :ios do
 
   desc "AdHoc DEV"
   lane :adhoc_dev do
+    # Init development env
+    env_file = File.expand_path "../../.env.dev"
+    sh "echo '#{env_file}' > /tmp/envfile"
+
     # Configurations
     app_identifier = dev_app_identifier
     team_id = dev_team_id
@@ -173,7 +177,7 @@ platform :ios do
 
     build_app(
       clean: true,
-      scheme: scheme_dev,
+      scheme: scheme,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -196,6 +200,10 @@ platform :ios do
 
   desc "AdHoc QA"
   lane :adhoc_qa do
+    # Init development env
+    env_file = File.expand_path "../../.env.qa"
+    sh "echo '#{env_file}' > /tmp/envfile"
+
     # Configurations
     app_identifier = qa_app_identifier
     team_id = qa_team_id
@@ -215,7 +223,7 @@ platform :ios do
 
     build_app(
       clean: true,
-      scheme: scheme_qa,
+      scheme: scheme,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -238,6 +246,10 @@ platform :ios do
 
   desc "AdHoc PRODUCTION"
   lane :adhoc_production do
+    # Init development env
+    env_file = File.expand_path "../../.env"
+    sh "echo '#{env_file}' > /tmp/envfile"
+
     # Configurations
     app_identifier = prod_app_identifier
     team_id = prod_team_id
@@ -257,7 +269,7 @@ platform :ios do
 
     build_app(
       clean: true,
-      scheme: scheme_prod,
+      scheme: scheme,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -280,6 +292,10 @@ platform :ios do
 
   desc "Push a new DEV build to TestFlight"
   lane :development do
+    # Init development env
+    env_file = File.expand_path "../../.env.dev"
+    sh "echo '#{env_file}' > /tmp/envfile"
+    
     # Configurations
     app_identifier = dev_app_identifier
     team_id = dev_team_id
@@ -300,7 +316,7 @@ platform :ios do
 
     build_app(
       clean: true,
-      scheme: scheme_dev,
+      scheme: scheme,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -352,6 +368,10 @@ CHANGE LOG: #{changelog}",
 
   desc "Push a new QA build to TestFlight"
   lane :qa do
+    # Init development env
+    env_file = File.expand_path "../../.env.qa"
+    sh "echo '#{env_file}' > /tmp/envfile"
+
     # Configurations
     app_identifier = qa_app_identifier
     team_id = qa_team_id
@@ -372,7 +392,7 @@ CHANGE LOG: #{changelog}",
 
     build_app(
       clean: true,
-      scheme: scheme_qa,
+      scheme: scheme,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -423,6 +443,10 @@ CHANGE LOG: #{changelog}",
 
   desc "Push a new PRODUCTION build to TestFlight"
   lane :production do
+    # Init development env
+    env_file = File.expand_path "../../.env"
+    sh "echo '#{env_file}' > /tmp/envfile"
+
     # Configurations
     app_identifier = prod_app_identifier
     team_id = prod_team_id
@@ -443,7 +467,7 @@ CHANGE LOG: #{changelog}",
 
     build_app(
       clean: true,
-      scheme: scheme_prod,
+      scheme: scheme,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,

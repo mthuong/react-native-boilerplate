@@ -1,5 +1,5 @@
 {
-  "name": "reactnativeboilerplate",
+  "name": "HelloWorld",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,9 +8,9 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write 'src/**'",
     "pod": "cd ios && pod update",
-    "idev": "npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='reactnativeboilerplate-dev'",
-    "iqa": "npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='reactnativeboilerplate-qa'",
-    "iprod": "npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='reactnativeboilerplate'",
+    "idev": "ENVFILE=.env.dev npx react-native run-ios --simulator='iPhone 11 Pro'",
+    "iqa": "ENVFILE=.env.qa npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='reactnativeboilerplate-qa'",
+    "iprod": "ENVFILE=.env npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='reactnativeboilerplate'",
     "adev": "ENVFILE=.env.dev npx react-native run-android",
     "aqa": "ENVFILE=.env.qa npx react-native run-android",
     "aprod": "ENVFILE=.env npx react-native run-android"

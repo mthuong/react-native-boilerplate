@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* reactnativeboilerplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* reactnativeboilerplateTests.m */; };
+		00E356F31AD99517003FC87E /* HelloWorldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HelloWorldTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* reactnativeboilerplateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* reactnativeboilerplateTests.m */; };
+		2DCD954D1E0B4F2C00145EB5 /* HelloWorldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* HelloWorldTests.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		838D44DC2B2C79E52D6FDB48 /* libPods-reactnativeboilerplate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B3B993FB65EE26B3B568BE /* libPods-reactnativeboilerplate.a */; };
-		A0DE9357AE6499DB95834E9D /* libPods-reactnativeboilerplate-reactnativeboilerplateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D98815C2ABA803381D20CCC2 /* libPods-reactnativeboilerplate-reactnativeboilerplateTests.a */; };
-		E0A4543F895AFA01187BB5E3 /* libPods-reactnativeboilerplate-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41804BDEF2C2C0ED360EEEF3 /* libPods-reactnativeboilerplate-tvOS.a */; };
-		EA24F0A86403C7732F57C883 /* libPods-reactnativeboilerplate-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F4D3C62F9E69B1C3307A56 /* libPods-reactnativeboilerplate-tvOSTests.a */; };
+		838D44DC2B2C79E52D6FDB48 /* libPods-HelloWorld.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 56B3B993FB65EE26B3B568BE /* libPods-HelloWorld.a */; };
+		A0DE9357AE6499DB95834E9D /* libPods-HelloWorld-HelloWorldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D98815C2ABA803381D20CCC2 /* libPods-HelloWorld-HelloWorldTests.a */; };
+		E0A4543F895AFA01187BB5E3 /* libPods-HelloWorld-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 41804BDEF2C2C0ED360EEEF3 /* libPods-HelloWorld-tvOS.a */; };
+		EA24F0A86403C7732F57C883 /* libPods-HelloWorld-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F4D3C62F9E69B1C3307A56 /* libPods-HelloWorld-tvOSTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,44 +28,44 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = reactnativeboilerplate;
+			remoteInfo = HelloWorld;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "reactnativeboilerplate-tvOS";
+			remoteInfo = "HelloWorld-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* reactnativeboilerplateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = reactnativeboilerplateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* HelloWorldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloWorldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* reactnativeboilerplateTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = reactnativeboilerplateTests.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* HelloWorldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldTests.m; sourceTree = "<group>"; };
 		0367AE3825F8D56300111423 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		06F4A09B614F730074DBA3BD /* Pods-reactnativeboilerplate-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate-tvOS.release.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate-tvOS/Pods-reactnativeboilerplate-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		109DD8B48660232E15DF067D /* Pods-reactnativeboilerplate-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate-tvOSTests/Pods-reactnativeboilerplate-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		06F4A09B614F730074DBA3BD /* Pods-HelloWorld-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld-tvOS.release.xcconfig"; path = "Target Support Files/Pods-HelloWorld-tvOS/Pods-HelloWorld-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		109DD8B48660232E15DF067D /* Pods-HelloWorld-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-HelloWorld-tvOSTests/Pods-HelloWorld-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* App Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = reactnativeboilerplate/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = reactnativeboilerplate/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = reactnativeboilerplate/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = reactnativeboilerplate/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = reactnativeboilerplate/main.m; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* reactnativeboilerplate-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "reactnativeboilerplate-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* reactnativeboilerplate-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "reactnativeboilerplate-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		41804BDEF2C2C0ED360EEEF3 /* libPods-reactnativeboilerplate-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactnativeboilerplate-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4741FA1386C876ABF5B498D5 /* Pods-reactnativeboilerplate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate.release.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate/Pods-reactnativeboilerplate.release.xcconfig"; sourceTree = "<group>"; };
-		54E5EE27B3E8BA7654D6447F /* Pods-reactnativeboilerplate-reactnativeboilerplateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate-reactnativeboilerplateTests.debug.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate-reactnativeboilerplateTests/Pods-reactnativeboilerplate-reactnativeboilerplateTests.debug.xcconfig"; sourceTree = "<group>"; };
-		56B3B993FB65EE26B3B568BE /* libPods-reactnativeboilerplate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactnativeboilerplate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		70F4D3C62F9E69B1C3307A56 /* libPods-reactnativeboilerplate-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactnativeboilerplate-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8080420C509486C233AA01F4 /* Pods-reactnativeboilerplate-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate-tvOS/Pods-reactnativeboilerplate-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = reactnativeboilerplate/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		88D5EF3CED790D6C08EF82CA /* Pods-reactnativeboilerplate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate.debug.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate/Pods-reactnativeboilerplate.debug.xcconfig"; sourceTree = "<group>"; };
-		8C4F7A3E0D04DB235BF761E6 /* Pods-reactnativeboilerplate-reactnativeboilerplateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate-reactnativeboilerplateTests.release.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate-reactnativeboilerplateTests/Pods-reactnativeboilerplate-reactnativeboilerplateTests.release.xcconfig"; sourceTree = "<group>"; };
-		D98815C2ABA803381D20CCC2 /* libPods-reactnativeboilerplate-reactnativeboilerplateTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-reactnativeboilerplate-reactnativeboilerplateTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EC8727D9E8AA600664251F0F /* Pods-reactnativeboilerplate-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-reactnativeboilerplate-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-reactnativeboilerplate-tvOSTests/Pods-reactnativeboilerplate-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HelloWorld/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = HelloWorld/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HelloWorld/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = HelloWorld/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = HelloWorld/main.m; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* HelloWorld-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelloWorld-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* HelloWorld-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "HelloWorld-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		41804BDEF2C2C0ED360EEEF3 /* libPods-HelloWorld-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloWorld-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4741FA1386C876ABF5B498D5 /* Pods-HelloWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld.release.xcconfig"; path = "Target Support Files/Pods-HelloWorld/Pods-HelloWorld.release.xcconfig"; sourceTree = "<group>"; };
+		54E5EE27B3E8BA7654D6447F /* Pods-HelloWorld-HelloWorldTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld-HelloWorldTests.debug.xcconfig"; path = "Target Support Files/Pods-HelloWorld-HelloWorldTests/Pods-HelloWorld-HelloWorldTests.debug.xcconfig"; sourceTree = "<group>"; };
+		56B3B993FB65EE26B3B568BE /* libPods-HelloWorld.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloWorld.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		70F4D3C62F9E69B1C3307A56 /* libPods-HelloWorld-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloWorld-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8080420C509486C233AA01F4 /* Pods-HelloWorld-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-HelloWorld-tvOS/Pods-HelloWorld-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HelloWorld/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		88D5EF3CED790D6C08EF82CA /* Pods-HelloWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld.debug.xcconfig"; path = "Target Support Files/Pods-HelloWorld/Pods-HelloWorld.debug.xcconfig"; sourceTree = "<group>"; };
+		8C4F7A3E0D04DB235BF761E6 /* Pods-HelloWorld-HelloWorldTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld-HelloWorldTests.release.xcconfig"; path = "Target Support Files/Pods-HelloWorld-HelloWorldTests/Pods-HelloWorld-HelloWorldTests.release.xcconfig"; sourceTree = "<group>"; };
+		D98815C2ABA803381D20CCC2 /* libPods-HelloWorld-HelloWorldTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloWorld-HelloWorldTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC8727D9E8AA600664251F0F /* Pods-HelloWorld-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-HelloWorld-tvOSTests/Pods-HelloWorld-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -75,7 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A0DE9357AE6499DB95834E9D /* libPods-reactnativeboilerplate-reactnativeboilerplateTests.a in Frameworks */,
+				A0DE9357AE6499DB95834E9D /* libPods-HelloWorld-HelloWorldTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				838D44DC2B2C79E52D6FDB48 /* libPods-reactnativeboilerplate.a in Frameworks */,
+				838D44DC2B2C79E52D6FDB48 /* libPods-HelloWorld.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,7 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0A4543F895AFA01187BB5E3 /* libPods-reactnativeboilerplate-tvOS.a in Frameworks */,
+				E0A4543F895AFA01187BB5E3 /* libPods-HelloWorld-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,20 +99,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA24F0A86403C7732F57C883 /* libPods-reactnativeboilerplate-tvOSTests.a in Frameworks */,
+				EA24F0A86403C7732F57C883 /* libPods-HelloWorld-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* reactnativeboilerplateTests */ = {
+		00E356EF1AD99517003FC87E /* HelloWorldTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* reactnativeboilerplateTests.m */,
+				00E356F21AD99517003FC87E /* HelloWorldTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = reactnativeboilerplateTests;
+			path = HelloWorldTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -123,7 +123,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* reactnativeboilerplate */ = {
+		13B07FAE1A68108700A75B9A /* HelloWorld */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -134,7 +134,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = reactnativeboilerplate;
+			name = HelloWorld;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -142,10 +142,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				56B3B993FB65EE26B3B568BE /* libPods-reactnativeboilerplate.a */,
-				D98815C2ABA803381D20CCC2 /* libPods-reactnativeboilerplate-reactnativeboilerplateTests.a */,
-				41804BDEF2C2C0ED360EEEF3 /* libPods-reactnativeboilerplate-tvOS.a */,
-				70F4D3C62F9E69B1C3307A56 /* libPods-reactnativeboilerplate-tvOSTests.a */,
+				56B3B993FB65EE26B3B568BE /* libPods-HelloWorld.a */,
+				D98815C2ABA803381D20CCC2 /* libPods-HelloWorld-HelloWorldTests.a */,
+				41804BDEF2C2C0ED360EEEF3 /* libPods-HelloWorld-tvOS.a */,
+				70F4D3C62F9E69B1C3307A56 /* libPods-HelloWorld-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -161,9 +161,9 @@
 			isa = PBXGroup;
 			children = (
 				0367AE3825F8D56300111423 /* Config.xcconfig */,
-				13B07FAE1A68108700A75B9A /* reactnativeboilerplate */,
+				13B07FAE1A68108700A75B9A /* HelloWorld */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* reactnativeboilerplateTests */,
+				00E356EF1AD99517003FC87E /* HelloWorldTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				F02A5600AB43C1CE637BDB7B /* Pods */,
@@ -177,9 +177,9 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* App Dev.app */,
-				00E356EE1AD99517003FC87E /* reactnativeboilerplateTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* reactnativeboilerplate-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* reactnativeboilerplate-tvOSTests.xctest */,
+				00E356EE1AD99517003FC87E /* HelloWorldTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* HelloWorld-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* HelloWorld-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,14 +187,14 @@
 		F02A5600AB43C1CE637BDB7B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				88D5EF3CED790D6C08EF82CA /* Pods-reactnativeboilerplate.debug.xcconfig */,
-				4741FA1386C876ABF5B498D5 /* Pods-reactnativeboilerplate.release.xcconfig */,
-				54E5EE27B3E8BA7654D6447F /* Pods-reactnativeboilerplate-reactnativeboilerplateTests.debug.xcconfig */,
-				8C4F7A3E0D04DB235BF761E6 /* Pods-reactnativeboilerplate-reactnativeboilerplateTests.release.xcconfig */,
-				8080420C509486C233AA01F4 /* Pods-reactnativeboilerplate-tvOS.debug.xcconfig */,
-				06F4A09B614F730074DBA3BD /* Pods-reactnativeboilerplate-tvOS.release.xcconfig */,
-				109DD8B48660232E15DF067D /* Pods-reactnativeboilerplate-tvOSTests.debug.xcconfig */,
-				EC8727D9E8AA600664251F0F /* Pods-reactnativeboilerplate-tvOSTests.release.xcconfig */,
+				88D5EF3CED790D6C08EF82CA /* Pods-HelloWorld.debug.xcconfig */,
+				4741FA1386C876ABF5B498D5 /* Pods-HelloWorld.release.xcconfig */,
+				54E5EE27B3E8BA7654D6447F /* Pods-HelloWorld-HelloWorldTests.debug.xcconfig */,
+				8C4F7A3E0D04DB235BF761E6 /* Pods-HelloWorld-HelloWorldTests.release.xcconfig */,
+				8080420C509486C233AA01F4 /* Pods-HelloWorld-tvOS.debug.xcconfig */,
+				06F4A09B614F730074DBA3BD /* Pods-HelloWorld-tvOS.release.xcconfig */,
+				109DD8B48660232E15DF067D /* Pods-HelloWorld-tvOSTests.debug.xcconfig */,
+				EC8727D9E8AA600664251F0F /* Pods-HelloWorld-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -202,9 +202,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* reactnativeboilerplateTests */ = {
+		00E356ED1AD99517003FC87E /* HelloWorldTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "reactnativeboilerplateTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HelloWorldTests" */;
 			buildPhases = (
 				DAB66AC15721BCF7ECF62EE9 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -217,14 +217,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = reactnativeboilerplateTests;
-			productName = reactnativeboilerplateTests;
-			productReference = 00E356EE1AD99517003FC87E /* reactnativeboilerplateTests.xctest */;
+			name = HelloWorldTests;
+			productName = HelloWorldTests;
+			productReference = 00E356EE1AD99517003FC87E /* HelloWorldTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* reactnativeboilerplate */ = {
+		13B07F861A680F5B00A75B9A /* HelloWorld */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "reactnativeboilerplate" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "HelloWorld" */;
 			buildPhases = (
 				03EBDF50143627807EEB62EF /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -238,14 +238,14 @@
 			);
 			dependencies = (
 			);
-			name = reactnativeboilerplate;
-			productName = reactnativeboilerplate;
+			name = HelloWorld;
+			productName = HelloWorld;
 			productReference = 13B07F961A680F5B00A75B9A /* App Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* reactnativeboilerplate-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* HelloWorld-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "reactnativeboilerplate-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "HelloWorld-tvOS" */;
 			buildPhases = (
 				7889E9A783DEB102B166EDB1 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -258,14 +258,14 @@
 			);
 			dependencies = (
 			);
-			name = "reactnativeboilerplate-tvOS";
-			productName = "reactnativeboilerplate-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* reactnativeboilerplate-tvOS.app */;
+			name = "HelloWorld-tvOS";
+			productName = "HelloWorld-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* HelloWorld-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* reactnativeboilerplate-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* HelloWorld-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "reactnativeboilerplate-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "HelloWorld-tvOSTests" */;
 			buildPhases = (
 				94EEBC4709B90613F0C7A2DF /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -277,9 +277,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "reactnativeboilerplate-tvOSTests";
-			productName = "reactnativeboilerplate-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* reactnativeboilerplate-tvOSTests.xctest */;
+			name = "HelloWorld-tvOSTests";
+			productName = "HelloWorld-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* HelloWorld-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -308,7 +308,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "reactnativeboilerplate" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "HelloWorld" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -321,10 +321,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* reactnativeboilerplate */,
-				00E356ED1AD99517003FC87E /* reactnativeboilerplateTests */,
-				2D02E47A1E0B4A5D006451C7 /* reactnativeboilerplate-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* reactnativeboilerplate-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* HelloWorld */,
+				00E356ED1AD99517003FC87E /* HelloWorldTests */,
+				2D02E47A1E0B4A5D006451C7 /* HelloWorld-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* HelloWorld-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -393,7 +393,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-reactnativeboilerplate-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-HelloWorld-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -429,7 +429,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-reactnativeboilerplate-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-HelloWorld-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -442,7 +442,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-reactnativeboilerplate/Pods-reactnativeboilerplate-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-HelloWorld/Pods-HelloWorld-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -451,7 +451,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-reactnativeboilerplate/Pods-reactnativeboilerplate-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HelloWorld/Pods-HelloWorld-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		94EEBC4709B90613F0C7A2DF /* [CP] Check Pods Manifest.lock */ = {
@@ -469,7 +469,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-reactnativeboilerplate-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-HelloWorld-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -482,7 +482,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-reactnativeboilerplate-reactnativeboilerplateTests/Pods-reactnativeboilerplate-reactnativeboilerplateTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-HelloWorld-HelloWorldTests/Pods-HelloWorld-HelloWorldTests-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -491,7 +491,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-reactnativeboilerplate-reactnativeboilerplateTests/Pods-reactnativeboilerplate-reactnativeboilerplateTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HelloWorld-HelloWorldTests/Pods-HelloWorld-HelloWorldTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DAB66AC15721BCF7ECF62EE9 /* [CP] Check Pods Manifest.lock */ = {
@@ -509,7 +509,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-reactnativeboilerplate-reactnativeboilerplateTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-HelloWorld-HelloWorldTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -561,7 +561,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* reactnativeboilerplateTests.m in Sources */,
+				00E356F31AD99517003FC87E /* HelloWorldTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,7 +587,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* reactnativeboilerplateTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* HelloWorldTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,12 +596,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* reactnativeboilerplate */;
+			target = 13B07F861A680F5B00A75B9A /* HelloWorld */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* reactnativeboilerplate-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* HelloWorld-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -609,14 +609,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 54E5EE27B3E8BA7654D6447F /* Pods-reactnativeboilerplate-reactnativeboilerplateTests.debug.xcconfig */;
+			baseConfigurationReference = 54E5EE27B3E8BA7654D6447F /* Pods-HelloWorld-HelloWorldTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = reactnativeboilerplateTests/Info.plist;
+				INFOPLIST_FILE = HelloWorldTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -626,17 +626,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/reactnativeboilerplate.app/reactnativeboilerplate";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloWorld.app/HelloWorld";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8C4F7A3E0D04DB235BF761E6 /* Pods-reactnativeboilerplate-reactnativeboilerplateTests.release.xcconfig */;
+			baseConfigurationReference = 8C4F7A3E0D04DB235BF761E6 /* Pods-HelloWorld-HelloWorldTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = reactnativeboilerplateTests/Info.plist;
+				INFOPLIST_FILE = HelloWorldTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -646,19 +646,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/reactnativeboilerplate.app/reactnativeboilerplate";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloWorld.app/HelloWorld";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 88D5EF3CED790D6C08EF82CA /* Pods-reactnativeboilerplate.debug.xcconfig */;
+			baseConfigurationReference = 88D5EF3CED790D6C08EF82CA /* Pods-HelloWorld.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = reactnativeboilerplate/Info.plist;
+				INFOPLIST_FILE = HelloWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -675,12 +675,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4741FA1386C876ABF5B498D5 /* Pods-reactnativeboilerplate.release.xcconfig */;
+			baseConfigurationReference = 4741FA1386C876ABF5B498D5 /* Pods-HelloWorld.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = reactnativeboilerplate/Info.plist;
+				INFOPLIST_FILE = HelloWorld/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -696,7 +696,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8080420C509486C233AA01F4 /* Pods-reactnativeboilerplate-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 8080420C509486C233AA01F4 /* Pods-HelloWorld-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -707,14 +707,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "reactnativeboilerplate-tvOS/Info.plist";
+				INFOPLIST_FILE = "HelloWorld-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.reactnativeboilerplate-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.HelloWorld-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -724,7 +724,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06F4A09B614F730074DBA3BD /* Pods-reactnativeboilerplate-tvOS.release.xcconfig */;
+			baseConfigurationReference = 06F4A09B614F730074DBA3BD /* Pods-HelloWorld-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -735,14 +735,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "reactnativeboilerplate-tvOS/Info.plist";
+				INFOPLIST_FILE = "HelloWorld-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.reactnativeboilerplate-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.HelloWorld-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -752,7 +752,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 109DD8B48660232E15DF067D /* Pods-reactnativeboilerplate-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 109DD8B48660232E15DF067D /* Pods-HelloWorld-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -762,24 +762,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "reactnativeboilerplate-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "HelloWorld-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.reactnativeboilerplate-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.HelloWorld-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/reactnativeboilerplate-tvOS.app/reactnativeboilerplate-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloWorld-tvOS.app/HelloWorld-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EC8727D9E8AA600664251F0F /* Pods-reactnativeboilerplate-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = EC8727D9E8AA600664251F0F /* Pods-HelloWorld-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -789,17 +789,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "reactnativeboilerplate-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "HelloWorld-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.reactnativeboilerplate-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.HelloWorld-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/reactnativeboilerplate-tvOS.app/reactnativeboilerplate-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloWorld-tvOS.app/HelloWorld-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -922,7 +922,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "reactnativeboilerplateTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "HelloWorldTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -931,7 +931,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "reactnativeboilerplate" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "HelloWorld" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -940,7 +940,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "reactnativeboilerplate-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "HelloWorld-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -949,7 +949,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "reactnativeboilerplate-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "HelloWorld-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -958,7 +958,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "reactnativeboilerplate" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "HelloWorld" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
