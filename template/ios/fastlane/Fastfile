@@ -54,19 +54,17 @@ beta_app_review_info = {
 }
 
 # XCode config
-xcode_path = './reactnativeboilerplate.xcodeproj'
-xcode_target = ["reactnativeboilerplate"]
-xcode_workspace = "reactnativeboilerplate.xcworkspace"
+xcode_path = './HelloWorld.xcodeproj'
+xcode_target = ["HelloWorld"]
+xcode_workspace = "HelloWorld.xcworkspace"
 
 # Scheme
-scheme_dev = "reactnativeboilerplate-dev"
-scheme_qa = "reactnativeboilerplate-qa"
-scheme_prod = "reactnativeboilerplate-prod"
+scheme = "HelloWorld"
 
 # Firebase service paths
-firebase_gsp_dev = './reactnativeboilerplate/Firebase/dev/GoogleService-Info.plist'
-firebase_gsp_qa = './reactnativeboilerplate/Firebase/qa/GoogleService-Info.plist'
-firebase_gsp_prod = './reactnativeboilerplate/Firebase/prod/GoogleService-Info.plist'
+firebase_gsp_dev = './HelloWorld/Firebase/dev/GoogleService-Info.plist'
+firebase_gsp_qa = './HelloWorld/Firebase/qa/GoogleService-Info.plist'
+firebase_gsp_prod = './HelloWorld/Firebase/prod/GoogleService-Info.plist'
 
 platform :ios do
 
