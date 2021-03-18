@@ -10,7 +10,9 @@
 
 import React from 'react'
 import { enableScreens } from 'react-native-screens'
+import { Provider } from 'react-redux'
 import Navigator from './src/navigator/Navigator'
+import store from './src/stores/store'
 
 // Enable screens support before any of your navigation screens renders
 enableScreens()
@@ -18,7 +20,11 @@ enableScreens()
 // declare const global: { HermesInternal: null | {} }
 
 const App = () => {
-  return <Navigator />
+  return (
+    <Provider store={store}>
+      <Navigator />
+    </Provider>
+  )
 }
 
 export default App
