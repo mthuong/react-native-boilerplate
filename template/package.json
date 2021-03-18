@@ -9,14 +9,19 @@
     "format": "prettier --write 'src/**'",
     "pod": "cd ios && pod update",
     "idev": "ENVFILE=.env.dev npx react-native run-ios --simulator='iPhone 11 Pro'",
-    "iqa": "ENVFILE=.env.qa npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='reactnativeboilerplate-qa'",
-    "iprod": "ENVFILE=.env npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='reactnativeboilerplate'",
+    "iqa": "ENVFILE=.env.qa npx react-native run-ios --simulator='iPhone 11 Pro'",
+    "iprod": "ENVFILE=.env npx react-native run-ios --simulator='iPhone 11 Pro'",
     "adev": "ENVFILE=.env.dev npx react-native run-android",
     "aqa": "ENVFILE=.env.qa npx react-native run-android",
-    "aprod": "ENVFILE=.env npx react-native run-android"
+    "aprod": "ENVFILE=.env npx react-native run-android",
+    "a-dev-signing": "cd android && ENVFILE=.env.dev ./gradlew :app:signingReport",
+    "a-qa-signing": "cd android && ENVFILE=.env.qa ./gradlew :app:signingReport",
+    "a-prod-signing": "cd android && ENVFILE=.env ./gradlew :app:signingReport"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-firebase/app": "^11.1.2",
+    "@react-native-firebase/crashlytics": "^11.1.2",
     "@react-native-masked-view/masked-view": "^0.2.2",
     "@react-navigation/native": "^6.0.0-next.1",
     "@react-navigation/stack": "^6.0.0-next.3",

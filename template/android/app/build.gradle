@@ -1,18 +1,20 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 // Task copy gradle correct gradle file.
-// task copyGoogleServiceFile {
-//     copy {
-//         if (project.env.get("ENVIRONMENT") == "production") {
-//             from "$rootDir/app/firebase/prod/google-services.json"
-//             into "$rootDir/app"
-//         } else {
-//             from "$rootDir/app/firebase/dev/google-services.json"
-//             into "$rootDir/app"
-//         }
-//     }
-// }
+ task copyGoogleServiceFile {
+     copy {
+         if (project.env.get("ENVIRONMENT") == "production") {
+             from "$rootDir/app/firebase/prod/google-services.json"
+             into "$rootDir/app"
+         } else {
+             from "$rootDir/app/firebase/dev/google-services.json"
+             into "$rootDir/app"
+         }
+     }
+ }
 
 // Task copy gradle correct gradle file.
 // task copyAppIcon {
@@ -250,6 +252,9 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation 'androidx.multidex:multidex:2.0.1'
+
 }
 
 // Run this once to be able to run the application with BUCK
