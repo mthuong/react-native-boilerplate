@@ -167,7 +167,7 @@ android {
 
         multiDexEnabled true
 
-        resValue "string", "build_config_package", "com.reactnativeboilerplate"
+        resValue "string", "build_config_package", "com.helloworld"
     }
     splits {
         abi {

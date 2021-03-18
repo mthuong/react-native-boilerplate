@@ -1,4 +1,4 @@
-package com.reactnativeboilerplate;
+package com.helloworld;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
