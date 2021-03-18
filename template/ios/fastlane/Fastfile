@@ -59,7 +59,9 @@ xcode_target = ["HelloWorld"]
 xcode_workspace = "HelloWorld.xcworkspace"
 
 # Scheme
-scheme = "HelloWorld"
+scheme_prod = "HelloWorld"
+scheme_qa = "HelloWorld-qa"
+scheme_dev = "HelloWorld-dev"
 
 # Firebase service paths
 firebase_gsp_dev = './HelloWorld/Firebase/dev/GoogleService-Info.plist'
@@ -152,10 +154,6 @@ platform :ios do
 
   desc "AdHoc DEV"
   lane :adhoc_dev do
-    # Init development env
-    env_file = File.expand_path "../../.env.dev"
-    sh "echo '#{env_file}' > /tmp/envfile"
-
     # Configurations
     app_identifier = dev_app_identifier
     team_id = dev_team_id
@@ -175,7 +173,7 @@ platform :ios do
 
     build_app(
       clean: true,
-      scheme: scheme,
+      scheme: scheme_dev,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -198,10 +196,6 @@ platform :ios do
 
   desc "AdHoc QA"
   lane :adhoc_qa do
-    # Init development env
-    env_file = File.expand_path "../../.env.qa"
-    sh "echo '#{env_file}' > /tmp/envfile"
-
     # Configurations
     app_identifier = qa_app_identifier
     team_id = qa_team_id
@@ -221,7 +215,7 @@ platform :ios do
 
     build_app(
       clean: true,
-      scheme: scheme,
+      scheme: scheme_qa,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -244,10 +238,6 @@ platform :ios do
 
   desc "AdHoc PRODUCTION"
   lane :adhoc_production do
-    # Init development env
-    env_file = File.expand_path "../../.env"
-    sh "echo '#{env_file}' > /tmp/envfile"
-
     # Configurations
     app_identifier = prod_app_identifier
     team_id = prod_team_id
@@ -267,7 +257,7 @@ platform :ios do
 
     build_app(
       clean: true,
-      scheme: scheme,
+      scheme: scheme_prod,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -289,11 +279,7 @@ platform :ios do
   end
 
   desc "Push a new DEV build to TestFlight"
-  lane :development do
-    # Init development env
-    env_file = File.expand_path "../../.env.dev"
-    sh "echo '#{env_file}' > /tmp/envfile"
-    
+  lane :development do    
     # Configurations
     app_identifier = dev_app_identifier
     team_id = dev_team_id
@@ -314,7 +300,7 @@ platform :ios do
 
     build_app(
       clean: true,
-      scheme: scheme,
+      scheme: scheme_dev,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -366,10 +352,6 @@ CHANGE LOG: #{changelog}",
 
   desc "Push a new QA build to TestFlight"
   lane :qa do
-    # Init development env
-    env_file = File.expand_path "../../.env.qa"
-    sh "echo '#{env_file}' > /tmp/envfile"
-
     # Configurations
     app_identifier = qa_app_identifier
     team_id = qa_team_id
@@ -390,7 +372,7 @@ CHANGE LOG: #{changelog}",
 
     build_app(
       clean: true,
-      scheme: scheme,
+      scheme: scheme_qa,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
@@ -441,10 +423,6 @@ CHANGE LOG: #{changelog}",
 
   desc "Push a new PRODUCTION build to TestFlight"
   lane :production do
-    # Init development env
-    env_file = File.expand_path "../../.env"
-    sh "echo '#{env_file}' > /tmp/envfile"
-
     # Configurations
     app_identifier = prod_app_identifier
     team_id = prod_team_id
@@ -465,7 +443,7 @@ CHANGE LOG: #{changelog}",
 
     build_app(
       clean: true,
-      scheme: scheme,
+      scheme: scheme_prod,
       configuration: "Release",
       workspace: xcode_workspace,
       export_team_id: team_id,
