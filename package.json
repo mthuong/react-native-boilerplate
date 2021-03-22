@@ -2,11 +2,14 @@
   "name": "react-native-boilerplate",
   "version": "0.63.4",
   "description": "React Native Boilerplate",
-  "repository": "https://github.com/mthuong/react-native-boilerplate.git",
   "author": "Tom Nguyen <nguyenmanhthuong41@gmail.com>",
   "license": "MIT",
   "files": [
     "template",
     "template.config.js"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emin93/react-native-template-typescript.git"
+  }
 }
