@@ -3,12 +3,13 @@ import React from 'react'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../navigator/Navigator'
 import { RouteProp } from '@react-navigation/native'
+import { NAV_SCREENS } from '../navigator/RouteNames'
 
 type DetailsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  'Details'
+  NAV_SCREENS.Details
 >
-type DetailsScreenRoute = RouteProp<RootStackParamList, 'Details'>
+type DetailsScreenRoute = RouteProp<RootStackParamList, NAV_SCREENS.Details>
 
 type Props = {
   // eslint-disable-next-line react/no-unused-prop-types

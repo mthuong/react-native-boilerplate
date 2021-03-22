@@ -3,9 +3,13 @@ import React from 'react'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../navigator/Navigator'
 import { RouteProp } from '@react-navigation/native'
+import { NAV_SCREENS } from '../navigator/RouteNames'
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>
-type HomeScreenRoute = RouteProp<RootStackParamList, 'Home'>
+type HomeScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  NAV_SCREENS.Home
+>
+type HomeScreenRoute = RouteProp<RootStackParamList, NAV_SCREENS.Home>
 
 type Props = {
   navigation: HomeScreenNavigationProp
@@ -21,7 +25,7 @@ export function HomeScreen(props: Props) {
       <Button
         title='Go to Details'
         onPress={() => {
-          navigation.navigate('Details', { userId: 'hehe' })
+          navigation.navigate(NAV_SCREENS.Details, { userId: 'hehe' })
         }}
       />
     </View>

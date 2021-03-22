@@ -13,9 +13,8 @@ const initialState: AuthState = {
 }
 
 interface SignInAction {
-  username: string
-  password: string
-  isRememberMe: boolean
+  username?: string
+  password?: string
 }
 
 export const authReducer = createSlice({
@@ -25,6 +24,9 @@ export const authReducer = createSlice({
     signIn: (state, action: PayloadAction<SignInAction>) => {
       state.userToken = action.payload.username
     },
+    signOut: (state) => {
+      state.userToken = undefined
+    }
   },
 })
 

@@ -1,6 +1,6 @@
-import { MainStack } from './Navigator'
-import SignInScreen from '../scenes/Authentication/SignInScreen'
 import React from 'react'
+import SignInScreen from '../scenes/Authentication/SignInScreen'
+import { MainStack } from './Navigator'
 import { NAV_SCREENS } from './RouteNames'
 
 function AuthStack() {
@@ -15,4 +15,4 @@ function AuthStack() {
   )
 }
 
-export default AuthStack
+export { AuthStack }

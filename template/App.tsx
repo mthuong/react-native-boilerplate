@@ -10,9 +10,11 @@
 
 import React from 'react'
 import { enableScreens } from 'react-native-screens'
-import { Provider } from 'react-redux'
-import Navigator from './src/navigator/Navigator'
+import { Provider as StoreProvider } from 'react-redux'
+import { Provider as PaperProvider } from 'react-native-paper'
 import store from './src/stores/store'
+import { theme } from './src/theme'
+import { Navigator } from './src/navigator/Navigator'
 
 // Enable screens support before any of your navigation screens renders
 enableScreens()
@@ -21,9 +23,11 @@ enableScreens()
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <Navigator />
-    </Provider>
+    <StoreProvider store={store}>
+      <PaperProvider theme={theme}>
+        <Navigator />
+      </PaperProvider>
+    </StoreProvider>
   )
 }
 
