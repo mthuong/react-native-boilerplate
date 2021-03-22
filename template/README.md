@@ -7,6 +7,6 @@
 - Firebase Crashlytics - https://rnfirebase.io/ - ✅
   - Update ios/<project>/Firebase GoogleService-Info.plist for 3 environment
   - Update android/app/firebase google-service.json for 3 environment
-- Authenticate flows - https://reactnavigation.org/docs/6.x/auth-flow -
+- Authenticate flows - https://reactnavigation.org/docs/6.x/auth-flow - ✅
 - Axios - https://github.com/axios/axios -
 - i18n - https://github.com/i18next/react-i18next -

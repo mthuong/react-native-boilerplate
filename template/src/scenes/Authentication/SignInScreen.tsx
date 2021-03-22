@@ -1,14 +1,17 @@
-import React from 'react'
-import { View, TextInput, Button } from 'react-native'
-
-import { StackNavigationProp } from '@react-navigation/stack'
-import { RootStackParamList } from '../../navigator/Navigator'
 import { RouteProp } from '@react-navigation/native'
-import { useAppSelector, useAppDispatch } from '../../stores/hook'
+import { StackNavigationProp } from '@react-navigation/stack'
+import React from 'react'
+import { Button, TextInput, View } from 'react-native'
+import { RootStackParamList } from '../../navigator/Navigator'
 import { authReducer } from '../../stores/authReducer'
+import { useAppDispatch } from '../../stores/hook'
+import { NAV_SCREENS } from '../../navigator/RouteNames'
 
-type SignInNavigationProp = StackNavigationProp<RootStackParamList, 'SignIn'>
-type SignInRoute = RouteProp<RootStackParamList, 'SignIn'>
+type SignInNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  NAV_SCREENS.SignIn
+>
+type SignInRoute = RouteProp<RootStackParamList, NAV_SCREENS.SignIn>
 
 export type SignInParams = {}
 
@@ -38,7 +41,6 @@ function SignInScreen(props: Props) {
       <Button
         title='Sign in'
         onPress={() => {
-          // signIn({ username, password })
           dispatch(
             authReducer.actions.signIn({
               username,

@@ -14,12 +14,15 @@ type Props = {
 
 export function HomeScreen(props: Props) {
   const { navigation } = props
+
   return (
     <View style={styles.container}>
       <Text>Home Screen</Text>
       <Button
         title='Go to Details'
-        onPress={() => navigation.navigate('Details', { userId: 'hehe' })}
+        onPress={() => {
+          navigation.navigate('Details', { userId: 'hehe' })
+        }}
       />
     </View>
   )
