@@ -4,30 +4,27 @@
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
-import { DetailsScreen, DetailsScreenParams } from '../scenes/Details'
-import { HomeScreen, HomeScreenParams } from '../scenes/Home'
+import { SignInParams } from '../scenes/Authentication/SignInScreen'
+import { DetailsScreenParams } from '../scenes/Details'
+import { HomeScreenParams } from '../scenes/Home'
+import { useAppSelector } from '../stores/hook'
+import AuthStack from './AuthStack'
+import HomeStack from './HomeStack'
 
 export type RootStackParamList = {
   Home: HomeScreenParams | undefined
   Details: DetailsScreenParams | undefined
+  SignIn: SignInParams | undefined
 }
 
-const MainStack = createStackNavigator<RootStackParamList>()
+export const MainStack = createStackNavigator<RootStackParamList>()
 
 function Navigator() {
+  const useToken = useAppSelector((state) => state.authReducer.userToken)
   return (
     <NavigationContainer>
       <MainStack.Navigator>
-        <MainStack.Screen
-          name='Home'
-          component={HomeScreen}
-          options={{ title: 'My home' }}
-        />
-        <MainStack.Screen
-          name='Details'
-          component={DetailsScreen}
-          options={{ title: 'My details' }}
-        />
+        {useToken == null ? AuthStack() : HomeStack()}
       </MainStack.Navigator>
     </NavigationContainer>
   )

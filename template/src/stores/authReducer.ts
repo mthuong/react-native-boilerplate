@@ -22,6 +22,10 @@ export const authReducer = createSlice({
   name: 'authReducer',
   initialState,
   reducers: {
-    signIn: (state, action: PayloadAction<SignInAction>) => {},
+    signIn: (state, action: PayloadAction<SignInAction>) => {
+      state.userToken = action.payload.username
+    },
   },
 })
+
+export default authReducer.reducer
