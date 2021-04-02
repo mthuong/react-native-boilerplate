@@ -1,11 +1,12 @@
 import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
-import { Button, TextInput, View } from 'react-native'
+import { Button, View } from 'react-native'
 import { RootStackParamList } from '../../navigator/Navigator'
 import { authReducer } from '../../stores/authReducer'
 import { useAppDispatch } from '../../stores/hook'
 import { NAV_SCREENS } from '../../navigator/RouteNames'
+import { TextInput } from 'react-native-paper'
 
 type SignInNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -27,13 +28,9 @@ function SignInScreen(props: Props) {
 
   return (
     <View>
+      <TextInput label='Username' value={username} onChangeText={setUsername} />
       <TextInput
-        placeholder='Username'
-        value={username}
-        onChangeText={setUsername}
-      />
-      <TextInput
-        placeholder='Password'
+        label='Password'
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -45,7 +42,6 @@ function SignInScreen(props: Props) {
             authReducer.actions.signIn({
               username,
               password,
-              isRememberMe: true,
             })
           )
         }}

@@ -26,7 +26,7 @@ export const authReducer = createSlice({
     },
     signOut: (state) => {
       state.userToken = undefined
-    }
+    },
   },
 })
 
