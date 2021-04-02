@@ -6,10 +6,10 @@ interface ILogin {
   password: string
 }
 
-async function signup(params: ILogin) {
+async function login(params: ILogin) {
   const { username, password } = params
   try {
-    const response: FirebaseAuthTypes.UserCredential = auth().createUserWithEmailAndPassword(
+    const response: FirebaseAuthTypes.UserCredential = auth().signInWithEmailAndPassword(
       username,
       password
     )
