@@ -2,10 +2,10 @@ const fs = require('fs')
 const imageFileNames = () => {
   const array = fs
     .readdirSync('src/theme/assets')
-    .filter(file => {
+    .filter((file) => {
       return file.endsWith('.png')
     })
-    .map(file => {
+    .map((file) => {
       return file
         .replace('@2x.png', '')
         .replace('@3x.png', '')
@@ -15,7 +15,7 @@ const imageFileNames = () => {
 }
 const generate = () => {
   let properties = imageFileNames()
-    .map(name => {
+    .map((name) => {
       return `${name.replace(/-/g, '_')}: require('./assets/${name}.png')`
     })
     .join(',\n  ')

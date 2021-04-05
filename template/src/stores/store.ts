@@ -1,10 +1,12 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import counterReducer from './counterSlice'
 import authReducer from './authReducer';
+import snackbarReducer from './snackbarReducer';
 
 const rootReducer = combineReducers({
   counterReducer,
-  authReducer,
+  auth: authReducer,
+  snackbar: snackbarReducer,
 })
 
 const store = configureStore({

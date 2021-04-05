@@ -1,9 +1,9 @@
 enum fontSizes {
   tiny = 12,
-  small = 16,
-  medium = 20,
-  large = 26,
-  huge = 32,
+  small = 14,
+  medium = 16,
+  large = 20,
+  huge = 26,
 }
 
 export default fontSizes

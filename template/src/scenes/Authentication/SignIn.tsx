@@ -1,12 +1,15 @@
 import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import React from 'react'
-import { Button, View } from 'react-native'
+import { View, Keyboard } from 'react-native'
 import { RootStackParamList } from '../../navigator/Navigator'
-import { authReducer } from '../../stores/authReducer'
+import { signIn } from '../../stores/authReducer'
 import { useAppDispatch } from '../../stores/hook'
 import { NAV_SCREENS } from '../../navigator/RouteNames'
-import { TextInput } from 'react-native-paper'
+import { TextInput, Button } from 'react-native-paper'
+import { ButtonText } from 'components/ButtonText'
+import { SignUpParams } from './SignUp/SignUp'
+import { navigate } from 'navigator/RootNavigation'
 
 type SignInNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -21,7 +24,7 @@ type Props = {
   route: SignInRoute
 }
 
-function SignInScreen(props: Props) {
+function SignIn(props: Props) {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   const dispatch = useAppDispatch()
@@ -35,19 +38,23 @@ function SignInScreen(props: Props) {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <Button
-        title='Sign in'
+      <ButtonText
+        textPresets='bold'
+        text='Sign up'
         onPress={() => {
-          dispatch(
-            authReducer.actions.signIn({
-              username,
-              password,
-            })
-          )
+          navigate(NAV_SCREENS.SignUp)
+        }}
+      />
+      <ButtonText
+        textPresets='light'
+        text='Sign in'
+        onPress={() => {
+          Keyboard.dismiss()
+          dispatch(signIn({ username, password }))
         }}
       />
     </View>
   )
 }
 
-export default SignInScreen
+export default SignIn

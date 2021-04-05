@@ -3,4 +3,5 @@ export enum NAV_SCREENS {
   SignOut = 'SignOut',
   Home = 'Home',
   Details = 'Details',
+  SignUp = 'SignUp',
 }

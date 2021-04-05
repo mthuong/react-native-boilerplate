@@ -6,19 +6,21 @@ import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { navigationRef, isReadyRef } from './RootNavigation'
-import { SignInParams } from '../scenes/Authentication/SignInScreen'
+import { SignInParams } from '../scenes/Authentication/SignIn'
 import { DetailsScreenParams } from '../scenes/Details'
 import { HomeScreenParams } from '../scenes/Home'
 import { useAppSelector, useAppDispatch } from '../stores/hook'
-import { authReducer } from '../stores/authReducer'
+import { authSlice, signIn } from '../stores/authReducer'
 import { NAV_SCREENS } from './RouteNames'
 import { AuthStack } from './AuthStack'
 import { HomeStack } from './HomeStack'
+import { SignUpParams } from '../scenes/Authentication/signUp/SignUp'
 
 export type RootStackParamList = {
   [NAV_SCREENS.Home]: HomeScreenParams | undefined
   [NAV_SCREENS.Details]: DetailsScreenParams | undefined
   [NAV_SCREENS.SignIn]: SignInParams | undefined
+  [NAV_SCREENS.SignUp]: SignUpParams | undefined
 }
 
 // Update the param types when you have more screen params
@@ -26,12 +28,13 @@ export type RootStackParamTypes =
   | HomeScreenParams
   | DetailsScreenParams
   | SignInParams
+  | SignUpParams
   | undefined
 
 export const MainStack = createStackNavigator<RootStackParamList>()
 
 function Navigator() {
-  const useToken = useAppSelector((state) => state.authReducer.userToken)
+  const useToken = useAppSelector((state) => state.auth.userToken)
 
   const dispatch = useAppDispatch()
 
@@ -39,12 +42,12 @@ function Navigator() {
   function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
     if (user) {
       dispatch(
-        authReducer.actions.signIn({
+        signIn({
           username: user.email || '',
         })
       )
     } else {
-      dispatch(authReducer.actions.signOut())
+      dispatch(authSlice.actions.signOut())
     }
   }
 

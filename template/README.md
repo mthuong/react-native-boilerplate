@@ -10,6 +10,7 @@
 - Authenticate flows - https://reactnavigation.org/docs/6.x/auth-flow - ✅
 - Axios - https://github.com/axios/axios - ✅
 - React Native Fast Image - https://github.com/DylanVann/react-native-fast-image - ✅
+- Module Resolver - https://github.com/tleunen/babel-plugin-module-resolver#readme - ✅
 - Firebase authen - https://rnfirebase.io/auth/usage#emailpassword-sign-in -
 - i18n - https://github.com/i18next/react-i18next -
 - Storybook - https://github.com/storybookjs/react-native -

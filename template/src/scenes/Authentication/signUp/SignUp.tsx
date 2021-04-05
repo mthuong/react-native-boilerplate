@@ -1,228 +1,164 @@
-import { ButtonText } from 'components/button-text'
-import Content from 'components/content/content'
-import { SignUpField } from 'components/signup-field'
-import { Text } from 'components/text'
-import { TextField } from 'components/text-field'
 import React from 'react'
-import {
-  Keyboard,
-  StatusBar,
-  TouchableOpacity,
-  View,
-  StyleSheet,
-} from 'react-native'
+import { RouteProp } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { ButtonText } from 'components/ButtonText'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import palette from 'theme/palette'
+import { Image } from '../../../components/image'
+import { Text } from '../../../components/text'
+import { TextInput } from '../../../components/TextInput'
+import { RootStackParamList } from '../../../navigator/Navigator'
+import { NAV_SCREENS } from '../../../navigator/RouteNames'
 import colors from '../../../theme/colors'
 
-interface SignUpProps {}
+type SignUpNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  NAV_SCREENS.SignUp
+>
+type SignUpRoute = RouteProp<RootStackParamList, NAV_SCREENS.SignUp>
 
-export default class SignUp extends React.PureComponent<SignUpProps> {
-  static navigationOptions = {
-    headerShown: true,
-    headerTitle: translate('signup.title'),
+export type SignUpParams = {}
+
+type Props = {
+  navigation: SignUpNavigationProp
+  route: SignUpRoute
+}
+
+export default function SignUp(props: Props) {
+  const onPressRegister = async () => {
+    // const { navigation } = props
+    // const success = await userStore.signUp()
+    // if (success) {
+    //   navigation!.navigate('Home')
+    // }
   }
 
-  nameField: any
-  emailField: any
-  phoneField: any
-  addressField: any
-  passwordField: any
-  confirmationPasswordField: any
-
-  componentWillUnmount() {
-    const {
-      rootStore: { userStore },
-    } = this.props
-    userStore.clearRegisterUser()
+  const onPressAvatar = async () => {
+    // try {
+    //   const {
+    //     rootStore: {
+    //       userStore: { registerUser },
+    //     },
+    //   } = this.props
+    //   const { uri } = await imageUtils.showImagePicker(!!registerUser.photoURL)
+    //   registerUser.photoURL = uri || ''
+    // } catch (e) {
+    //   // @ts-ignore
+    //   console.tron.log('select avatar error', e)
+    // }
   }
 
-  onPressRegister = async () => {
-    const {
-      rootStore: { userStore },
-      navigation,
-    } = this.props
-    const success = await userStore.signUp()
-    if (success) {
-      navigation!.navigate('Home')
-    }
-  }
-
-  onPressAvatar = async () => {
-    try {
-      const {
-        rootStore: {
-          userStore: { registerUser },
-        },
-      } = this.props
-      const { uri } = await imageUtils.showImagePicker(!!registerUser.photoURL)
-      registerUser.photoURL = uri || ''
-    } catch (e) {
-      // @ts-ignore
-      console.tron.log('select avatar error', e)
-    }
-  }
-
-  render() {
-    const {
-      rootStore: { userStore },
-    } = this.props
-    const { registerUser, errorSignUp } = userStore
-
-    return (
-      <Content style={CONTAINER} extraScrollHeight={70}>
-        <View>
-          <StatusBar barStyle={'default'} />
-          <TouchableOpacity
-            style={{ alignSelf: 'center' }}
-            onPress={this.onPressAvatar}>
-            <View style={IMAGE_WRAPPER}>
-              <Image
-                style={IMAGE}
-                url={registerUser.photoURL}
-                asset='ic_guest'
-              />
-              <Image style={ICON_PLUS} asset='ic_plus' />
-            </View>
-          </TouchableOpacity>
-
-          <SignUpField
-            forwardedRef={(ref: any) => {
-              this.nameField = ref
-            }}
-            txLabel={'common.name'}
-            keyboardType={'default'}
-            autoCapitalize={'words'}
-            maxLength={50}
-            onSubmitEditing={() => {
-              this.emailField && this.emailField.focus()
-            }}
-            onChangeText={(value) => {
-              registerUser.displayName = value
-            }}
-            value={registerUser.displayName}
-            error={errorSignUp.errorName}
-          />
-
-          <SignUpField
-            forwardedRef={(ref: any) => {
-              this.emailField = ref
-            }}
-            txLabel={'common.email'}
-            keyboardType={'email-address'}
-            autoCapitalize={'none'}
-            maxLength={100}
-            onSubmitEditing={() => {
-              this.phoneField && this.phoneField.focus()
-            }}
-            onChangeText={(value) => {
-              registerUser.email = value
-            }}
-            value={registerUser.email}
-            error={errorSignUp.errorEmail}
-          />
-
-          <View style={PHONE_CONTAINER}>
-            <Text tx={'common.phone'} preset={'bold'} style={PHONE_NATION} />
-            <View style={PHONE_BIGGER_WRAPPER}>
-              <View style={PHONE_WRAPPER}>
-                <Text tx={'signup.vietNamNumber'} style={PHONE_LABEL} />
-                <TextField
-                  forwardedRef={(ref: any) => {
-                    this.phoneField = ref
-                  }}
-                  style={PHONE_TEXT_FIELD}
-                  keyboardType={'phone-pad'}
-                  onSubmitEditing={() => {
-                    this.addressField && this.addressField.focus()
-                  }}
-                  maxLength={13}
-                  onChangeText={(value) => {
-                    registerUser.phone = value
-                  }}
-                  value={registerUser.phone}
-                />
-              </View>
-              {!!errorSignUp.errorPhone && (
-                <Text
-                  preset={'error'}
-                  text={errorSignUp.errorPhone}
-                  style={ERROR_PHONE}
-                />
-              )}
-            </View>
-
-            <Text style={PHONE_ERROR} />
+  return (
+    <KeyboardAwareScrollView style={styles.CONTAINER}>
+      <View style={styles.inner}>
+        <TouchableOpacity
+          style={{ alignSelf: 'center' }}
+          onPress={onPressAvatar}>
+          <View style={styles.IMAGE_WRAPPER}>
+            <Image
+              style={styles.IMAGE}
+              url={'registerUser.photoURL'} // FIXME: user photo
+              asset='ic_guest'
+            />
+            <Image style={styles.ICON_PLUS} asset='ic_plus' />
           </View>
+        </TouchableOpacity>
 
-          <SignUpField
-            forwardedRef={(ref: any) => {
-              this.addressField = ref
-            }}
-            txLabel={'common.address'}
-            keyboardType={'default'}
-            autoCapitalize={'words'}
-            maxLength={50}
-            onSubmitEditing={() => {
-              this.passwordField && this.passwordField.focus()
-            }}
-            onChangeText={(value) => {
-              registerUser.address = value
-            }}
-            value={registerUser.address}
-            error={errorSignUp.errorAddress}
-          />
+        <TextInput
+          placeholder='Name'
+          keyboardType={'default'}
+          autoCapitalize={'words'}
+          maxLength={50}
+          onChangeText={(value) => {
+            // registerUser.displayName = value
+          }}
+          value={''}
+        />
 
-          <SignUpField
-            forwardedRef={(ref: any) => {
-              this.passwordField = ref
-            }}
-            secureTextEntry
-            txLabel={'common.password'}
-            maxLength={100}
-            onSubmitEditing={() => {
-              this.confirmationPasswordField &&
-                this.confirmationPasswordField.focus()
-            }}
-            onChangeText={(value) => {
-              registerUser.password = value
-            }}
-            value={registerUser.password}
-            error={errorSignUp.errorPassword}
-          />
+        <TextInput
+          keyboardType={'email-address'}
+          autoCapitalize={'none'}
+          maxLength={100}
+          onChangeText={(value) => {
+            // registerUser.email = value
+          }}
+          // value={registerUser.email}
+        />
 
-          <SignUpField
-            forwardedRef={(ref: any) => {
-              this.confirmationPasswordField = ref
-            }}
-            secureTextEntry
-            txLabel={'common.confirmationPassword'}
-            maxLength={100}
-            onChangeText={(value) => {
-              registerUser.confirmationPassword = value
-            }}
-            value={registerUser.confirmationPassword}
-            error={errorSignUp.errorConfirmationPassword}
-            onSubmitEditing={() => {
-              Keyboard.dismiss()
-            }}
+        <View style={styles.PHONE_CONTAINER}>
+          <Text
+            tx={'common.phone'}
+            preset={'bold'}
+            style={styles.PHONE_NATION}
           />
-
-          <ButtonText
-            tx={'login.register'}
-            style={BUTTON}
-            textPresets={'bold'}
-            textStyle={BUTTON_TEXT}
-            onPress={this.onPressRegister}
-          />
+          <View style={styles.PHONE_BIGGER_WRAPPER}>
+            <View style={styles.PHONE_WRAPPER}>
+              <Text tx={'signup.vietNamNumber'} style={styles.PHONE_LABEL} />
+              <TextInput
+                style={styles.PHONE_TEXT_FIELD}
+                keyboardType={'phone-pad'}
+                maxLength={13}
+                onChangeText={(value) => {
+                  // registerUser.phone = value
+                }}
+                // value={registerUser.phone}
+              />
+            </View>
+          </View>
         </View>
-      </Content>
-    )
-  }
+
+        <TextInput
+          txLabel={'common.address'}
+          keyboardType={'default'}
+          autoCapitalize={'words'}
+          maxLength={50}
+          onChangeText={(value) => {
+            // registerUser.address = value
+          }}
+          // value={registerUser.address}
+          // error={errorSignUp.errorAddress}
+        />
+
+        <TextInput
+          secureTextEntry
+          txLabel={'common.password'}
+          maxLength={100}
+          onChangeText={(value) => {
+            // registerUser.password = value
+          }}
+          // value={registerUser.password}
+          // error={errorSignUp.errorPassword}
+        />
+
+        <TextInput
+          secureTextEntry
+          txLabel={'common.confirmationPassword'}
+          maxLength={100}
+          // value={registerUser.confirmationPassword}
+          // error={errorSignUp.errorConfirmationPassword}
+        />
+
+        <ButtonText
+          tx={'login.register'}
+          style={styles.BUTTON}
+          textPresets={'bold'}
+          textStyle={styles.BUTTON_TEXT}
+          onPress={onPressRegister}
+        />
+      </View>
+    </KeyboardAwareScrollView>
+  )
 }
 
 const styles = StyleSheet.create({
   CONTAINER: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+
+  inner: {
+    // flex: 1,
   },
 
   IMAGE_WRAPPER: {
@@ -254,16 +190,17 @@ const styles = StyleSheet.create({
   PHONE_NATION: {
     marginRight: 5,
     fontSize: 13,
-    color: pallete.gray,
+    color: palette.gray,
   },
 
   PHONE_TEXT_FIELD: {
     height: 35,
-    borderBottomColor: pallete.gray,
+    borderBottomColor: palette.gray,
     borderBottomWidth: 1,
     flex: 1,
   },
-  PHONE_ERROR: { marginBottom: 5, color: pallete.red },
+
+  PHONE_ERROR: { marginBottom: 5, color: palette.red },
 
   BUTTON: {
     height: 46,
