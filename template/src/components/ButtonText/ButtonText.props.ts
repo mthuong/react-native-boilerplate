@@ -1,16 +1,12 @@
 import { ViewStyle, TextStyle } from 'react-native'
-import { TextPresets } from 'components/text';
-import { ImageAssetTypes } from 'theme';
-
+import { TextPresets } from 'components/text'
+import { ImageAssetTypes } from 'theme'
 
 export interface ButtonTextProps {
   // Container style.
   style?: ViewStyle | ViewStyle[]
 
-  // Text which is look up via i18n
-  tx?: string
-
-  // Text to display if not using tx.
+  // Text to display
   text?: string
 
   // Optional text style.

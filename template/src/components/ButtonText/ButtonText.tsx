@@ -12,7 +12,6 @@ export function ButtonText(props: ButtonTextProps) {
     text,
     textPresets,
     textStyle,
-    tx,
     onPress,
   } = props
 
@@ -24,12 +23,7 @@ export function ButtonText(props: ButtonTextProps) {
       style={[styles.BUTTON, styles.CONTAINER, style && style]}>
       <View style={styles.CONTENT}>
         {leftAsset && <Image asset={leftAsset} />}
-        <Text
-          style={mergedTextStyle}
-          preset={textPresets}
-          text={text}
-          tx={tx}
-        />
+        <Text style={mergedTextStyle} preset={textPresets} text={text} />
         {rightAsset && <Image asset={rightAsset} />}
       </View>
     </TouchableOpacity>

@@ -20,14 +20,6 @@ export interface TextProps extends TextProperties {
   children?: React.ReactNode
 
   /**
-   * Text which is look up via i18n
-   *
-   * @type {string}
-   * @memberof TextProps
-   */
-  tx?: string
-
-  /**
    * Text to display if not using tx or nested components.
    *
    * @type {string}
@@ -61,16 +53,13 @@ export function Text(props: TextProps) {
   // grab the props
   const {
     preset = 'default',
-    tx,
     text,
     children,
     style: styleOverride,
     ...rest
   } = props
 
-  // figure out which content to use
-  // const i18nText = tx && translate(tx)
-  const content = text || children // || i18nText
+  const content = text || children
 
   const style = [presets[preset] || presets.default, styleOverride]
 
@@ -90,6 +79,12 @@ const styles = StyleSheet.create({
     color: colors.text,
     fontSize: fontSizes.small,
   },
+
+  default: {
+    ...fonts.regular,
+    color: colors.text,
+    fontSize: fontSizes.small,
+  },
 })
 
 // All style here
@@ -102,3 +97,5 @@ export const presets = {
 }
 
 export type TextPresets = keyof typeof presets
+
+type APresets = keyof typeof styles

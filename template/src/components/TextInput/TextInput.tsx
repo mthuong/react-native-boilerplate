@@ -9,9 +9,6 @@ export interface TextInputProps extends InputProps {
   containerStyle?: StyleProp<ViewStyle>
 
   theme?: ReactNativePaper.Theme
-
-  // Translated string
-  txLabel?: string
 }
 
 export function TextInput(props: TextInputProps) {

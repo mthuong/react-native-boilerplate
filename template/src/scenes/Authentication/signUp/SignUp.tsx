@@ -11,6 +11,7 @@ import { TextInput } from '../../../components/TextInput'
 import { RootStackParamList } from '../../../navigator/Navigator'
 import { NAV_SCREENS } from '../../../navigator/RouteNames'
 import colors from '../../../theme/colors'
+import { useLocalizationContext } from 'languages'
 
 type SignUpNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -49,6 +50,8 @@ export default function SignUp(props: Props) {
     // }
   }
 
+  const languages = useLocalizationContext()
+
   return (
     <KeyboardAwareScrollView style={styles.CONTAINER}>
       <View style={styles.inner}>
@@ -66,7 +69,7 @@ export default function SignUp(props: Props) {
         </TouchableOpacity>
 
         <TextInput
-          placeholder='Name'
+          placeholder={languages.Name}
           keyboardType={'default'}
           autoCapitalize={'words'}
           maxLength={50}
@@ -77,6 +80,7 @@ export default function SignUp(props: Props) {
         />
 
         <TextInput
+          label={languages.Email}
           keyboardType={'email-address'}
           autoCapitalize={'none'}
           maxLength={100}
@@ -87,15 +91,10 @@ export default function SignUp(props: Props) {
         />
 
         <View style={styles.PHONE_CONTAINER}>
-          <Text
-            tx={'common.phone'}
-            preset={'bold'}
-            style={styles.PHONE_NATION}
-          />
           <View style={styles.PHONE_BIGGER_WRAPPER}>
             <View style={styles.PHONE_WRAPPER}>
-              <Text tx={'signup.vietNamNumber'} style={styles.PHONE_LABEL} />
               <TextInput
+                label={languages.Phone}
                 style={styles.PHONE_TEXT_FIELD}
                 keyboardType={'phone-pad'}
                 maxLength={13}
@@ -109,20 +108,8 @@ export default function SignUp(props: Props) {
         </View>
 
         <TextInput
-          txLabel={'common.address'}
-          keyboardType={'default'}
-          autoCapitalize={'words'}
-          maxLength={50}
-          onChangeText={(value) => {
-            // registerUser.address = value
-          }}
-          // value={registerUser.address}
-          // error={errorSignUp.errorAddress}
-        />
-
-        <TextInput
           secureTextEntry
-          txLabel={'common.password'}
+          label={languages.Password}
           maxLength={100}
           onChangeText={(value) => {
             // registerUser.password = value
@@ -133,14 +120,14 @@ export default function SignUp(props: Props) {
 
         <TextInput
           secureTextEntry
-          txLabel={'common.confirmationPassword'}
+          label={languages.ConfirmPassword}
           maxLength={100}
           // value={registerUser.confirmationPassword}
           // error={errorSignUp.errorConfirmationPassword}
         />
 
         <ButtonText
-          tx={'login.register'}
+          text={languages.SignUp}
           style={styles.BUTTON}
           textPresets={'bold'}
           textStyle={styles.BUTTON_TEXT}

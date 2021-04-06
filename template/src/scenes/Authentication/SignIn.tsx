@@ -10,6 +10,7 @@ import { TextInput, Button } from 'react-native-paper'
 import { ButtonText } from 'components/ButtonText'
 import { SignUpParams } from './SignUp/SignUp'
 import { navigate } from 'navigator/RootNavigation'
+import { useLocalizationContext } from 'languages'
 
 type SignInNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -28,26 +29,31 @@ function SignIn(props: Props) {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   const dispatch = useAppDispatch()
+  const languages = useLocalizationContext()
 
   return (
     <View>
-      <TextInput label='Username' value={username} onChangeText={setUsername} />
       <TextInput
-        label='Password'
+        label={languages.Username}
+        value={username}
+        onChangeText={setUsername}
+      />
+      <TextInput
+        label={languages.Password}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
       />
       <ButtonText
         textPresets='bold'
-        text='Sign up'
+        text={languages.SignUp}
         onPress={() => {
           navigate(NAV_SCREENS.SignUp)
         }}
       />
       <ButtonText
         textPresets='light'
-        text='Sign in'
+        text={languages.SignIn}
         onPress={() => {
           Keyboard.dismiss()
           dispatch(signIn({ username, password }))
