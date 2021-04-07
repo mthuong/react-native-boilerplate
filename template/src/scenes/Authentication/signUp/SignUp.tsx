@@ -10,6 +10,7 @@ import { RootStackParamList } from '../../../navigator/Navigator'
 import { NAV_SCREENS } from '../../../navigator/RouteNames'
 import colors from '../../../theme/colors'
 import { useLocalizationContext } from 'languages'
+import palette from 'theme/palette'
 
 type SignUpNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -86,22 +87,16 @@ export default function SignUp(props: Props) {
           // value={registerUser.email}
         />
 
-        <View style={styles.PHONE_CONTAINER}>
-          <View style={styles.PHONE_BIGGER_WRAPPER}>
-            <View style={styles.PHONE_WRAPPER}>
-              <TextInput
-                label={languages.Phone}
-                style={styles.PHONE_TEXT_FIELD}
-                keyboardType='phone-pad'
-                maxLength={13}
-                onChangeText={(value) => {
-                  // registerUser.phone = value
-                }}
-                // value={registerUser.phone}
-              />
-            </View>
-          </View>
-        </View>
+        <TextInput
+          label={languages.Phone}
+          style={styles.PHONE_TEXT_FIELD}
+          keyboardType='phone-pad'
+          maxLength={13}
+          onChangeText={(value) => {
+            // registerUser.phone = value
+          }}
+          // value={registerUser.phone}
+        />
 
         <TextInput
           secureTextEntry
@@ -140,9 +135,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.background,
   },
 
-  inner: {
-    // flex: 1,
-  },
+  inner: {},
 
   avatar: { alignSelf: 'center' },
 
@@ -162,30 +155,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
 
-  PHONE_CONTAINER: {
-    marginHorizontal: 20,
-  },
-
-  PHONE_WRAPPER: {
-    flexDirection: 'row',
-  },
-
-  PHONE_LABEL: { fontSize: 14, marginTop: 4 },
-
-  PHONE_NATION: {
-    marginRight: 5,
-    fontSize: 13,
-    color: palette.gray,
-  },
-
-  PHONE_TEXT_FIELD: {
-    height: 35,
-    borderBottomColor: palette.gray,
-    borderBottomWidth: 1,
-    flex: 1,
-  },
-
-  PHONE_ERROR: { marginBottom: 5, color: palette.red },
+  PHONE_TEXT_FIELD: {},
 
   BUTTON: {
     height: 46,

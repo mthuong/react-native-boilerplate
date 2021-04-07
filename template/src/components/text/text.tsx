@@ -79,17 +79,12 @@ const styles = StyleSheet.create({
     color: colors.text,
     fontSize: fontSizes.small,
   },
-
-  default: {
-    ...fonts.regular,
-    color: colors.text,
-    fontSize: fontSizes.small,
-  },
 })
 
 // All style here
 export const presets = {
   default: styles.BASE,
+
   bold: { ...styles.BASE, ...fonts.bold } as TextStyle,
   header: { ...styles.BASE } as TextStyle,
   light: { ...styles.BASE, ...fonts.light } as TextStyle,
@@ -97,5 +92,3 @@ export const presets = {
 }
 
 export type TextPresets = keyof typeof presets
-
-type APresets = keyof typeof styles
