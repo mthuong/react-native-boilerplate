@@ -59,4 +59,9 @@ module.exports = {
     'react-hooks/exhaustive-deps': 0,
     '@typescript-eslint/explicit-module-boundary-types': 'off',
   },
+  settings: {
+    'import/resolver': {
+      'babel-module': {},
+    },
+  },
 }

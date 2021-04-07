@@ -4,9 +4,7 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { ButtonText } from 'components/ButtonText'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import palette from 'theme/palette'
 import { Image } from '../../../components/image'
-import { Text } from '../../../components/text'
 import { TextInput } from '../../../components/TextInput'
 import { RootStackParamList } from '../../../navigator/Navigator'
 import { NAV_SCREENS } from '../../../navigator/RouteNames'
@@ -55,13 +53,11 @@ export default function SignUp(props: Props) {
   return (
     <KeyboardAwareScrollView style={styles.CONTAINER}>
       <View style={styles.inner}>
-        <TouchableOpacity
-          style={{ alignSelf: 'center' }}
-          onPress={onPressAvatar}>
+        <TouchableOpacity style={styles.avatar} onPress={onPressAvatar}>
           <View style={styles.IMAGE_WRAPPER}>
             <Image
               style={styles.IMAGE}
-              url={'registerUser.photoURL'} // FIXME: user photo
+              url='registerUser.photoURL' // FIXME: user photo
               asset='ic_guest'
             />
             <Image style={styles.ICON_PLUS} asset='ic_plus' />
@@ -70,19 +66,19 @@ export default function SignUp(props: Props) {
 
         <TextInput
           placeholder={languages.Name}
-          keyboardType={'default'}
-          autoCapitalize={'words'}
+          keyboardType='default'
+          autoCapitalize='words'
           maxLength={50}
           onChangeText={(value) => {
             // registerUser.displayName = value
           }}
-          value={''}
+          value=''
         />
 
         <TextInput
           label={languages.Email}
-          keyboardType={'email-address'}
-          autoCapitalize={'none'}
+          keyboardType='email-address'
+          autoCapitalize='none'
           maxLength={100}
           onChangeText={(value) => {
             // registerUser.email = value
@@ -96,7 +92,7 @@ export default function SignUp(props: Props) {
               <TextInput
                 label={languages.Phone}
                 style={styles.PHONE_TEXT_FIELD}
-                keyboardType={'phone-pad'}
+                keyboardType='phone-pad'
                 maxLength={13}
                 onChangeText={(value) => {
                   // registerUser.phone = value
@@ -129,7 +125,7 @@ export default function SignUp(props: Props) {
         <ButtonText
           text={languages.SignUp}
           style={styles.BUTTON}
-          textPresets={'bold'}
+          textPresets='bold'
           textStyle={styles.BUTTON_TEXT}
           onPress={onPressRegister}
         />
@@ -147,6 +143,8 @@ const styles = StyleSheet.create({
   inner: {
     // flex: 1,
   },
+
+  avatar: { alignSelf: 'center' },
 
   IMAGE_WRAPPER: {
     marginTop: 46,

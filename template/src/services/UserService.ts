@@ -11,7 +11,7 @@ export async function login(params: ILogin) {
   try {
     const response: FirebaseAuthTypes.UserCredential = await auth().signInWithEmailAndPassword(
       username || '',
-      password || '',
+      password || ''
     )
     return response.user
   } catch (error) {

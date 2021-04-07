@@ -23,16 +23,22 @@ interface SignInAction {
   password?: string
 }
 
-export const signIn = createAsyncThunk('signIn', async (body: SignInAction, { rejectWithValue, dispatch }) => {
-  try {
-    const response = await userService.login({ username: body.username, password: body.password })
-    return response
-  } catch (error) {
-    dispatch(snackbarSlice.actions.show(error.message))
+export const signIn = createAsyncThunk(
+  'signIn',
+  async (body: SignInAction, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await userService.login({
+        username: body.username,
+        password: body.password,
+      })
+      return response
+    } catch (error) {
+      dispatch(snackbarSlice.actions.show(error.message))
 
-    return rejectWithValue(error.message)
+      return rejectWithValue(error.message)
+    }
   }
-})
+)
 
 export const authSlice = createSlice({
   name: 'authReducer',
@@ -46,13 +52,16 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: {
-    [signIn.fulfilled.type]: (state, action: PayloadAction<FirebaseAuthTypes.UserCredential>) => {
+    [signIn.fulfilled.type]: (
+      state,
+      action: PayloadAction<FirebaseAuthTypes.UserCredential>
+    ) => {
       console.tron.log(action)
     },
     [signIn.rejected.type]: (state, action: PayloadAction<Error>) => {
       console.tron.log(action)
-    }
-  }
+    },
+  },
 })
 
 const authReducer = authSlice.reducer
