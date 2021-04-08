@@ -1,10 +1,9 @@
-import React from 'react'
-import SignIn, { SignInParams } from '../scenes/Authentication/SignIn'
-import { MainStack, RootStackParamList } from './Navigator'
-import { NAV_SCREENS } from './RouteNames'
-import SignUp from '../scenes/Authentication/SignUp'
 import { useLocalizationContext } from 'languages'
+import React from 'react'
 import { SignUpParams } from 'scenes/Authentication/SignUp/SignUp'
+import SignIn, { SignInParams } from '../scenes/Authentication/SignIn'
+import SignUp from '../scenes/Authentication/SignUp'
+import { MainStack } from './Navigator'
 
 export type AuthStackTypes = SignInParams | SignUpParams
 

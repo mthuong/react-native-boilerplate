@@ -45,14 +45,14 @@ function SignUp(props: Props) {
     <KeyboardAwareScrollView style={styles.CONTAINER}>
       <View style={styles.inner}>
         <TextInput
-          placeholder={languages.Name}
+          label={languages.Name}
           keyboardType='default'
           autoCapitalize='words'
           maxLength={50}
-          onChangeText={(value) => {
-            // registerUser.displayName = value
-          }}
-          value=''
+          // onChangeText={(value) => {
+          // registerUser.displayName = value
+          // }}
+          // value=''
         />
 
         <TextInput
@@ -64,17 +64,6 @@ function SignUp(props: Props) {
             // registerUser.email = value
           }}
           // value={registerUser.email}
-        />
-
-        <TextInput
-          label={languages.Phone}
-          style={styles.PHONE_TEXT_FIELD}
-          keyboardType='phone-pad'
-          maxLength={13}
-          onChangeText={(value) => {
-            // registerUser.phone = value
-          }}
-          // value={registerUser.phone}
         />
 
         <TextInput

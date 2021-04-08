@@ -11,6 +11,10 @@
 - Axios - https://github.com/axios/axios - ✅
 - React Native Fast Image - https://github.com/DylanVann/react-native-fast-image - ✅
 - Module Resolver - https://github.com/tleunen/babel-plugin-module-resolver#readme - ✅
+- Localize the ReactNative interface - https://github.com/stefalda/ReactNativeLocalization - ✅
 - Firebase authen - https://rnfirebase.io/auth/usage#emailpassword-sign-in -
-- i18n - https://github.com/i18next/react-i18next -
 - Storybook - https://github.com/storybookjs/react-native -
+
+# UI
+
+- https://www.figma.com/file/1YKLRKgq1fyN5MkFc80JBW/Online-Groceries-App-UI-(Community)?node-id=1%3A2

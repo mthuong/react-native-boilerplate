@@ -41,7 +41,6 @@ function SignIn() {
         textPresets='light'
         text={languages.SignIn}
         onPress={() => {
-          languages.setAppLanguage('vi')
           Keyboard.dismiss()
           dispatch(signIn({ username, password }))
         }}
