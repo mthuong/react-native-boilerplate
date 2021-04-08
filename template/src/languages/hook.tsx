@@ -3,8 +3,12 @@ import { strings, DEFAULT_LANGUAGE } from './strings'
 
 export const LocalizationContext = createContext({
   ...strings,
-  setAppLanguage: (_language: string) => {},
-  initializeAppLanguage: () => {},
+  setAppLanguage: (language: string) => {
+    console.log('setAppLanguage - Please implement this function', language)
+  },
+  initializeAppLanguage: () => {
+    console.log('initializeAppLanguage - Plz implement this function')
+  },
   language: DEFAULT_LANGUAGE,
 })
 
@@ -15,9 +19,9 @@ interface Props {
 const LocalizationProvider = ({ children }: Props) => {
   const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
 
-  const setAppLanguage = (language: string) => {
-    strings.setLanguage(language)
-    setLanguage(language)
+  const setAppLanguage = (l: string) => {
+    strings.setLanguage(l)
+    setLanguage(l)
 
     // Can improve by saving localize string here
   }

@@ -1,8 +1,10 @@
 import React from 'react'
 import { MainStack } from './Navigator'
-import { HomeScreen } from '../scenes/Home'
-import { DetailsScreen } from '../scenes/Details'
+import { HomeScreen, HomeScreenParams } from '../scenes/Home'
+import { DetailsScreen, DetailsScreenParams } from '../scenes/Details'
 import { NAV_SCREENS } from './RouteNames'
+
+export type HomeStackParamTypes = HomeScreenParams | DetailsScreenParams
 
 function HomeStack() {
   return (

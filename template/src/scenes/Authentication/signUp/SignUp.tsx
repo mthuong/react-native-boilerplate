@@ -1,16 +1,17 @@
-import React from 'react'
 import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { ButtonText } from 'components/ButtonText'
-import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { useLocalizationContext } from 'languages'
+import { strings } from 'languages/strings'
+import { navigate } from 'navigator/RootNavigation'
+import React from 'react'
+import { StyleSheet, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import { Image } from '../../../components/image'
 import { TextInput } from '../../../components/TextInput'
 import { RootStackParamList } from '../../../navigator/Navigator'
 import { NAV_SCREENS } from '../../../navigator/RouteNames'
 import colors from '../../../theme/colors'
-import { useLocalizationContext } from 'languages'
-import palette from 'theme/palette'
+import { registerScreen } from 'navigator/RouteGeneric'
 
 type SignUpNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -18,35 +19,24 @@ type SignUpNavigationProp = StackNavigationProp<
 >
 type SignUpRoute = RouteProp<RootStackParamList, NAV_SCREENS.SignUp>
 
-export type SignUpParams = {}
-
-type Props = {
-  navigation: SignUpNavigationProp
-  route: SignUpRoute
+export type SignUpParams = {
+  title: string
 }
 
-export default function SignUp(props: Props) {
+interface Props {
+  // navigation: SignUpNavigationProp
+  // route: SignUpRoute
+}
+
+function SignUp(props: Props) {
   const onPressRegister = async () => {
     // const { navigation } = props
     // const success = await userStore.signUp()
     // if (success) {
     //   navigation!.navigate('Home')
     // }
-  }
 
-  const onPressAvatar = async () => {
-    // try {
-    //   const {
-    //     rootStore: {
-    //       userStore: { registerUser },
-    //     },
-    //   } = this.props
-    //   const { uri } = await imageUtils.showImagePicker(!!registerUser.photoURL)
-    //   registerUser.photoURL = uri || ''
-    // } catch (e) {
-    //   // @ts-ignore
-    //   console.tron.log('select avatar error', e)
-    // }
+    navigate(NAV_SCREENS.Home)
   }
 
   const languages = useLocalizationContext()
@@ -54,17 +44,6 @@ export default function SignUp(props: Props) {
   return (
     <KeyboardAwareScrollView style={styles.CONTAINER}>
       <View style={styles.inner}>
-        <TouchableOpacity style={styles.avatar} onPress={onPressAvatar}>
-          <View style={styles.IMAGE_WRAPPER}>
-            <Image
-              style={styles.IMAGE}
-              url='registerUser.photoURL' // FIXME: user photo
-              asset='ic_guest'
-            />
-            <Image style={styles.ICON_PLUS} asset='ic_plus' />
-          </View>
-        </TouchableOpacity>
-
         <TextInput
           placeholder={languages.Name}
           keyboardType='default'
@@ -128,6 +107,16 @@ export default function SignUp(props: Props) {
     </KeyboardAwareScrollView>
   )
 }
+
+const defaultOptions: SignUpParams = {
+  title: strings.SignUp,
+}
+
+export default registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(
+  NAV_SCREENS.SignUp,
+  SignUp,
+  defaultOptions
+)
 
 const styles = StyleSheet.create({
   CONTAINER: {

@@ -1,36 +1,22 @@
-import { RouteProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { ButtonText } from 'components/ButtonText'
+import { useLocalizationContext } from 'languages'
+import { navigate } from 'navigator/RootNavigation'
 import React from 'react'
-import { View, Keyboard } from 'react-native'
-import { RootStackParamList } from '../../navigator/Navigator'
+import { Keyboard, View } from 'react-native'
+import { TextInput } from 'react-native-paper'
+import { NAV_SCREENS } from '../../navigator/RouteNames'
 import { signIn } from '../../stores/authReducer'
 import { useAppDispatch } from '../../stores/hook'
-import { NAV_SCREENS } from '../../navigator/RouteNames'
-import { TextInput, Button } from 'react-native-paper'
-import { ButtonText } from 'components/ButtonText'
-import { SignUpParams } from './SignUp/SignUp'
-import { navigate } from 'navigator/RootNavigation'
-import { useLocalizationContext } from 'languages'
+import { registerScreen } from 'navigator/RouteGeneric'
+import { RootStackParamList } from 'navigator/Navigator'
 
-type SignInNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  NAV_SCREENS.SignIn
->
-type SignInRoute = RouteProp<RootStackParamList, NAV_SCREENS.SignIn>
+export type SignInParams = undefined
 
-export type SignInParams = {}
-
-type Props = {
-  navigation: SignInNavigationProp
-  route: SignInRoute
-}
-
-function SignIn(props: Props) {
+function SignIn() {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   const dispatch = useAppDispatch()
   const languages = useLocalizationContext()
-
   return (
     <View>
       <TextInput
@@ -55,6 +41,7 @@ function SignIn(props: Props) {
         textPresets='light'
         text={languages.SignIn}
         onPress={() => {
+          languages.setAppLanguage('vi')
           Keyboard.dismiss()
           dispatch(signIn({ username, password }))
         }}
@@ -63,4 +50,7 @@ function SignIn(props: Props) {
   )
 }
 
-export default SignIn
+export default registerScreen<RootStackParamList, NAV_SCREENS.SignIn>(
+  NAV_SCREENS.SignIn,
+  SignIn
+)

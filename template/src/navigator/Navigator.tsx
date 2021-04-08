@@ -1,35 +1,31 @@
 /**
  * Navigator
  */
+import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import * as React from 'react'
-import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
-import { navigationRef, isReadyRef } from './RootNavigation'
-import { SignInParams } from '../scenes/Authentication/SignIn'
+import { SignInParams } from 'scenes/Authentication/SignIn'
+import { SignUpParams } from 'scenes/Authentication/SignUp/SignUp'
 import { DetailsScreenParams } from '../scenes/Details'
 import { HomeScreenParams } from '../scenes/Home'
-import { useAppSelector, useAppDispatch } from '../stores/hook'
 import { authSlice, signIn } from '../stores/authReducer'
+import { useAppDispatch, useAppSelector } from '../stores/hook'
+import { AuthStack, AuthStackTypes } from './AuthStack'
+import { HomeStack, HomeStackParamTypes } from './HomeStack'
+import { isReadyRef, navigationRef } from './RootNavigation'
 import { NAV_SCREENS } from './RouteNames'
-import { AuthStack } from './AuthStack'
-import { HomeStack } from './HomeStack'
-import { SignUpParams } from '../scenes/Authentication/signUp/SignUp'
 
 export type RootStackParamList = {
-  [NAV_SCREENS.Home]: HomeScreenParams | undefined
-  [NAV_SCREENS.Details]: DetailsScreenParams | undefined
-  [NAV_SCREENS.SignIn]: SignInParams | undefined
-  [NAV_SCREENS.SignUp]: SignUpParams | undefined
+  [NAV_SCREENS.Home]: HomeScreenParams
+  [NAV_SCREENS.Details]: DetailsScreenParams
+
+  [NAV_SCREENS.SignIn]: SignInParams
+  [NAV_SCREENS.SignUp]: SignUpParams
 }
 
 // Update the param types when you have more screen params
-export type RootStackParamTypes =
-  | HomeScreenParams
-  | DetailsScreenParams
-  | SignInParams
-  | SignUpParams
-  | undefined
+export type RootStackParamTypes = HomeStackParamTypes | AuthStackTypes
 
 export const MainStack = createStackNavigator<RootStackParamList>()
 
@@ -60,6 +56,7 @@ function Navigator() {
     <NavigationContainer
       ref={navigationRef}
       onReady={() => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         isReadyRef.current = true
       }}>
