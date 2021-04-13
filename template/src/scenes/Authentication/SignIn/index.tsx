@@ -4,15 +4,15 @@ import { navigate } from 'navigator/RootNavigation'
 import React from 'react'
 import { Keyboard, View } from 'react-native'
 import { TextInput } from 'react-native-paper'
-import { NAV_SCREENS } from '../../navigator/RouteNames'
-import { useAppDispatch } from '../../stores/hook'
 import { registerScreen } from 'navigator/RouteGeneric'
 import { RootStackParamList } from 'navigator/Navigator'
 import { authAsyncActions } from 'stores/authReducer'
+import { useAppDispatch } from 'stores/hook'
+import { NAV_SCREENS } from 'navigator/RouteNames'
 
 export type SignInParams = undefined
 
-function SignIn() {
+function _SignIn() {
   const [username, setUsername] = React.useState('')
   const [password, setPassword] = React.useState('')
   const dispatch = useAppDispatch()
@@ -49,7 +49,9 @@ function SignIn() {
   )
 }
 
-export default registerScreen<RootStackParamList, NAV_SCREENS.SignIn>(
+const SignIn = registerScreen<RootStackParamList, NAV_SCREENS.SignIn>(
   NAV_SCREENS.SignIn,
-  SignIn
+  _SignIn
 )
+
+export default SignIn

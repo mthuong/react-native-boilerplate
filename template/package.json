@@ -12,9 +12,9 @@
     "idev": "npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='HelloWorld-dev'",
     "iqa": "npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='HelloWorld-qa",
     "iprod": "npx react-native run-ios --simulator='iPhone 11 Pro' --scheme='HelloWorld",
-    "adev": "ENVFILE=.env.dev npx react-native run-android",
-    "aqa": "ENVFILE=.env.qa npx react-native run-android",
-    "aprod": "ENVFILE=.env npx react-native run-android",
+    "adev": "ENVFILE=.env.dev npx react-native run-android --appId com.android.dev --main-activity MainActivity",
+    "aqa": "ENVFILE=.env.qa npx react-native run-android --appId com.android.qa --main-activity MainActivity",
+    "aprod": "ENVFILE=.env npx react-native run-android --appId com.app.android --main-activity MainActivity",
     "a-dev-signing": "cd android && ENVFILE=.env.dev ./gradlew :app:signingReport",
     "a-qa-signing": "cd android && ENVFILE=.env.qa ./gradlew :app:signingReport",
     "a-prod-signing": "cd android && ENVFILE=.env ./gradlew :app:signingReport"

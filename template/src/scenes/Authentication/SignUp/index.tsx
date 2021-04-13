@@ -1,26 +1,25 @@
 import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
+import { injectValue } from 'common/func'
+import regex from 'common/regex'
 import { ButtonText } from 'components/ButtonText'
 import { Image } from 'components/image'
 import { Text } from 'components/text'
+import { Formik } from 'formik'
 import { useLocalizationContext } from 'languages'
 import { strings } from 'languages/strings'
-import { navigate } from 'navigator/RootNavigation'
 import { registerScreen } from 'navigator/RouteGeneric'
 import React from 'react'
 import { Dimensions, StyleSheet, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { ISignUp } from 'services/UserService'
+import { authAsyncActions } from 'stores/authReducer'
+import { useAppDispatch } from 'stores/hook'
 import { theme } from 'theme'
+import * as Yup from 'yup'
 import { TextInput } from '../../../components/TextInput'
 import { RootStackParamList } from '../../../navigator/Navigator'
 import { NAV_SCREENS } from '../../../navigator/RouteNames'
-import { Formik } from 'formik'
-import { ISignUp } from 'services/UserService'
-import * as Yup from 'yup'
-import { injectValue } from 'common/func'
-import regex from 'common/regex'
-import { authAsyncActions } from 'stores/authReducer'
-import { useAppDispatch } from 'stores/hook'
 
 type SignUpNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -45,7 +44,7 @@ const FieldNames = {
   name: 'name',
 }
 
-function SignUp(props: Props) {
+function _SignUp(props: Props) {
   const languages = useLocalizationContext()
   const dispatch = useAppDispatch()
 
@@ -160,11 +159,12 @@ const defaultOptions: SignUpParams = {
   headerShown: false,
 }
 
-export default registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(
+const SignUp = registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(
   NAV_SCREENS.SignUp,
-  SignUp,
+  _SignUp,
   defaultOptions
 )
+export default SignUp
 
 const styles = StyleSheet.create({
   CONTAINER: {
