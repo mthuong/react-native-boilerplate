@@ -58,7 +58,7 @@ export function Image(props: ImageProps) {
         />
         {isLoading && (
           <View style={styles.indicatorView}>
-            <ActivityIndicator size={'small'} />
+            <ActivityIndicator size='small' />
           </View>
         )}
         {children}

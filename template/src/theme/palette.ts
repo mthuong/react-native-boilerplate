@@ -12,6 +12,9 @@ const palette = {
   lightRed: '#FFECEC',
   lightGreen: '#E8FFD9',
   pink: '#FA3567',
+
+  primary: '#3498db',
+  accent: '#f1c40f',
 }
 
 export default palette

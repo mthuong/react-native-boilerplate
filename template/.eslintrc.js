@@ -58,6 +58,7 @@ module.exports = {
     '@typescript-eslint/no-non-null-assertion': 0,
     'react-hooks/exhaustive-deps': 0,
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off',
   },
   settings: {
     'import/resolver': {
