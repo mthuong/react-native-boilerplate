@@ -67,9 +67,9 @@ export const authSlice = createSlice({
   extraReducers: {
     [signIn.fulfilled.type]: (
       state,
-      action: PayloadAction<FirebaseAuthTypes.UserCredential>
+      action: PayloadAction<FirebaseAuthTypes.User>
     ) => {
-      console.tron.log(action)
+      state.userToken = action.payload.email
     },
     [signIn.rejected.type]: (state, action: PayloadAction<Error>) => {
       console.tron.log(action)

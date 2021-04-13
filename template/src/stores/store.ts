@@ -15,7 +15,7 @@ const store = configureStore({
   reducer: rootReducer,
   middleware: getDefaultMiddleware({
     serializableCheck: {
-      ignoredActions: ['signUp/fulfilled'],
+      ignoredActions: ['signUp/fulfilled', 'signIn/fulfilled'],
     },
   }),
 })
