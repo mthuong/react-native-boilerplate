@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { userService } from '../services'
 import { FirebaseAuthTypes } from '@react-native-firebase/auth'
-import { RootState } from './store'
 import { snackbarSlice } from '.'
+import { ISignUp, ISignIn } from 'services/UserService'
 
 interface AuthState {
   isLoading: boolean
@@ -18,19 +18,32 @@ const initialState: AuthState = {
   error: undefined,
 }
 
-interface SignInAction {
-  username?: string
-  password?: string
-}
-
-export const signIn = createAsyncThunk(
+const signIn = createAsyncThunk(
   'signIn',
-  async (body: SignInAction, { rejectWithValue, dispatch }) => {
+  async (body: ISignIn, { rejectWithValue, dispatch }) => {
     try {
       const response = await userService.login({
         username: body.username,
         password: body.password,
       })
+      return response
+    } catch (error) {
+      dispatch(snackbarSlice.actions.show(error.message))
+
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+const signUp = createAsyncThunk(
+  'signUp',
+  async (body: ISignUp, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await userService.signUp(body)
+
+      // Update user profile
+      await userService.updateUser(response, body)
+
       return response
     } catch (error) {
       dispatch(snackbarSlice.actions.show(error.message))
@@ -61,8 +74,17 @@ export const authSlice = createSlice({
     [signIn.rejected.type]: (state, action: PayloadAction<Error>) => {
       console.tron.log(action)
     },
+
+    [signUp.fulfilled.type]: (
+      state,
+      action: PayloadAction<FirebaseAuthTypes.User>
+    ) => {
+      state.userToken = action.payload.email
+    },
   },
 })
 
 const authReducer = authSlice.reducer
 export default authReducer
+
+export const authAsyncActions = { signIn, signUp }

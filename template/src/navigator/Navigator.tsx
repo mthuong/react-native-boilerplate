@@ -37,11 +37,14 @@ function Navigator() {
   // Handle user state changes
   function onAuthStateChanged(user: FirebaseAuthTypes.User | null) {
     if (user) {
-      dispatch(
-        signIn({
-          username: user.email || '',
-        })
-      )
+      // TODO: Save user info into store
+      //   name = user.displayName
+      //   email = user.email
+      //   photoUrl = user.photoURL
+      //   emailVerified = user.emailVerified
+      //   uid = user.uid // The user's ID, unique to the Firebase project. Do NOT use
+      //   // this value to authenticate with your backend server, if
+      //   // you have one. Use User.getToken() instead.
     } else {
       dispatch(authSlice.actions.signOut())
     }

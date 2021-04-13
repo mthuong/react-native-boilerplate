@@ -1,16 +1,23 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
-import counterReducer from './counterSlice'
-import authReducer from './authReducer';
-import snackbarReducer from './snackbarReducer';
+import {
+  configureStore,
+  combineReducers,
+  getDefaultMiddleware,
+} from '@reduxjs/toolkit'
+import authReducer from './authReducer'
+import snackbarReducer from './snackbarReducer'
 
 const rootReducer = combineReducers({
-  counterReducer,
   auth: authReducer,
   snackbar: snackbarReducer,
 })
 
 const store = configureStore({
   reducer: rootReducer,
+  middleware: getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: ['signUp/fulfilled'],
+    },
+  }),
 })
 
 export default store

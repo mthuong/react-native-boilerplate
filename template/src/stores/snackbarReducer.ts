@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface SnackBarAction {
   message: string | undefined
@@ -21,8 +21,8 @@ export const snackbarSlice = createSlice({
     hide: (state) => {
       state.message = undefined
       state.visible = false
-    }
-  }
+    },
+  },
 })
 
 const snackbarReducer = snackbarSlice.reducer

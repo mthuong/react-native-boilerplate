@@ -23,4 +23,7 @@ export interface ButtonTextProps {
 
   // Event on press button
   onPress?(): void
+
+  // One of different types of button presets
+  preset?: 'primary' | 'secondary'
 }

@@ -12,6 +12,7 @@
 - React Native Fast Image - https://github.com/DylanVann/react-native-fast-image - ✅
 - Module Resolver - https://github.com/tleunen/babel-plugin-module-resolver#readme - ✅
 - Localize the ReactNative interface - https://github.com/stefalda/ReactNativeLocalization - ✅
+- Formik Build forms in React, without the tears - https://github.com/formium/formik - ✅
 - Firebase authen - https://rnfirebase.io/auth/usage#emailpassword-sign-in -
 - Storybook - https://github.com/storybookjs/react-native -
 

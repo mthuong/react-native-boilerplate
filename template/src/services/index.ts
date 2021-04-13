@@ -1,4 +1,4 @@
-import * as userService from './UserService';
-export * from './CrashlyticService'
+import * as userService from './UserService'
+import crashlyticService from './CrashlyticService'
 
-export { userService }
+export { userService, crashlyticService }

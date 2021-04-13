@@ -5,10 +5,10 @@ import React from 'react'
 import { Keyboard, View } from 'react-native'
 import { TextInput } from 'react-native-paper'
 import { NAV_SCREENS } from '../../navigator/RouteNames'
-import { signIn } from '../../stores/authReducer'
 import { useAppDispatch } from '../../stores/hook'
 import { registerScreen } from 'navigator/RouteGeneric'
 import { RootStackParamList } from 'navigator/Navigator'
+import { authAsyncActions } from 'stores/authReducer'
 
 export type SignInParams = undefined
 
@@ -42,7 +42,7 @@ function SignIn() {
         text={languages.SignIn}
         onPress={() => {
           Keyboard.dismiss()
-          dispatch(signIn({ username, password }))
+          dispatch(authAsyncActions.signIn({ username, password }))
         }}
       />
     </View>

@@ -88,7 +88,7 @@ export const presets = {
   bold: { ...styles.BASE, ...fonts.bold } as TextStyle,
   header: { ...styles.BASE } as TextStyle,
   light: { ...styles.BASE, ...fonts.light } as TextStyle,
-  error: { ...styles.BASE, color: colors.error },
+  error: { ...styles.BASE, ...fonts.light, color: colors.error },
 }
 
 export type TextPresets = keyof typeof presets

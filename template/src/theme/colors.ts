@@ -4,8 +4,6 @@ const colors = {
   transparent: 'rgba(0, 0, 0, 0)',
   listBackground: palette.moreLightGray,
   shadow: palette.black,
-  button: palette.pink,
-  buttonBrown: palette.lightBrown,
 
   secondaryText: palette.gray,
   tertiaryText: palette.white,
@@ -18,16 +16,20 @@ const colors = {
 
   primary: palette.primary,
   accent: palette.accent,
-  surface: palette.pink,
   background: palette.white,
   error: palette.red,
   text: palette.black,
-  onSurface: palette.pink,
   onBackground: palette.white,
   disabled: palette.gray,
   placeholder: palette.gray,
   backdrop: palette.moreLightGray,
-  notification: palette.pink,
+
+  // surface: palette.primary,
+  // onSurface: palette.black,
+  // notification: palette.fern,
+
+  primaryButton: palette.fern,
+  secondaryButton: palette.grayNurse,
 }
 
 export default colors

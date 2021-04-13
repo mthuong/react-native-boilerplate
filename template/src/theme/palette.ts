@@ -1,8 +1,8 @@
 const palette = {
-  white: 'white',
+  white: '#ffffff',
   yellow: '#FFB802',
   gray: '#999898',
-  black: 'black',
+  black: '#000000',
   darkGray: '#4B4C4B',
   lightGray: '#E4E5E5',
   moreLightGray: '#EFEEEF',
@@ -15,6 +15,10 @@ const palette = {
 
   primary: '#3498db',
   accent: '#f1c40f',
+
+  // Button colors
+  fern: '#53B175',
+  grayNurse: '#F2F3F2',
 }
 
 export default palette

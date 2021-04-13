@@ -1,12 +1,9 @@
 import * as React from 'react'
-import { View, Text } from 'react-native'
 import { Snackbar } from 'react-native-paper'
-import { useAppSelector, useAppDispatch } from '../../stores/hook'
 import { snackbarSlice } from '../../stores'
+import { useAppDispatch, useAppSelector } from '../../stores/hook'
 
-export interface GlobalSnackBarProps {}
-
-export function GlobalSnackBar(props: GlobalSnackBarProps) {
+export function GlobalSnackBar() {
   const { visible, message } = useAppSelector((state) => state.snackbar)
   const dispatch = useAppDispatch()
   return (
