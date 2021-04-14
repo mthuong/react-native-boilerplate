@@ -16,6 +16,7 @@
 - Firebase authen - https://rnfirebase.io/auth/usage#emailpassword-sign-in - ✅
 - Storybook - https://github.com/storybookjs/react-native -
 - React Native multi screen size support - https://github.com/maphongba008/rn-scaled-sheet -
+- Theme -
 - Chat function -
 
 # UI
