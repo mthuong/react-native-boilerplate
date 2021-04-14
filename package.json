@@ -1,5 +1,5 @@
 {
-  "name": "react-native-boilerplate",
+  "name": "@mthuong/react-native-boilerplate",
   "version": "0.63.4",
   "description": "React Native Boilerplate",
   "author": "Tom Nguyen <nguyenmanhthuong41@gmail.com>",
@@ -11,5 +11,22 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/emin93/react-native-template-typescript.git"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/emin93/react-native-template-typescript/issues"
+  },
+  "homepage": "https://github.com/emin93/react-native-template-typescript#readme",
+  "main": "template/",
+  "scripts": {
+    "test": "npx react-native init MyApp --template @mthuong/react-native-boilerplate"
+  },
+  "keywords": [
+    "react-native",
+    "boilerplate",
+    "redux",
+    "typescript",
+    "jest",
+    "react-navigation",
+    "redux-toolkit"
+  ]
 }

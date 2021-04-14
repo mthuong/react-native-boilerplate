@@ -1,14 +1,14 @@
-import { useLocalizationContext } from 'languages'
 import React from 'react'
 import { DetailsScreen, DetailsScreenParams } from '../scenes/Details'
 import { HomeScreen, HomeScreenParams } from '../scenes/Home'
 import { MainStack } from './Navigator'
 import { NAV_SCREENS } from './RouteNames'
+import { LocalizationContextType } from 'languages'
 
 export type HomeStackParamTypes = HomeScreenParams | DetailsScreenParams
 
-function HomeStack() {
-  const languages = useLocalizationContext()
+function HomeStack(context: LocalizationContextType) {
+  const languages = context
 
   return (
     <>

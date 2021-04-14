@@ -1,14 +1,17 @@
 import React from 'react'
 import { ActivityIndicator, View, StyleSheet } from 'react-native'
-import { useLocalizationContext } from 'languages'
 import { Text } from 'components/text'
 
-function SplashScreen() {
-  const languages = useLocalizationContext()
+interface Props {
+  text?: string
+}
+
+function SplashScreen(props: Props) {
+  const { text } = props
   return (
     <View style={styles.container}>
       <ActivityIndicator animating />
-      <Text text={languages.Name} />
+      <Text text={text} />
     </View>
   )
 }

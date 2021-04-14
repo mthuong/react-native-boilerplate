@@ -7,7 +7,9 @@ import { NAV_SCREENS } from './RouteNames'
 
 export const navigationRef = React.createRef<NavigationContainerRef>()
 
-export const isReadyRef = React.createRef<boolean>()
+export const navigationState = {
+  isReady: false,
+}
 
 /**
  * Navigating without the navigation prop
@@ -17,7 +19,7 @@ export const isReadyRef = React.createRef<boolean>()
  * @param {*} params - [key: value] base on RootStackParamList
  */
 export function navigate(name: NAV_SCREENS, params?: RootStackParamTypes) {
-  if (isReadyRef.current && navigationRef.current) {
+  if (navigationState.isReady && navigationRef.current) {
     // Perform navigation if the app has mounted
     navigationRef.current.dispatch(
       CommonActions.navigate({

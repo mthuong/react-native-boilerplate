@@ -612,14 +612,14 @@ PODS:
     - React-Core
     - SDWebImage (~> 5.8)
     - SDWebImageWebPCoder (~> 0.6.1)
-  - RNFBApp (11.1.2):
+  - RNFBApp (11.2.0):
     - Firebase/CoreOnly (= 7.8.1)
     - React-Core
-  - RNFBAuth (11.1.2):
+  - RNFBAuth (11.2.0):
     - Firebase/Auth (= 7.8.1)
     - React-Core
     - RNFBApp
-  - RNFBCrashlytics (11.1.2):
+  - RNFBCrashlytics (11.2.0):
     - Firebase/Crashlytics (= 7.8.1)
     - React-Core
     - RNFBApp
@@ -876,9 +876,9 @@ SPEC CHECKSUMS:
   RNCAsyncStorage: b03032fdbdb725bea0bd9e5ec5a7272865ae7398
   RNCMaskedView: 87b54b03b0e48e1c30148f9ed413374721ec1e80
   RNFastImage: d4870d58f5936111c56218dbd7fcfc18e65b58ff
-  RNFBApp: bb830cc7f7598e46437b833adc841df345e19e2f
-  RNFBAuth: d011f1b1a066a8bceba63c42369de9c5ce68de5e
-  RNFBCrashlytics: 47278b69b418d41e71f3b64673eaded59d4dee63
+  RNFBApp: 182965e2a32b46cbc9b156fd13d1cf0633d4dd05
+  RNFBAuth: 007626e87dbe6912bdaf5e309fabc75927a43ed6
+  RNFBCrashlytics: 37cc621c09337b188dce7929d7d5c2c34c0451bd
   RNFBFirestore: bf4ae7246f09746bfdaccb538e8f0ae8a6aa77fc
   RNGestureHandler: a479ebd5ed4221a810967000735517df0d2db211
   RNReanimated: 5231286440b796e09df3bfa5c1b12b02bfe07664

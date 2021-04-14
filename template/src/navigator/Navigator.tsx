@@ -4,7 +4,9 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import { useLocalizationContext } from 'localization'
 import * as React from 'react'
+import { StyleSheet, View } from 'react-native'
 import { SignInParams } from 'scenes/Authentication/SignIn'
 import { SignUpParams } from 'scenes/Authentication/SignUp'
 import SplashScreen from 'scenes/Authentication/SplashScreen'
@@ -12,9 +14,9 @@ import { DetailsScreenParams } from '../scenes/Details'
 import { HomeScreenParams } from '../scenes/Home'
 import { authAsyncActions, authSlice } from '../stores/authReducer'
 import { useAppDispatch, useAppSelector } from '../stores/hook'
-import { AuthStack, AuthStackTypes } from './AuthStack'
+import { AuthStackTypes, AuthStack } from './AuthStack'
 import { HomeStack, HomeStackParamTypes } from './HomeStack'
-import { isReadyRef, navigationRef } from './RootNavigation'
+import { navigationState, navigationRef } from './RootNavigation'
 import { NAV_SCREENS } from './RouteNames'
 
 export type RootStackParamList = {
@@ -35,7 +37,6 @@ export const MainStack = createStackNavigator<RootStackParamList>()
 function Navigator() {
   const useToken = useAppSelector((state) => state.auth.user)
   const isLoading = useAppSelector((state) => state.auth.isLoading)
-
   const dispatch = useAppDispatch()
 
   React.useEffect(() => {
@@ -53,29 +54,36 @@ function Navigator() {
     return subscriber // unsubscribe on unmount
   }, [dispatch])
 
+  const localization = useLocalizationContext()
+
   const screens = () => {
-    if (isLoading) {
-      return (
-        <MainStack.Screen name={NAV_SCREENS.Splash} component={SplashScreen} />
-      )
-    }
     if (!useToken) {
-      return AuthStack()
+      return AuthStack(localization)
     }
-    return HomeStack()
+    return HomeStack(localization)
   }
 
   return (
-    <NavigationContainer
-      ref={navigationRef}
-      onReady={() => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        isReadyRef.current = true
-      }}>
-      <MainStack.Navigator>{screens()}</MainStack.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      {isLoading ? (
+        <SplashScreen />
+      ) : (
+        <NavigationContainer
+          ref={navigationRef}
+          onReady={() => {
+            navigationState.isReady = true
+          }}>
+          <MainStack.Navigator>{screens()}</MainStack.Navigator>
+        </NavigationContainer>
+      )}
+    </View>
   )
 }
 
 export { Navigator }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+})

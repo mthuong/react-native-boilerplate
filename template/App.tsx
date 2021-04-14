@@ -8,7 +8,7 @@
  * @format
  */
 
-import React from 'react'
+import React, { Fragment } from 'react'
 import { enableScreens } from 'react-native-screens'
 import { Provider as StoreProvider } from 'react-redux'
 import { Provider as PaperProvider } from 'react-native-paper'
@@ -25,14 +25,16 @@ enableScreens()
 
 const App = () => {
   return (
-    <LocalizationProvider>
-      <StoreProvider store={store}>
-        <PaperProvider theme={theme}>
-          <Navigator />
-          <GlobalSnackBar />
-        </PaperProvider>
-      </StoreProvider>
-    </LocalizationProvider>
+    <StoreProvider store={store}>
+      <PaperProvider theme={theme}>
+        <LocalizationProvider>
+          <Fragment>
+            <Navigator />
+            <GlobalSnackBar />
+          </Fragment>
+        </LocalizationProvider>
+      </PaperProvider>
+    </StoreProvider>
   )
 }
 
