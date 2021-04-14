@@ -151,6 +151,6 @@ const styles = ScaledSheet.create({
     marginTop: theme.spacing[5],
   },
   textSignUp: {
-    color: theme.colors.primary,
+    color: theme.colors.primaryButton,
   },
 })
