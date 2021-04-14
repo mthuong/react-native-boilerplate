@@ -5,7 +5,12 @@ module.exports = {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'eslint-plugin-no-inline-styles', 'jest'],
+  plugins: [
+    '@typescript-eslint',
+    'eslint-plugin-no-inline-styles',
+    'jest',
+    'react-hooks',
+  ],
   extends: [
     'airbnb-typescript-prettier',
     'eslint:recommended',
@@ -56,7 +61,8 @@ module.exports = {
     'react/sort-comp': 0,
     'react/no-array-index-key': 0,
     '@typescript-eslint/no-non-null-assertion': 0,
-    'react-hooks/exhaustive-deps': 0,
+    'react-hooks/rules-of-hooks': 'error', // Checks rules of Hooks
+    'react-hooks/exhaustive-deps': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
   },

@@ -18,7 +18,6 @@ interface Props {
 
 const LocalizationProvider = ({ children }: Props) => {
   const [language, setLanguage] = useState(DEFAULT_LANGUAGE)
-
   const setAppLanguage = (l: string) => {
     strings.setLanguage(l)
     setLanguage(l)
@@ -26,29 +25,37 @@ const LocalizationProvider = ({ children }: Props) => {
     // Can improve by saving localize string here
   }
 
-  const initializeAppLanguage = () => {
-    // const currentLanguage = await AsyncStorage.getItem(APP_LANGUAGE)
-    // if (currentLanguage) {
-    //   setLanguage(currentLanguage)
-    // } else {
-    //   let localeCode = DEFAULT_LANGUAGE
-    //   const supportedLocaleCodes = translations.getAvailableLanguages()
-    //   const phoneLocaleCodes = RNLocalize.getLocales().map(
-    //     (locale) => locale.languageCode
-    //   )
-    //   phoneLocaleCodes.some((code) => {
-    //     if (supportedLocaleCodes.includes(code)) {
-    //       localeCode = code
-    //       return true
-    //     }
-    //   })
-    setAppLanguage(DEFAULT_LANGUAGE)
-    // }
-  }
+  const context = React.useMemo(() => {
+    const initializeAppLanguage = () => {
+      // const currentLanguage = await AsyncStorage.getItem(APP_LANGUAGE)
+      // if (currentLanguage) {
+      //   setLanguage(currentLanguage)
+      // } else {
+      //   let localeCode = DEFAULT_LANGUAGE
+      //   const supportedLocaleCodes = translations.getAvailableLanguages()
+      //   const phoneLocaleCodes = RNLocalize.getLocales().map(
+      //     (locale) => locale.languageCode
+      //   )
+      //   phoneLocaleCodes.some((code) => {
+      //     if (supportedLocaleCodes.includes(code)) {
+      //       localeCode = code
+      //       return true
+      //     }
+      //   })
+      setAppLanguage(DEFAULT_LANGUAGE)
+      // }
+    }
+
+    return {
+      ...strings,
+      setAppLanguage,
+      initializeAppLanguage,
+      language,
+    }
+  }, [language])
 
   return (
-    <LocalizationContext.Provider
-      value={{ ...strings, setAppLanguage, initializeAppLanguage, language }}>
+    <LocalizationContext.Provider value={context}>
       {children}
     </LocalizationContext.Provider>
   )

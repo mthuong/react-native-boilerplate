@@ -4,6 +4,9 @@ import { StackNavigationProp } from '@react-navigation/stack'
 import { RootStackParamList } from '../navigator/Navigator'
 import { RouteProp } from '@react-navigation/native'
 import { NAV_SCREENS } from '../navigator/RouteNames'
+import { navigate } from 'navigator/RootNavigation'
+import { useAppDispatch } from 'stores/hook'
+import { authAsyncActions } from 'stores/authReducer'
 
 type HomeScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -17,22 +20,27 @@ type Props = {
 }
 
 export function HomeScreen(props: Props) {
-  const { navigation } = props
-
+  const dispatch = useAppDispatch()
   return (
     <View style={styles.container}>
       <Text>Home Screen</Text>
       <Button
         title='Go to Details'
         onPress={() => {
-          navigation.navigate(NAV_SCREENS.Details, { userId: 'hehe' })
+          navigate(NAV_SCREENS.Details, { userId: 'tom' })
+        }}
+      />
+      <Button
+        title='Logout'
+        onPress={() => {
+          dispatch(authAsyncActions.signOut())
         }}
       />
     </View>
   )
 }
 
-export type HomeScreenParams = {}
+export type HomeScreenParams = undefined
 
 const styles = StyleSheet.create({
   container: { flex: 1, alignItems: 'center', justifyContent: 'center' },

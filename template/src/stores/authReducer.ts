@@ -1,20 +1,19 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { userService } from '../services'
-import { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { snackbarSlice } from '.'
-import { ISignUp, ISignIn } from 'services/UserService'
+import { IUser, ISignIn, ISignUp } from 'services/types'
 
 interface AuthState {
   isLoading: boolean
   isSignOut: boolean
-  userToken: string | null | undefined
+  user: IUser | null | undefined
   error: string | null | undefined
 }
 
 const initialState: AuthState = {
   isLoading: true,
   isSignOut: false,
-  userToken: null,
+  user: null,
   error: undefined,
 }
 
@@ -53,6 +52,34 @@ const signUp = createAsyncThunk(
   }
 )
 
+const signOut = createAsyncThunk(
+  'signOut',
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      await userService.signOut()
+    } catch (error) {
+      dispatch(snackbarSlice.actions.show(error.message))
+
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
+const getUser = createAsyncThunk(
+  'getUser',
+  async (uid: string, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await userService.getUser(uid)
+
+      return response
+    } catch (error) {
+      dispatch(snackbarSlice.actions.show(error.message))
+
+      return rejectWithValue(error.message)
+    }
+  }
+)
+
 export const authSlice = createSlice({
   name: 'authReducer',
   initialState,
@@ -60,26 +87,40 @@ export const authSlice = createSlice({
     // signIn: (state, action: PayloadAction<SignInAction>) => {
     //   state.userToken = action.payload.username
     // },
-    signOut: (state) => {
-      state.userToken = undefined
+    finishLoading: (state) => {
+      state.isLoading = false
     },
   },
   extraReducers: {
-    [signIn.fulfilled.type]: (
-      state,
-      action: PayloadAction<FirebaseAuthTypes.User>
-    ) => {
-      state.userToken = action.payload.email
+    // [signIn.fulfilled.type]: (
+    //   state,
+    //   action: PayloadAction<FirebaseAuthTypes.User>
+    // ) => {
+    // state.user = action.payload.email
+    // },
+    // [signIn.rejected.type]: (state, action: PayloadAction<Error>) => {
+    //   console.tron.log(action)
+    // },
+
+    // [signUp.fulfilled.type]: (
+    //   state,
+    //   action: PayloadAction<FirebaseAuthTypes.User>
+    // ) => {
+    // state.user = action.payload.email
+    // },
+
+    [getUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+      state.user = action.payload
+      state.isLoading = false
     },
-    [signIn.rejected.type]: (state, action: PayloadAction<Error>) => {
-      console.tron.log(action)
+    [getUser.rejected.type]: (state) => {
+      state.user = undefined
+      state.isLoading = false
     },
 
-    [signUp.fulfilled.type]: (
-      state,
-      action: PayloadAction<FirebaseAuthTypes.User>
-    ) => {
-      state.userToken = action.payload.email
+    [signOut.fulfilled.type]: (state) => {
+      state.user = undefined
+      state.isLoading = false
     },
   },
 })
@@ -87,4 +128,4 @@ export const authSlice = createSlice({
 const authReducer = authSlice.reducer
 export default authReducer
 
-export const authAsyncActions = { signIn, signUp }
+export const authAsyncActions = { signIn, signUp, getUser, signOut }

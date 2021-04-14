@@ -1,9 +1,6 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
-
-export interface ISignIn {
-  username?: string
-  password?: string
-}
+import firestore from '@react-native-firebase/firestore'
+import { ISignIn, ISignUp, IUser } from './types'
 
 export async function login(params: ISignIn) {
   const { username, password } = params
@@ -25,13 +22,6 @@ export async function login(params: ISignIn) {
     console.tron.log(error)
     throw error
   }
-}
-
-export interface ISignUp {
-  email: string
-  password: string
-  confirmPassword: string
-  name: string
 }
 
 export async function signUp(params: ISignUp) {
@@ -61,9 +51,31 @@ export async function updateUser(
   params: ISignUp
 ) {
   try {
-    await user.updateProfile({
-      displayName: params.name,
+    await firestore().collection('users').doc(user.uid).set({
+      uid: user.uid,
+      name: params.name,
+      email: params.email,
     })
+  } catch (error) {
+    console.tron.log(error.message)
+    throw error
+  }
+}
+
+export async function getUser(uid: string) {
+  try {
+    const user = await firestore().collection<IUser>('users').doc(uid).get()
+    const data = user.data()
+    return data
+  } catch (error) {
+    console.tron.log(error.message)
+    throw error
+  }
+}
+
+export async function signOut() {
+  try {
+    await auth().signOut()
   } catch (error) {
     console.tron.log(error.message)
     throw error

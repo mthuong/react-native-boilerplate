@@ -8,6 +8,7 @@ export const en = {
   Name: 'Name',
   Email: 'Email',
   Phone: 'Phone',
+  Home: 'Home',
 
   ErrorInvalidEmail: 'Invalid email',
   ErrorRequiredEmail: 'Email is required',
