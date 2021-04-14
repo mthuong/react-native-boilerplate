@@ -3,7 +3,7 @@ import { DetailsScreen, DetailsScreenParams } from '../scenes/Details'
 import { HomeScreen, HomeScreenParams } from '../scenes/Home'
 import { MainStack } from './Navigator'
 import { NAV_SCREENS } from './RouteNames'
-import { LocalizationContextType } from 'languages'
+import { LocalizationContextType } from 'localization'
 
 export type HomeStackParamTypes = HomeScreenParams | DetailsScreenParams
 

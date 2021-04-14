@@ -2,7 +2,7 @@ import React from 'react'
 import SignIn, { SignInParams } from 'scenes/Authentication/SignIn'
 import SignUp, { SignUpParams } from 'scenes/Authentication/SignUp'
 import { MainStack } from './Navigator'
-import { LocalizationContextType } from 'languages'
+import { LocalizationContextType } from 'localization'
 
 export type AuthStackTypes = SignInParams | SignUpParams
 

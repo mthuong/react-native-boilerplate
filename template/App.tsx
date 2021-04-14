@@ -16,7 +16,7 @@ import store from './src/stores/store'
 import { theme } from './src/theme'
 import { Navigator } from './src/navigator/Navigator'
 import { GlobalSnackBar } from './src/components/SnackBar/GlobalSnackBar'
-import LocalizationProvider from './src/languages'
+import LocalizationProvider from './src/localization'
 
 // Enable screens support before any of your navigation screens renders
 enableScreens()
@@ -26,7 +26,9 @@ enableScreens()
 const App = () => {
   return (
     <StoreProvider store={store}>
-      <PaperProvider theme={theme}>
+      <PaperProvider
+        // @ts-ignore
+        theme={theme}>
         <LocalizationProvider>
           <Fragment>
             <Navigator />

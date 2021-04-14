@@ -1,5 +1,5 @@
 import { ButtonText } from 'components/ButtonText'
-import { useLocalizationContext } from 'languages'
+import { useLocalizationContext } from 'localization'
 import { navigate } from 'navigator/RootNavigation'
 import React from 'react'
 import { Keyboard, View, ActivityIndicator, StyleSheet } from 'react-native'
