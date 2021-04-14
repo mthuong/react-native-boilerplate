@@ -3,7 +3,7 @@ import firestore from '@react-native-firebase/firestore'
 import { ISignIn, ISignUp, IUser } from './types'
 
 export async function login(params: ISignIn) {
-  const { username, password } = params
+  const { email: username, password } = params
   try {
     const response: FirebaseAuthTypes.UserCredential = await auth().signInWithEmailAndPassword(
       username || '',

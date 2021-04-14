@@ -22,7 +22,7 @@ const signIn = createAsyncThunk(
   async (body: ISignIn, { rejectWithValue, dispatch }) => {
     try {
       const response = await userService.login({
-        username: body.username,
+        email: body.email,
         password: body.password,
       })
       return response

@@ -18,20 +18,20 @@ export function ButtonText(props: ButtonTextProps) {
   } = props
 
   const mergedTextStyle = [
-    styles.TEXT,
+    styles.text,
     (preset && textStyles[preset]) || textStyles.primary,
     textStyle && textStyle,
   ]
   const mergedButtonStyle = [
-    styles.BUTTON,
-    styles.CONTAINER,
+    styles.button,
+    styles.container,
     (preset && styles[preset]) || styles.primary,
     style && style,
   ]
 
   return (
     <TouchableOpacity onPress={onPress} style={mergedButtonStyle}>
-      <View style={styles.CONTENT}>
+      <View style={styles.content}>
         {leftAsset && <Image asset={leftAsset} />}
         <Text style={mergedTextStyle} preset={textPresets} text={text} />
         {rightAsset && <Image asset={rightAsset} />}
@@ -41,28 +41,28 @@ export function ButtonText(props: ButtonTextProps) {
 }
 
 const styles = StyleSheet.create({
-  BUTTON: {
-    flex: 1,
+  button: {
     alignSelf: 'stretch',
     borderRadius: theme.spacing[2],
+    height: theme.spacing[7],
   },
 
-  CONTENT: {
+  content: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
   },
 
-  CONTAINER: {
+  container: {
     alignSelf: 'stretch',
     minHeight: 30,
     minWidth: 30,
   },
 
-  TEXT: {
+  text: {
     flex: 1,
-    marginHorizontal: 10,
+    // marginHorizontal: 10,
     textAlign: 'center',
   },
 
@@ -73,6 +73,10 @@ const styles = StyleSheet.create({
   secondary: {
     backgroundColor: theme.colors.secondaryButton,
   },
+
+  flat: {
+    backgroundColor: theme.colors.transparent,
+  },
 })
 
 const textStyles = StyleSheet.create({
@@ -81,6 +85,10 @@ const textStyles = StyleSheet.create({
   },
 
   secondary: {
+    color: theme.colors.text,
+  },
+
+  flat: {
     color: theme.colors.text,
   },
 })

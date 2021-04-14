@@ -14,10 +14,10 @@
 - Localize the ReactNative interface - https://github.com/stefalda/ReactNativeLocalization - ✅
 - Formik Build forms in React, without the tears - https://github.com/formium/formik - ✅
 - Firebase authen - https://rnfirebase.io/auth/usage#emailpassword-sign-in - ✅
-- Storybook - https://github.com/storybookjs/react-native -
 - React Native multi screen size support - https://github.com/maphongba008/rn-scaled-sheet -
 - Theme -
 - Chat function -
+- Storybook - https://github.com/storybookjs/react-native -
 
 # UI
 

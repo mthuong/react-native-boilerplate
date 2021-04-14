@@ -1,6 +1,6 @@
 import { ViewStyle, TextStyle } from 'react-native'
 import { TextPresets } from 'components/text'
-import { ImageAssetTypes } from 'theme'
+import { ImageAssetTypes } from 'theme/images'
 
 export interface ButtonTextProps {
   // Container style.
@@ -25,5 +25,5 @@ export interface ButtonTextProps {
   onPress?(): void
 
   // One of different types of button presets
-  preset?: 'primary' | 'secondary'
+  preset?: 'primary' | 'secondary' | 'flat'
 }

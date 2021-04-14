@@ -1,6 +1,6 @@
 export const en = {
   SignIn: 'Sign In',
-  Username: 'Username',
+  SignInSubTitle: 'Enter your emails and password',
   Password: 'Password',
   ConfirmPassword: 'ConfirmPassword',
   SignUp: 'Sign Up',
@@ -9,6 +9,7 @@ export const en = {
   Email: 'Email',
   Phone: 'Phone',
   Home: 'Home',
+  DontHaveAccount: "Don't have account?",
 
   ErrorInvalidEmail: 'Invalid email',
   ErrorRequiredEmail: 'Email is required',

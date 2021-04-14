@@ -6963,6 +6963,11 @@ rn-host-detect@1.2.0:
   resolved "https://registry.yarnpkg.com/rn-host-detect/-/rn-host-detect-1.2.0.tgz#8b0396fc05631ec60c1cb8789e5070cdb04d0da0"
   integrity sha512-btNg5kzHcjZZ7t7mvvV/4wNJ9e3MPgrWivkRgWURzXL0JJ0pwWlU4zrbmdlz3HHzHOxhBhHB4D+/dbMFfu4/4A==
 
+rn-scaled-sheet@^1.0.5:
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/rn-scaled-sheet/-/rn-scaled-sheet-1.0.5.tgz#03e822a6dd657cb5579fa2f255933f02e57ca672"
+  integrity sha512-mBe/8V3FCOe1CAOd2zyeN9HjjtfWDeEY09ktO/HX3oMcvhwDE/BXws60N9qP5B7jfl+A5o/nXjDTGFEin/fNmQ==
+
 rsvp@^4.8.4:
   version "4.8.5"
   resolved "https://registry.yarnpkg.com/rsvp/-/rsvp-4.8.5.tgz#c8f155311d167f68f21e168df71ec5b083113734"

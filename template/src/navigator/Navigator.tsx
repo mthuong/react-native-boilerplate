@@ -73,7 +73,9 @@ function Navigator() {
           onReady={() => {
             navigationState.isReady = true
           }}>
-          <MainStack.Navigator>{screens()}</MainStack.Navigator>
+          <MainStack.Navigator screenOptions={{ headerShown: false }}>
+            {screens()}
+          </MainStack.Navigator>
         </NavigationContainer>
       )}
     </View>

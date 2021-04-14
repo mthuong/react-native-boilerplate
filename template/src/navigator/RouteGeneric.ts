@@ -36,13 +36,13 @@ export function registerScreen<
   O extends any = any
 >(
   name: N,
-  Comp: ScreenComponent<P, N>,
+  component: ScreenComponent<P, N>,
   defaultOptions?: O
 ): ScreenType<P, N, O> {
   return {
     screen: {
       name,
-      component: Comp,
+      component,
     },
     defaultOptions,
     navigate: (navigation: NavigationProp<P>, params?: P[N]) => {
