@@ -9,7 +9,7 @@ export const en = {
   Email: 'Email',
   Phone: 'Phone',
   Home: 'Home',
-  DontHaveAccount: "Don't have account? ",
+  DontHaveAccount: "Don't have an account? ",
 
   ErrorInvalidEmail: 'Invalid email',
   ErrorRequiredEmail: 'Email is required',
