@@ -2,6 +2,7 @@ export const LightTheme = {
   statusBar: '#000000',
   navigationBar: '#000000',
   backgroundColor: '#ffffff',
+  transparent: '#00000000',
 
   primaryText: '#000000',
   secondaryText: '#999898',
@@ -25,6 +26,7 @@ export const DarkTheme: Color = {
   statusBar: '#000000',
   navigationBar: '#000000',
   backgroundColor: '#ffffff',
+  transparent: '#00000000',
 
   primaryText: '#000000',
   secondaryText: '#999898',

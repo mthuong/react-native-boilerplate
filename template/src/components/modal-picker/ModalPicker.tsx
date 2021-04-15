@@ -1,27 +1,26 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import * as React from 'react'
 import {
   Dimensions,
   FlatList,
   Image,
-  ImageStyle,
   Keyboard,
   ListRenderItemInfo,
+  Modal,
   Platform,
   StyleProp,
+  StyleSheet,
   Text,
   TextInput,
   TextStyle,
   TouchableOpacity,
   View,
   ViewStyle,
-  Modal,
-  StyleSheet,
 } from 'react-native'
+import fonts from '../../theme/fonts'
 import { ButtonImage } from './components/ButtonImage'
 import { Row } from './components/row'
 import { Separator } from './components/separator'
-import fonts from '../../theme/fonts'
-import colors from '../../theme/colors'
 
 const icInputSearch = require('./assets/icInputSearch.png')
 const icCloseCircle = require('./assets/icCloseCircle.png')
@@ -133,7 +132,7 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
       <React.Fragment>
         <Row style={{ alignItems: 'center' }}>
           <TextInput
-            placeholder={'Enter your keyword'}
+            placeholder='Enter your keyword'
             blurOnSubmit={true}
             returnKeyType={'search'}
             multiline={false}
@@ -236,7 +235,7 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
           left: 0,
           top: y,
           width: Dimensions.get('window').width,
-          maxHeight: maxHeight,
+          maxHeight,
           bottom: 0,
         })
         setDisplaySources(dataSources)
@@ -245,12 +244,12 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
           left: 0,
           top: y,
           width: Dimensions.get('window').width,
-          maxHeight: maxHeight,
+          maxHeight,
           bottom: 0,
         })
       }
     }
-  }, [isVisible])
+  }, [isVisible, props])
 
   const toggleDropdown = () => {
     Keyboard.dismiss()
@@ -261,7 +260,6 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
     if (isVisible) {
       // setIsVisible(false)
       onDismiss()
-      return
     }
   }
 
@@ -270,8 +268,8 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
   // const { displaySources, maxHeight, width, left, top, bottom } = this.state
   const { maxHeight, width, left, top, bottom } = position
   const listStyle = {
-    maxHeight: maxHeight,
-    width: width,
+    maxHeight,
+    width,
   }
   const buttonStyle = {
     top: 0,
@@ -285,7 +283,7 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
       style={styles.MODAL}
       visible={isVisible}
       onRequestClose={props.onDropdownHide}
-      transparent={true}
+      transparent
       animationType='slide'>
       <View style={styles.MODAL_CONTAINER}>
         <ButtonImage
@@ -349,18 +347,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   ITEM_NAME: {
-    fontFamily: fonts.Regular,
+    // fontFamily: fonts.regular,
     fontSize: 16,
     flex: 1,
     paddingLeft: 10,
   },
   ITEM_NAME_SELECTED: {
-    fontFamily: fonts.Bold,
+    // fontFamily: fonts.bold,
   },
   CHECKBOX: {
     width: 24,
     height: 24,
-    tintColor: colors.primary,
+    // tintColor: colors.primary,
   },
 
   FOOTER_VIEW: {
@@ -375,8 +373,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     fontSize: 20,
-    fontFamily: fonts.SemiBold,
-    color: colors.primary,
+    fontFamily: fonts.medium,
+    // color: colors.primary,
   },
 
   MODAL: {
