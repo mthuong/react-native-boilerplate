@@ -1,7 +1,7 @@
-const fs = require('fs')
+import { readdirSync, writeFileSync } from 'fs'
+
 const imageFileNames = () => {
-  const array = fs
-    .readdirSync('src/theme/assets')
+  const array = readdirSync('src/theme/assets')
     .filter((file) => {
       return file.endsWith('.png')
     })
@@ -14,7 +14,7 @@ const imageFileNames = () => {
   return Array.from(new Set(array))
 }
 const generate = () => {
-  let properties = imageFileNames()
+  const properties = imageFileNames()
     .map((name) => {
       return `${name.replace(/-/g, '_')}: require('./assets/${name}.png')`
     })
@@ -26,6 +26,6 @@ export type ImageAssetTypes = keyof typeof images
 
 export default images
 `
-  fs.writeFileSync('src/theme/images.ts', string, 'utf8')
+  writeFileSync('src/theme/images.ts', string, 'utf8')
 }
 generate()

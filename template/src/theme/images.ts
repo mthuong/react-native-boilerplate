@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const images = {
   ic_close: require('./assets/ic_close.png'),
   ic_email: require('./assets/ic_email.png'),
@@ -7,7 +8,7 @@ const images = {
   ic_plus: require('./assets/ic_plus.png'),
   ic_tab_home: require('./assets/ic_tab_home.png'),
   ic_tab_profile: require('./assets/ic_tab_profile.png'),
-  ic_tab_settings: require('./assets/ic_tab_settings.png')
+  ic_tab_settings: require('./assets/ic_tab_settings.png'),
 }
 export type ImageAssetTypes = keyof typeof images
 

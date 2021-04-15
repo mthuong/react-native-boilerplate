@@ -11,7 +11,6 @@ import { Dimensions, Keyboard, View, ScrollView } from 'react-native'
 import { ScaledSheet } from 'rn-scaled-sheet'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
-import { theme } from 'theme'
 import { Formik } from 'formik'
 import { ISignIn } from 'services'
 import * as yup from 'yup'
@@ -19,6 +18,7 @@ import regex from 'common/regex'
 import { injectValue } from 'common/func'
 import { TextInput } from 'components/TextInput'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { Theme, useTheme } from 'theme'
 
 export type SignInParams = undefined
 
@@ -30,6 +30,9 @@ const FieldNames = {
 function _SignIn() {
   const dispatch = useAppDispatch()
   const languages = useLocalizationContext()
+
+  const theme = useTheme()
+  const styles = makeStyles(theme)
 
   const initialValues: ISignIn = {
     email: '',
@@ -120,37 +123,38 @@ const SignIn = registerScreen<RootStackParamList, NAV_SCREENS.SignIn>(
 
 export default SignIn
 
-const styles = ScaledSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    paddingHorizontal: theme.spacing[5],
-    backgroundColor: theme.colors.background,
-  },
-  logoView: {
-    paddingTop: theme.spacing[6],
-  },
-  logo: {
-    alignSelf: 'center',
-    aspectRatio: 1,
-    height: Dimensions.get('window').height * 0.2,
-  },
-  form: {
-    marginTop: theme.spacing[5],
-  },
-  spacingView: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'flex-end',
-    bottom: theme.spacing[7],
-  },
-  buttonSignIn: {
-    marginTop: theme.spacing[5],
-  },
-  textSignUp: {
-    color: theme.colors.primaryButton,
-  },
-})
+const makeStyles = (theme: Theme) =>
+  ScaledSheet.create({
+    container: {
+      flexGrow: 1,
+      justifyContent: 'center',
+      alignContent: 'center',
+      paddingHorizontal: theme.spacing[5],
+      backgroundColor: theme.colors.backgroundColor,
+    },
+    logoView: {
+      paddingTop: theme.spacing[6],
+    },
+    logo: {
+      alignSelf: 'center',
+      aspectRatio: 1,
+      height: Dimensions.get('window').height * 0.2,
+    },
+    form: {
+      marginTop: theme.spacing[5],
+    },
+    spacingView: {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignContent: 'center',
+      alignItems: 'flex-end',
+      bottom: theme.spacing[7],
+    },
+    buttonSignIn: {
+      marginTop: theme.spacing[5],
+    },
+    textSignUp: {
+      color: theme.colors.primaryButton,
+    },
+  })

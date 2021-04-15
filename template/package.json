@@ -34,6 +34,7 @@
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-config": "^1.4.2",
+    "react-native-device-info": "7.3.1",
     "react-native-fast-image": "^8.3.4",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",

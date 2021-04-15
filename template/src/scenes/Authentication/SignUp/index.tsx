@@ -14,7 +14,7 @@ import { Dimensions, StyleSheet, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
-import { theme } from 'theme'
+import { useTheme, Theme } from 'theme'
 import * as Yup from 'yup'
 import { TextInput } from '../../../components/TextInput'
 import { RootStackParamList } from '../../../navigator/Navigator'
@@ -47,6 +47,9 @@ const FieldNames = {
 function _SignUp(props: Props) {
   const languages = useLocalizationContext()
   const dispatch = useAppDispatch()
+
+  const theme = useTheme()
+  const styles = makeStyles(theme)
 
   const onRegister = async (values: ISignUp) => {
     dispatch(authAsyncActions.signUp(values))
@@ -166,29 +169,30 @@ const SignUp = registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(
 )
 export default SignUp
 
-const styles = StyleSheet.create({
-  CONTAINER: {
-    flex: 1,
-    backgroundColor: theme.colors.background,
-  },
-  inner: {
-    marginHorizontal: theme.spacing[5],
-  },
-  logoView: {
-    paddingTop: theme.spacing[6],
-  },
-  logo: {
-    alignSelf: 'center',
-    aspectRatio: 1,
-    height: Dimensions.get('window').height * 0.2,
-  },
-  title: {},
-  form: {
-    marginTop: theme.spacing[5],
-  },
+const makeStyles = (theme: Theme) =>
+  StyleSheet.create({
+    CONTAINER: {
+      flex: 1,
+      backgroundColor: theme.colors.backgroundColor,
+    },
+    inner: {
+      marginHorizontal: theme.spacing[5],
+    },
+    logoView: {
+      paddingTop: theme.spacing[6],
+    },
+    logo: {
+      alignSelf: 'center',
+      aspectRatio: 1,
+      height: '20%',
+    },
+    title: {},
+    form: {
+      marginTop: theme.spacing[5],
+    },
 
-  buttonSignUp: {
-    height: theme.spacing[7],
-    marginVertical: theme.spacing[4],
-  },
-})
+    buttonSignUp: {
+      height: theme.spacing[7],
+      marginVertical: theme.spacing[4],
+    },
+  })
