@@ -6,12 +6,14 @@ type MergeStyle = ViewStyle | ImageStyle | TextStyle
 
 export type ShareStyle = {
   shadow: MergeStyle
+  // eslint-disable-next-line no-unused-vars
   circle: (size: number) => MergeStyle
+  // eslint-disable-next-line no-unused-vars
   rounded: (height: number) => MergeStyle
   center: MergeStyle
 }
 
-export const sharedStyle: ShareStyle = {
+export const sharedStyle = {
   shadow: {
     shadowOffset: {
       width: 0,

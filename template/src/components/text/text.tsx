@@ -6,9 +6,8 @@ import {
   TextStyle,
   StyleSheet,
 } from 'react-native'
-import fonts from '../../theme/fonts'
-import colors from '../../theme/colors'
-import fontSizes from '../../theme/fonts/sizes'
+import fonts from 'theme/fonts'
+import fontSizes from 'theme/fonts/sizes'
 
 export interface TextProps extends TextProperties {
   /**
@@ -76,7 +75,7 @@ const styles = StyleSheet.create({
    */
   BASE: {
     ...fonts.regular,
-    color: colors.text,
+    color: '#000000',
     fontSize: fontSizes.small,
   },
 })
@@ -88,7 +87,7 @@ export const presets = {
   bold: { ...styles.BASE, ...fonts.bold } as TextStyle,
   header: { ...styles.BASE } as TextStyle,
   light: { ...styles.BASE, ...fonts.light } as TextStyle,
-  error: { ...styles.BASE, ...fonts.light, color: colors.error },
+  error: { ...styles.BASE, ...fonts.light, color: '#FE3B2F' },
 }
 
 export type TextPresets = keyof typeof presets

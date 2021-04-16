@@ -3,8 +3,7 @@ import { Text } from 'components/text'
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { ButtonTextProps } from './ButtonText.props'
-import { Theme, useTheme } from 'theme'
-import { ScaledSheet } from 'rn-scaled-sheet'
+import { spacing } from 'theme/spacing'
 
 export function ButtonText(props: ButtonTextProps) {
   const {
@@ -17,10 +16,6 @@ export function ButtonText(props: ButtonTextProps) {
     onPress,
     preset,
   } = props
-
-  const theme = useTheme()
-  const styles = makeStyles(theme)
-  const textStyles = makeTextStyles(theme)
 
   const mergedTextStyle = [
     styles.text,
@@ -45,57 +40,55 @@ export function ButtonText(props: ButtonTextProps) {
   )
 }
 
-const makeStyles = (theme: Theme) =>
-  StyleSheet.create({
-    button: {
-      alignSelf: 'stretch',
-      borderRadius: theme.spacing[2],
-      height: theme.spacing[7],
-    },
+const styles = StyleSheet.create({
+  button: {
+    alignSelf: 'stretch',
+    borderRadius: spacing[2],
+    height: spacing[7],
+  },
 
-    content: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: 1,
-    },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
 
-    container: {
-      alignSelf: 'stretch',
-      minHeight: 30,
-      minWidth: 30,
-    },
+  container: {
+    alignSelf: 'stretch',
+    minHeight: 30,
+    minWidth: 30,
+  },
 
-    text: {
-      flex: 1,
-      // marginHorizontal: 10,
-      textAlign: 'center',
-    },
+  text: {
+    flex: 1,
+    // marginHorizontal: 10,
+    textAlign: 'center',
+  },
 
-    primary: {
-      backgroundColor: theme.colors.primaryButton,
-    },
+  primary: {
+    backgroundColor: '#53B175',
+  },
 
-    secondary: {
-      backgroundColor: theme.colors.secondaryButton,
-    },
+  secondary: {
+    backgroundColor: '#F2F3F2',
+  },
 
-    flat: {
-      backgroundColor: theme.colors.transparent,
-    },
-  })
+  flat: {
+    backgroundColor: 'transparent',
+  },
+})
 
-const makeTextStyles = (theme: Theme) =>
-  ScaledSheet.create({
-    primary: {
-      color: theme.colors.tertiaryText,
-    },
+const textStyles = StyleSheet.create({
+  primary: {
+    color: '#ffffff',
+  },
 
-    secondary: {
-      color: theme.colors.secondaryText,
-    },
+  secondary: {
+    color: '#999898',
+  },
 
-    flat: {
-      color: theme.colors.primaryText,
-    },
-  })
+  flat: {
+    color: '#000000',
+  },
+})

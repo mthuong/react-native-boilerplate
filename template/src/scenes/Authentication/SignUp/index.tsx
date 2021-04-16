@@ -10,7 +10,7 @@ import { useLocalizationContext } from 'localization'
 import { strings } from 'localization/strings'
 import { registerScreen } from 'navigator/RouteGeneric'
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { View, Dimensions } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { ISignUp } from 'services'
 import { authAsyncActions } from 'stores/authReducer'
@@ -20,6 +20,7 @@ import * as Yup from 'yup'
 import { TextInput } from '../../../components/TextInput'
 import { RootStackParamList } from '../../../navigator/Navigator'
 import { NAV_SCREENS } from '../../../navigator/RouteNames'
+import { ScaledSheet } from 'rn-scaled-sheet'
 
 type SignUpNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -170,7 +171,7 @@ const SignUp = registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(
 export default SignUp
 
 const makeStyles = (theme: Theme) =>
-  StyleSheet.create({
+  ScaledSheet.create({
     CONTAINER: {
       flex: 1,
       backgroundColor: theme.colors.backgroundColor,
@@ -184,7 +185,7 @@ const makeStyles = (theme: Theme) =>
     logo: {
       alignSelf: 'center',
       aspectRatio: 1,
-      height: '20%',
+      height: Dimensions.get('window').height * 0.2,
     },
     title: {},
     form: {

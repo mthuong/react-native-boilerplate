@@ -2,7 +2,6 @@ import * as React from 'react'
 import { TextInput as Input } from 'react-native-paper'
 // eslint-disable-next-line import/no-unresolved
 import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput'
-import { theme } from 'theme'
 import { StyleSheet } from 'react-native'
 import { Text } from 'components/text'
 
@@ -18,13 +17,7 @@ export function TextInput(props: InputProps) {
   const { error, ...rest } = props
   return (
     <>
-      <Input
-        theme={theme}
-        mode='flat'
-        style={styles.input}
-        {...rest}
-        error={!!error}
-      />
+      <Input mode='flat' style={styles.input} {...rest} error={!!error} />
       {!!error && <Text preset='error'>{error}</Text>}
     </>
   )
@@ -32,6 +25,6 @@ export function TextInput(props: InputProps) {
 
 const styles = StyleSheet.create({
   input: {
-    backgroundColor: theme.colors.background,
+    backgroundColor: '#ffffff',
   },
 })
