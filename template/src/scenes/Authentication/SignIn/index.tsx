@@ -1,24 +1,29 @@
+import { injectValue } from 'common/func'
+import regex from 'common/regex'
 import { ButtonText } from 'components/ButtonText'
 import { Image } from 'components/image'
 import { Text } from 'components/text'
+import { TextInput } from 'components/TextInput'
+import { Formik } from 'formik'
 import { useLocalizationContext } from 'localization'
 import { RootStackParamList } from 'navigator/Navigator'
 import { navigate } from 'navigator/RootNavigation'
 import { registerScreen } from 'navigator/RouteGeneric'
 import { NAV_SCREENS } from 'navigator/RouteNames'
 import React from 'react'
-import { Dimensions, Keyboard, View, ScrollView } from 'react-native'
+import {
+  Dimensions,
+  Keyboard,
+  View,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native'
 import { ScaledSheet } from 'rn-scaled-sheet'
+import { ISignIn } from 'services'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
-import { Formik } from 'formik'
-import { ISignIn } from 'services'
-import * as yup from 'yup'
-import regex from 'common/regex'
-import { injectValue } from 'common/func'
-import { TextInput } from 'components/TextInput'
-import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Theme, useTheme } from 'theme'
+import * as yup from 'yup'
 
 export type SignInParams = undefined
 
@@ -54,13 +59,16 @@ function _SignIn() {
       .min(8, injectValue(languages.ErrorInvalidPassword, 8)),
   })
 
-  const onSignIn = async (values: ISignIn) => {
+  const onSignIn = (values: ISignIn) => {
+    console.tron.log('Sign in')
     Keyboard.dismiss()
     dispatch(authAsyncActions.signIn(values))
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      style={styles.scrollView}
+      contentContainerStyle={styles.container}>
       <Image
         url='https://image.freepik.com/free-vector/abstract-colorful-floral-shape-with-logo_1035-8982.jpg'
         style={styles.logo}
@@ -103,6 +111,7 @@ function _SignIn() {
           </View>
         )}
       </Formik>
+
       <View style={styles.spacingView}>
         <Text>{languages.DontHaveAccount}</Text>
         <TouchableOpacity
@@ -125,12 +134,13 @@ export default SignIn
 
 const makeStyles = (theme: Theme) =>
   ScaledSheet.create({
+    scrollView: {
+      flex: 1,
+      backgroundColor: theme.colors.backgroundColor,
+    },
     container: {
       flexGrow: 1,
-      justifyContent: 'center',
-      alignContent: 'center',
       paddingHorizontal: theme.spacing[5],
-      backgroundColor: theme.colors.backgroundColor,
     },
     logoView: {
       paddingTop: theme.spacing[6],
@@ -140,16 +150,14 @@ const makeStyles = (theme: Theme) =>
       aspectRatio: 1,
       height: Dimensions.get('window').height * 0.2,
     },
-    form: {
-      marginTop: theme.spacing[5],
-    },
+    form: {},
     spacingView: {
       flex: 1,
       flexDirection: 'row',
       justifyContent: 'center',
-      alignContent: 'center',
       alignItems: 'flex-end',
-      bottom: theme.spacing[7],
+      bottom: theme.dimensions.paddingBottom,
+      marginTop: 50, // I dont know why need add margin here to prevent spacing view does not overlap form view
     },
     buttonSignIn: {
       marginTop: theme.spacing[5],

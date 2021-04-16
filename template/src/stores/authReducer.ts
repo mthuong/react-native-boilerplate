@@ -2,13 +2,7 @@ import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { userService } from '../services'
 import { snackbarSlice } from '.'
 import { IUser, ISignIn, ISignUp } from 'services/types'
-
-interface AuthState {
-  isLoading: boolean
-  isSignOut: boolean
-  user: IUser | null | undefined
-  error: string | null | undefined
-}
+import { AuthState } from './types'
 
 const initialState: AuthState = {
   isLoading: true,

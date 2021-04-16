@@ -6,3 +6,4 @@
 # src/assets/
 metro.config.js
 babel.config.js
+react-native.config.js

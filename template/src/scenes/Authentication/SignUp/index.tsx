@@ -1,5 +1,3 @@
-import { RouteProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
 import { injectValue } from 'common/func'
 import regex from 'common/regex'
 import { ButtonText } from 'components/ButtonText'
@@ -10,8 +8,9 @@ import { useLocalizationContext } from 'localization'
 import { strings } from 'localization/strings'
 import { registerScreen } from 'navigator/RouteGeneric'
 import React from 'react'
-import { View, Dimensions } from 'react-native'
+import { Dimensions, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { ScaledSheet } from 'rn-scaled-sheet'
 import { ISignUp } from 'services'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
@@ -20,23 +19,21 @@ import * as Yup from 'yup'
 import { TextInput } from '../../../components/TextInput'
 import { RootStackParamList } from '../../../navigator/Navigator'
 import { NAV_SCREENS } from '../../../navigator/RouteNames'
-import { ScaledSheet } from 'rn-scaled-sheet'
 
-type SignUpNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  NAV_SCREENS.SignUp
->
-type SignUpRoute = RouteProp<RootStackParamList, NAV_SCREENS.SignUp>
+// type SignUpNavigationProp = StackNavigationProp<
+//   RootStackParamList,
+//   NAV_SCREENS.SignUp
+// >
+// type SignUpRoute = RouteProp<RootStackParamList, NAV_SCREENS.SignUp>
 
 export type SignUpParams = {
   title: string
-  headerShown?: boolean
 }
 
-interface Props {
-  // navigation: SignUpNavigationProp
-  // route: SignUpRoute
-}
+// type Props = {
+// navigation: SignUpNavigationProp
+// route: SignUpRoute
+// }
 
 const FieldNames = {
   email: 'email',
@@ -45,7 +42,7 @@ const FieldNames = {
   name: 'name',
 }
 
-function _SignUp(props: Props) {
+function _SignUp() {
   const languages = useLocalizationContext()
   const dispatch = useAppDispatch()
 
@@ -160,7 +157,6 @@ function _SignUp(props: Props) {
 
 const defaultOptions: SignUpParams = {
   title: strings.SignUp,
-  headerShown: false,
 }
 
 const SignUp = registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(

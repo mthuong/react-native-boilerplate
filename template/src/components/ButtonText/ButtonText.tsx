@@ -24,7 +24,6 @@ export function ButtonText(props: ButtonTextProps) {
   ]
   const mergedButtonStyle = [
     styles.button,
-    styles.container,
     (preset && styles[preset]) || styles.primary,
     style && style,
   ]
@@ -42,9 +41,9 @@ export function ButtonText(props: ButtonTextProps) {
 
 const styles = StyleSheet.create({
   button: {
-    alignSelf: 'stretch',
     borderRadius: spacing[2],
     height: spacing[7],
+    alignSelf: 'stretch',
   },
 
   content: {
@@ -54,15 +53,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  container: {
-    alignSelf: 'stretch',
-    minHeight: 30,
-    minWidth: 30,
-  },
-
   text: {
     flex: 1,
-    // marginHorizontal: 10,
     textAlign: 'center',
   },
 

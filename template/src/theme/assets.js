@@ -1,7 +1,9 @@
-import { readdirSync, writeFileSync } from 'fs'
+/* eslint-disable @typescript-eslint/no-var-requires */
+const fs = require('fs')
 
 const imageFileNames = () => {
-  const array = readdirSync('src/theme/assets')
+  const array = fs
+    .readdirSync('src/theme/assets')
     .filter((file) => {
       return file.endsWith('.png')
     })
@@ -26,6 +28,6 @@ export type ImageAssetTypes = keyof typeof images
 
 export default images
 `
-  writeFileSync('src/theme/images.ts', string, 'utf8')
+  fs.writeFileSync('src/theme/images.ts', string, 'utf8')
 }
 generate()

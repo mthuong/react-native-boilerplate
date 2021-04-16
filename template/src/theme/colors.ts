@@ -4,6 +4,8 @@ export const LightTheme = {
   backgroundColor: '#ffffff',
   transparent: '#00000000',
 
+  primary: '#53B175',
+
   primaryText: '#000000',
   secondaryText: '#999898',
   tertiaryText: '#ffffff',
@@ -27,6 +29,8 @@ export const DarkTheme: Color = {
   navigationBar: '#000000',
   backgroundColor: '#ffffff',
   transparent: '#00000000',
+
+  primary: '#53B175',
 
   primaryText: '#000000',
   secondaryText: '#999898',

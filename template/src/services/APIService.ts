@@ -1,12 +1,10 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import lodash from 'lodash'
-import crashlyticService from './CrashlyticService'
-import { APIServiceType, IAPIService } from './IAPIService'
-import API from './API'
-import { useAppSelector } from '../stores/hook'
-import { ErrorCode } from '../models/ErrorCode'
+// import store from 'stores/store'
 import { RootNavigation } from '../navigator'
 import { NAV_SCREENS } from '../navigator/RouteNames'
+import API from './API'
+import { APIServiceType, IAPIService } from './IAPIService'
 // import { loggingService } from './LoggingService'
 
 export const SERVICE_REQUEST_TIMEOUT = 80000
@@ -88,12 +86,13 @@ export class AxiosAPIService implements IAPIService {
    * Return a object value which describes the HTTP request headers.
    */
   get defaultHeaders() {
-    const userToken = useAppSelector(state => state.authReducer.userToken)
-    if (userToken) {
-      return {
-        Authorization: userToken,
-      }
-    }
+    // FIXME: Need to update user token if needed
+    // const userToken = store.getState().auth.user
+    // if (userToken) {
+    //   return {
+    //     Authorization: userToken,
+    //   }
+    // }
 
     return {}
   }

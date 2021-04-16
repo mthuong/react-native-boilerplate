@@ -1,4 +1,4 @@
-import { ImageStyle, TextStyle, ViewStyle, Platform } from 'react-native'
+import { ImageStyle, Platform, TextStyle, ViewStyle } from 'react-native'
 import { hasNotch } from 'react-native-device-info'
 import fontSizes from './fonts/sizes'
 
@@ -6,9 +6,7 @@ type MergeStyle = ViewStyle | ImageStyle | TextStyle
 
 export type ShareStyle = {
   shadow: MergeStyle
-  // eslint-disable-next-line no-unused-vars
   circle: (size: number) => MergeStyle
-  // eslint-disable-next-line no-unused-vars
   rounded: (height: number) => MergeStyle
   center: MergeStyle
 }
@@ -55,10 +53,10 @@ export const dimensions = {
   },
   ...Platform.select({
     ios: {
-      paddingBottom: hasNotch() ? 34 : 0,
+      paddingBottom: hasNotch() ? 34 : 20,
     },
     android: {
-      paddingBottom: 0,
+      paddingBottom: 20,
     },
     default: {
       paddingBottom: 0,

@@ -13,7 +13,7 @@ import { enableScreens } from 'react-native-screens'
 import { Provider as StoreProvider } from 'react-redux'
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper'
 import store from './src/stores/store'
-import { Navigator } from './src/navigator/Navigator'
+import Navigator from './src/navigator/Navigator'
 import { GlobalSnackBar } from './src/components/SnackBar/GlobalSnackBar'
 import LocalizationProvider from './src/localization'
 import { ThemeProvider } from './src/theme'
@@ -27,14 +27,14 @@ const App = () => {
   return (
     <StoreProvider store={store}>
       <PaperProvider theme={DefaultTheme}>
-        {/* <ThemeProvider> */}
-        <LocalizationProvider>
-          <Fragment>
-            <Navigator />
-            <GlobalSnackBar />
-          </Fragment>
-        </LocalizationProvider>
-        {/* </ThemeProvider> */}
+        <ThemeProvider>
+          <LocalizationProvider>
+            <Fragment>
+              <Navigator />
+              <GlobalSnackBar />
+            </Fragment>
+          </LocalizationProvider>
+        </ThemeProvider>
       </PaperProvider>
     </StoreProvider>
   )

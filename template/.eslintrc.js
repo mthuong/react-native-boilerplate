@@ -56,7 +56,6 @@ module.exports = {
     'no-unused-expressions': 0,
     'no-inline-styles/no-inline-styles': 'error',
     'max-classes-per-file': 0,
-    'no-unused-vars': 'warn',
     eqeqeq: 'off',
     'react/sort-comp': 0,
     'react/no-array-index-key': 0,

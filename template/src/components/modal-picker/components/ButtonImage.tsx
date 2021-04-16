@@ -11,8 +11,7 @@ import {
   Text,
 } from 'react-native'
 import FastImage, { Source } from 'react-native-fast-image'
-import colors from '../../../theme/colors'
-import fonts from '../../../theme/fonts'
+import fonts from 'theme/fonts'
 
 export interface ButtonIconProps {
   style?: StyleProp<ViewStyle>
@@ -30,7 +29,7 @@ const ButtonImage: React.SFC<ButtonIconProps> = (props) => {
   const {
     style,
     image,
-    imageColor,
+    // imageColor,
     imageStyle,
     textStyle,
     text,
@@ -47,7 +46,7 @@ const ButtonImage: React.SFC<ButtonIconProps> = (props) => {
     <TouchableOpacity
       {...others}
       style={[styles.button, style]}
-      onPress={disabled ? () => {} : onPress}>
+      onPress={disabled ? () => undefined : onPress}>
       {image ? (
         <Image source={image} style={[styles.image, imageStyle]} />
       ) : null}
@@ -72,10 +71,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   textStyle: {
-    color: colors.text,
+    color: '#000000',
     fontSize: 12,
     textAlign: 'center',
-    fontFamily: fonts.Regular,
+    ...fonts.regular,
   },
   image: {},
 })
