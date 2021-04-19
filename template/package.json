@@ -5,6 +5,7 @@
   "scripts": {
     "start": "react-native start",
     "test": "jest --coverage",
+    "postinstall": "npx patch-package",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "format": "prettier --write 'src/**'",
     "pod": "cd ios && pod update",
@@ -55,6 +56,7 @@
     "@types/jest": "^25.2.3",
     "@types/lodash": "^4.14.168",
     "@types/react-native": "^0.63.2",
+    "@types/react-native-vector-icons": "^6.4.6",
     "@types/react-redux": "^7.1.16",
     "@types/react-test-renderer": "^16.9.2",
     "@types/yup": "^0.29.11",

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { userService } from '../services'
-import { snackbarSlice } from '.'
+import { snackbarSlice } from './snackbarReducer'
 import { IUser, ISignIn, ISignUp } from 'services/types'
 import { AuthState } from './types'
 

@@ -1,6 +1,6 @@
 export const LightTheme = {
-  statusBar: '#000000',
-  navigationBar: '#000000',
+  statusBar: '#ffffff',
+  navigationBar: '#ffffff',
   backgroundColor: '#ffffff',
   transparent: '#00000000',
 

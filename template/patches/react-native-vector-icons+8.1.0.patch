@@ -1,0 +1,28 @@
+diff --git a/node_modules/react-native-vector-icons/Fonts/icomoon.ttf b/node_modules/react-native-vector-icons/Fonts/icomoon.ttf
+new file mode 100755
+index 0000000..727f9bf
+Binary files /dev/null and b/node_modules/react-native-vector-icons/Fonts/icomoon.ttf differ
+diff --git a/node_modules/react-native-vector-icons/RNVectorIcons.podspec b/node_modules/react-native-vector-icons/RNVectorIcons.podspec
+index 4b716ee..08f6378 100644
+--- a/node_modules/react-native-vector-icons/RNVectorIcons.podspec
++++ b/node_modules/react-native-vector-icons/RNVectorIcons.podspec
+@@ -12,7 +12,6 @@ Pod::Spec.new do |s|
+   s.platforms      = { :ios => "9.0", :tvos => "9.0" }
+   s.source         = { :git => "https://github.com/oblador/react-native-vector-icons.git", :tag => "v#{s.version}" }
+   s.source_files   = 'RNVectorIconsManager/**/*.{h,m}'
+-  s.resources      = "Fonts/*.ttf"
+   s.preserve_paths = "**/*.js"
+   s.dependency 'React-Core'
+ 
+diff --git a/node_modules/react-native-vector-icons/react-native.config.js b/node_modules/react-native-vector-icons/react-native.config.js
+index 356b254..223abd0 100644
+--- a/node_modules/react-native-vector-icons/react-native.config.js
++++ b/node_modules/react-native-vector-icons/react-native.config.js
+@@ -1,5 +1,5 @@
+ module.exports = {
+   dependency: {
+-    assets: ['Fonts'],
++    assets: [],
+   },
+ };
+\ No newline at end of file

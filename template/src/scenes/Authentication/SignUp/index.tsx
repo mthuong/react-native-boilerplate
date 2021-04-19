@@ -19,6 +19,8 @@ import * as Yup from 'yup'
 import { TextInput } from '../../../components/TextInput'
 import { RootStackParamList } from '../../../navigator/Navigator'
 import { NAV_SCREENS } from '../../../navigator/RouteNames'
+import { Container } from 'components/Container'
+import { Header } from 'components/Header'
 
 // type SignUpNavigationProp = StackNavigationProp<
 //   RootStackParamList,
@@ -81,77 +83,90 @@ function _SignUp() {
   })
 
   return (
-    <KeyboardAwareScrollView style={styles.CONTAINER}>
-      <View style={styles.inner}>
-        <Image
-          url='https://image.freepik.com/free-vector/abstract-colorful-floral-shape-with-logo_1035-8982.jpg'
-          style={styles.logo}
-          containerStyle={styles.logoView}
-        />
-        <Text text={languages.SignUp} preset='bold' style={styles.title} />
-        <Text text={languages.SignUpSubTitle} preset='header' />
+    <Container>
+      <Header leftIcon='arrow_back_ios' backEnabled>
+        {/* <TouchableOpacity full center horizontal>
+          <Text f17 primary style={styles.title}>
+            {props.category.name}
+          </Text>
+          <Icon secondary tiny name='arrow-bottom' />
+        </TouchableOpacity> */}
+      </Header>
+      <KeyboardAwareScrollView
+        style={styles.CONTAINER}
+        extraScrollHeight={theme.dimensions.scrollViewExtraHeight}
+        enableOnAndroid>
+        <View style={styles.inner}>
+          <Image
+            url='https://image.freepik.com/free-vector/abstract-colorful-floral-shape-with-logo_1035-8982.jpg'
+            style={styles.logo}
+            containerStyle={styles.logoView}
+          />
+          <Text text={languages.SignUp} preset='bold' style={styles.title} />
+          <Text text={languages.SignUpSubTitle} preset='header' />
 
-        <Formik
-          initialValues={initialValues}
-          validationSchema={signUpSchema}
-          onSubmit={onRegister}>
-          {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-            <View style={styles.form}>
-              <TextInput
-                label={languages.Name}
-                keyboardType='default'
-                autoCapitalize='words'
-                onChangeText={handleChange(FieldNames.name)}
-                onBlur={handleBlur(FieldNames.name)}
-                value={values.name}
-                error={errors.name}
-                clearButtonMode='while-editing'
-              />
+          <Formik
+            initialValues={initialValues}
+            validationSchema={signUpSchema}
+            onSubmit={onRegister}>
+            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+              <View style={styles.form}>
+                <TextInput
+                  label={languages.Name}
+                  keyboardType='default'
+                  autoCapitalize='words'
+                  onChangeText={handleChange(FieldNames.name)}
+                  onBlur={handleBlur(FieldNames.name)}
+                  value={values.name}
+                  error={errors.name}
+                  clearButtonMode='while-editing'
+                />
 
-              <TextInput
-                label={languages.Email}
-                keyboardType='email-address'
-                autoCapitalize='none'
-                maxLength={100}
-                onChangeText={handleChange(FieldNames.email)}
-                onBlur={handleBlur(FieldNames.email)}
-                value={values.email}
-                error={errors.email}
-                clearButtonMode='while-editing'
-              />
+                <TextInput
+                  label={languages.Email}
+                  keyboardType='email-address'
+                  autoCapitalize='none'
+                  maxLength={100}
+                  onChangeText={handleChange(FieldNames.email)}
+                  onBlur={handleBlur(FieldNames.email)}
+                  value={values.email}
+                  error={errors.email}
+                  clearButtonMode='while-editing'
+                />
 
-              <TextInput
-                secureTextEntry
-                label={languages.Password}
-                maxLength={100}
-                onChangeText={handleChange(FieldNames.password)}
-                onBlur={handleBlur(FieldNames.password)}
-                value={values.password}
-                error={errors.password}
-              />
+                <TextInput
+                  secureTextEntry
+                  label={languages.Password}
+                  maxLength={100}
+                  onChangeText={handleChange(FieldNames.password)}
+                  onBlur={handleBlur(FieldNames.password)}
+                  value={values.password}
+                  error={errors.password}
+                />
 
-              <TextInput
-                secureTextEntry
-                label={languages.ConfirmPassword}
-                maxLength={100}
-                onChangeText={handleChange(FieldNames.confirmPassword)}
-                onBlur={handleBlur(FieldNames.confirmPassword)}
-                value={values.confirmPassword}
-                error={errors.confirmPassword}
-              />
+                <TextInput
+                  secureTextEntry
+                  label={languages.ConfirmPassword}
+                  maxLength={100}
+                  onChangeText={handleChange(FieldNames.confirmPassword)}
+                  onBlur={handleBlur(FieldNames.confirmPassword)}
+                  value={values.confirmPassword}
+                  error={errors.confirmPassword}
+                />
 
-              <ButtonText
-                style={styles.buttonSignUp}
-                preset='primary'
-                text={languages.SignUp}
-                textPresets='bold'
-                onPress={handleSubmit}
-              />
-            </View>
-          )}
-        </Formik>
-      </View>
-    </KeyboardAwareScrollView>
+                <ButtonText
+                  style={styles.buttonSignUp}
+                  preset='primary'
+                  text={languages.SignUp}
+                  textPresets='bold'
+                  onPress={handleSubmit}
+                />
+              </View>
+            )}
+          </Formik>
+        </View>
+      </KeyboardAwareScrollView>
+    </Container>
   )
 }
 
@@ -169,15 +184,12 @@ export default SignUp
 const makeStyles = (theme: Theme) =>
   ScaledSheet.create({
     CONTAINER: {
-      flex: 1,
       backgroundColor: theme.colors.backgroundColor,
     },
     inner: {
       marginHorizontal: theme.spacing[5],
     },
-    logoView: {
-      paddingTop: theme.spacing[6],
-    },
+    logoView: {},
     logo: {
       alignSelf: 'center',
       aspectRatio: 1,

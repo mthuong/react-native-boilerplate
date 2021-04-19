@@ -34,3 +34,6 @@ export function navigate(name: NAV_SCREENS, params?: RootStackParamTypes) {
 }
 
 // add other navigation functions that you need and export them
+export const back = () => {
+  navigationRef.current?.goBack()
+}

@@ -54,12 +54,15 @@ export const dimensions = {
   ...Platform.select({
     ios: {
       paddingBottom: hasNotch() ? 34 : 20,
+      scrollViewExtraHeight: 40,
     },
     android: {
       paddingBottom: 20,
+      scrollViewExtraHeight: 0,
     },
     default: {
       paddingBottom: 0,
+      scrollViewExtraHeight: 20,
     },
   }),
 }

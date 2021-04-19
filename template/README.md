@@ -15,7 +15,9 @@
 - Formik Build forms in React, without the tears - https://github.com/formium/formik - ✅
 - Firebase authen - https://rnfirebase.io/auth/usage#emailpassword-sign-in - ✅
 - React Native multi screen size support - https://github.com/maphongba008/rn-scaled-sheet - ✅
-- Theme -
+- Theme - ✅
+- Icomoon - https://icomoon.io/ - Replace your icomoon.ttf + selection.json file at src/components/Icon - ✅
+- Custom fonts - https://github.com/oblador/react-native-vector-icons/issues/1074#issuecomment-586615887 - Add custom fonts you wish to use to src/theme/fonts - ✅
 - Chat function -
 - Storybook - https://github.com/storybookjs/react-native -
 
