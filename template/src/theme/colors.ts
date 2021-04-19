@@ -1,35 +1,51 @@
-import palette from './palette'
+export const LightTheme = {
+  statusBar: '#000000',
+  navigationBar: '#000000',
+  backgroundColor: '#ffffff',
+  transparent: '#00000000',
 
-const colors = {
-  transparent: 'rgba(0, 0, 0, 0)',
-  listBackground: palette.moreLightGray,
-  shadow: palette.black,
+  primary: '#53B175',
 
-  secondaryText: palette.gray,
-  tertiaryText: palette.white,
-  line: palette.gray,
+  primaryText: '#000000',
+  secondaryText: '#999898',
+  tertiaryText: '#ffffff',
+  errorText: '#FE3B2F',
+  placeholder: '#999898',
 
-  red: palette.red,
-  alertWarning: palette.lightYellow,
-  alertError: palette.lightRed,
-  alertSuccess: palette.lightGreen,
+  tabBar: '#FFB802',
+  backdrop: '#EFEEEF',
+  shadow: '#000000',
+  line: '#999898',
+  disabled: '#999898',
 
-  primary: palette.primary,
-  accent: palette.accent,
-  background: palette.white,
-  error: palette.red,
-  text: palette.black,
-  onBackground: palette.white,
-  disabled: palette.gray,
-  placeholder: palette.gray,
-  backdrop: palette.moreLightGray,
-
-  // surface: palette.primary,
-  // onSurface: palette.black,
-  // notification: palette.fern,
-
-  primaryButton: palette.fern,
-  secondaryButton: palette.grayNurse,
+  primaryButton: '#53B175',
+  secondaryButton: '#F2F3F2',
 }
 
-export default colors
+export type Color = typeof LightTheme
+
+export const DarkTheme: Color = {
+  statusBar: '#000000',
+  navigationBar: '#000000',
+  backgroundColor: '#ffffff',
+  transparent: '#00000000',
+
+  primary: '#53B175',
+
+  primaryText: '#000000',
+  secondaryText: '#999898',
+  tertiaryText: '#ffffff',
+  errorText: '#FE3B2F',
+  placeholder: '#999898',
+
+  tabBar: '#FFB802',
+  backdrop: '#EFEEEF',
+  shadow: '#000000',
+  line: '#999898',
+  disabled: '#999898',
+
+  primaryButton: '#53B175',
+  secondaryButton: '#F2F3F2',
+}
+
+export type ThemeName = 'light' | 'dark'

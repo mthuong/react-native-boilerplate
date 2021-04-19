@@ -1,11 +1,12 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import * as React from 'react'
 import {
   Dimensions,
   FlatList,
   Image,
-  ImageStyle,
   Keyboard,
   ListRenderItemInfo,
+  Modal,
   Platform,
   StyleProp,
   Text,
@@ -14,14 +15,12 @@ import {
   TouchableOpacity,
   View,
   ViewStyle,
-  Modal,
-  StyleSheet,
 } from 'react-native'
 import { ButtonImage } from './components/ButtonImage'
 import { Row } from './components/row'
 import { Separator } from './components/separator'
-import fonts from '../../theme/fonts'
-import colors from '../../theme/colors'
+import { Theme, useTheme } from 'theme'
+import { ScaledSheet } from 'rn-scaled-sheet'
 
 const icInputSearch = require('./assets/icInputSearch.png')
 const icCloseCircle = require('./assets/icCloseCircle.png')
@@ -94,9 +93,13 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
     props.dataSources || []
   )
 
+  const styles = makeStyles(useTheme())
+
   const getValueText = (item: T): string => {
     const { displayValueGetter } = props
-    if (item && displayValueGetter) return displayValueGetter(item)
+    if (item && displayValueGetter) {
+      return displayValueGetter(item)
+    }
 
     if (typeof item.value === 'string') {
       return item.value
@@ -131,17 +134,17 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
     }
     return (
       <React.Fragment>
-        <Row style={{ alignItems: 'center' }}>
+        <Row style={styles.SEARCH_VIEW}>
           <TextInput
-            placeholder={'Enter your keyword'}
-            blurOnSubmit={true}
-            returnKeyType={'search'}
+            placeholder='Enter your keyword'
+            blurOnSubmit
+            returnKeyType='search'
             multiline={false}
             maxLength={100}
             onChangeText={(text: string) => {
               if (onSearch) {
-                const displaySources = onSearch(text, dataSources)
-                setDisplaySources(displaySources)
+                const results = onSearch(text, dataSources)
+                setDisplaySources(results)
               }
             }}
             style={styles.SEARCH_INPUT}
@@ -158,7 +161,7 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
 
     return (
       <View style={styles.HEADER_VIEW}>
-        <Row style={{ alignItems: 'center', minHeight: TITLE_HEIGHT }}>
+        <Row style={styles.HEADER_ROW}>
           {title ? (
             <Text style={styles.HEADER_TITLE} numberOfLines={0}>
               {title}
@@ -174,7 +177,7 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
   const renderDone = () => {
     return (
       <ButtonImage
-        text={'Done'}
+        text='Done'
         style={styles.DONE_STYLE}
         textStyle={styles.DONE_TEXT_STYLE}
         onPress={toggleDropdown}
@@ -236,7 +239,7 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
           left: 0,
           top: y,
           width: Dimensions.get('window').width,
-          maxHeight: maxHeight,
+          maxHeight,
           bottom: 0,
         })
         setDisplaySources(dataSources)
@@ -245,12 +248,12 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
           left: 0,
           top: y,
           width: Dimensions.get('window').width,
-          maxHeight: maxHeight,
+          maxHeight,
           bottom: 0,
         })
       }
     }
-  }, [isVisible])
+  }, [isVisible, props])
 
   const toggleDropdown = () => {
     Keyboard.dismiss()
@@ -261,17 +264,15 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
     if (isVisible) {
       // setIsVisible(false)
       onDismiss()
-      return
     }
   }
 
   const { searchable: isSearchable, dataSources } = props
 
-  // const { displaySources, maxHeight, width, left, top, bottom } = this.state
   const { maxHeight, width, left, top, bottom } = position
   const listStyle = {
-    maxHeight: maxHeight,
-    width: width,
+    maxHeight,
+    width,
   }
   const buttonStyle = {
     top: 0,
@@ -285,7 +286,7 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
       style={styles.MODAL}
       visible={isVisible}
       onRequestClose={props.onDropdownHide}
-      transparent={true}
+      transparent
       animationType='slide'>
       <View style={styles.MODAL_CONTAINER}>
         <ButtonImage
@@ -319,104 +320,109 @@ const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
   )
 }
 
-const styles = StyleSheet.create({
-  MODAL_CONTAINER: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'transparent',
-  },
-  MODAL_CONTENT_VIEW: {
-    backgroundColor: 'white',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    overflow: 'hidden',
-    position: 'absolute',
-
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
+const makeStyles = ({ fonts, colors }: Theme) =>
+  ScaledSheet.create({
+    MODAL_CONTAINER: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: 'transparent',
     },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 4,
-  },
-  ITEM_CONTAINER: {
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  ITEM_NAME: {
-    fontFamily: fonts.Regular,
-    fontSize: 16,
-    flex: 1,
-    paddingLeft: 10,
-  },
-  ITEM_NAME_SELECTED: {
-    fontFamily: fonts.Bold,
-  },
-  CHECKBOX: {
-    width: 24,
-    height: 24,
-    tintColor: colors.primary,
-  },
+    MODAL_CONTENT_VIEW: {
+      backgroundColor: 'white',
+      borderTopLeftRadius: 20,
+      borderTopRightRadius: 20,
+      overflow: 'hidden',
+      position: 'absolute',
 
-  FOOTER_VIEW: {
-    height: PADDING_BOTTOM,
-  },
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.23,
+      shadowRadius: 2.62,
+      elevation: 4,
+    },
+    ITEM_CONTAINER: {
+      backgroundColor: 'white',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    ITEM_NAME: {
+      ...fonts.regular,
+      fontSize: 16,
+      flex: 1,
+      paddingLeft: 10,
+    },
+    ITEM_NAME_SELECTED: {
+      ...fonts.bold,
+    },
+    CHECKBOX: {
+      width: 24,
+      height: 24,
+      tintColor: colors.primary,
+    },
 
-  HEADER_VIEW: {
-    margin: MARGIN_HEADER_HEIGHT,
-  },
+    FOOTER_VIEW: {
+      height: PADDING_BOTTOM,
+    },
 
-  HEADER_TITLE: {
-    flex: 1,
-    flexWrap: 'wrap',
-    fontSize: 20,
-    fontFamily: fonts.SemiBold,
-    color: colors.primary,
-  },
+    HEADER_VIEW: {
+      margin: MARGIN_HEADER_HEIGHT,
+    },
 
-  MODAL: {
-    flex: 1,
-    margin: 0,
-  },
+    HEADER_ROW: { alignItems: 'center', minHeight: TITLE_HEIGHT },
 
-  LIST: {
-    flex: 1,
-    paddingHorizontal: 15,
-  },
+    HEADER_TITLE: {
+      flex: 1,
+      flexWrap: 'wrap',
+      fontSize: 20,
+      ...fonts.medium,
+      color: colors.primaryText,
+    },
 
-  BUTTON_STYLE: {
-    backgroundColor: 'transparent',
-    flex: 1,
-    position: 'absolute',
-    width: '100%',
-    justifyContent: 'flex-end',
-  },
+    SEARCH_VIEW: { alignItems: 'center' },
 
-  SEARCH_INPUT: {
-    marginTop: 15,
-    marginBottom: 5,
-    fontFamily: fonts.Regular,
-    fontSize: 16,
-    flex: 1,
-    height: SEARCH_BAR_HEIGHT,
-  },
+    MODAL: {
+      flex: 1,
+      margin: 0,
+    },
 
-  DONE_STYLE: {
-    backgroundColor: colors.button,
-    height: FOOTER_HEIGHT,
-  },
+    LIST: {
+      flex: 1,
+      paddingHorizontal: 15,
+    },
 
-  DONE_TEXT_STYLE: {
-    color: colors.tertiaryText,
-    fontFamily: fonts.Bold,
-    fontSize: 16,
-  },
-})
+    BUTTON_STYLE: {
+      backgroundColor: 'transparent',
+      flex: 1,
+      position: 'absolute',
+      width: '100%',
+      justifyContent: 'flex-end',
+    },
+
+    SEARCH_INPUT: {
+      marginTop: 15,
+      marginBottom: 5,
+      ...fonts.regular,
+      fontSize: 16,
+      flex: 1,
+      height: SEARCH_BAR_HEIGHT,
+    },
+
+    DONE_STYLE: {
+      backgroundColor: colors.primaryButton,
+      height: FOOTER_HEIGHT,
+    },
+
+    DONE_TEXT_STYLE: {
+      color: colors.tertiaryText,
+      fontSize: 16,
+      ...fonts.bold,
+    },
+  })
 
 ModalPicker.defaultProps = {
   dataSources: [],

@@ -7,16 +7,16 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { useLocalizationContext } from 'localization'
 import * as React from 'react'
 import { StyleSheet, View } from 'react-native'
-import { SignInParams } from 'scenes/Authentication/SignIn'
-import { SignUpParams } from 'scenes/Authentication/SignUp'
+import { connect } from 'react-redux'
+import SignIn, { SignInParams } from 'scenes/Authentication/SignIn'
+import SignUp, { SignUpParams } from 'scenes/Authentication/SignUp'
 import SplashScreen from 'scenes/Authentication/SplashScreen'
-import { DetailsScreenParams } from '../scenes/Details'
-import { HomeScreenParams } from '../scenes/Home'
+import { ReduxState } from 'stores/types'
+import { DetailsScreen, DetailsScreenParams } from '../scenes/Details'
+import { HomeScreen, HomeScreenParams } from '../scenes/Home'
 import { authAsyncActions, authSlice } from '../stores/authReducer'
 import { useAppDispatch, useAppSelector } from '../stores/hook'
-import { AuthStackTypes, AuthStack } from './AuthStack'
-import { HomeStack, HomeStackParamTypes } from './HomeStack'
-import { navigationState, navigationRef } from './RootNavigation'
+import { navigationRef, navigationState } from './RootNavigation'
 import { NAV_SCREENS } from './RouteNames'
 
 export type RootStackParamList = {
@@ -30,13 +30,20 @@ export type RootStackParamList = {
 }
 
 // Update the param types when you have more screen params
-export type RootStackParamTypes = HomeStackParamTypes | AuthStackTypes
+export type RootStackParamTypes =
+  | SignInParams
+  | SignInParams
+  | HomeScreenParams
+  | DetailsScreenParams
 
 export const MainStack = createStackNavigator<RootStackParamList>()
 
-function Navigator() {
+type NavigationProps = ReturnType<typeof mapStateToProps>
+
+function Navigator(props: NavigationProps) {
   const useToken = useAppSelector((state) => state.auth.user)
-  const isLoading = useAppSelector((state) => state.auth.isLoading)
+  // const isLoading = useAppSelector((state) => state.auth.isLoading)
+  const { isLoading } = props
   const dispatch = useAppDispatch()
 
   React.useEffect(() => {
@@ -56,13 +63,6 @@ function Navigator() {
 
   const localization = useLocalizationContext()
 
-  const screens = () => {
-    if (!useToken) {
-      return AuthStack(localization)
-    }
-    return HomeStack(localization)
-  }
-
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -74,7 +74,37 @@ function Navigator() {
             navigationState.isReady = true
           }}>
           <MainStack.Navigator screenOptions={{ headerShown: false }}>
-            {screens()}
+            {!useToken ? (
+              <>
+                <MainStack.Screen
+                  {...SignIn.screen}
+                  options={{
+                    ...SignIn.defaultOptions,
+                    title: localization.SignIn,
+                  }}
+                />
+                <MainStack.Screen
+                  {...SignUp.screen}
+                  options={{
+                    ...SignUp.defaultOptions,
+                    title: localization.SignUp,
+                  }}
+                />
+              </>
+            ) : (
+              <>
+                <MainStack.Screen
+                  name={NAV_SCREENS.Home}
+                  component={HomeScreen}
+                  options={{ title: localization.Home }}
+                />
+                <MainStack.Screen
+                  name={NAV_SCREENS.Details}
+                  component={DetailsScreen}
+                  options={{ title: 'My details' }}
+                />
+              </>
+            )}
           </MainStack.Navigator>
         </NavigationContainer>
       )}
@@ -82,7 +112,11 @@ function Navigator() {
   )
 }
 
-export { Navigator }
+const mapStateToProps = (state: ReduxState) => ({
+  isLoading: state.auth.isLoading,
+})
+
+export default connect(mapStateToProps)(Navigator)
 
 const styles = StyleSheet.create({
   container: {

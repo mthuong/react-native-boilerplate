@@ -23,3 +23,5 @@ const fonts = {
 }
 
 export default fonts
+
+export type Font = typeof fonts

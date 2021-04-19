@@ -1,5 +1,5 @@
 const API = {
-  BASE_URL: ''
+  BASE_URL: '',
 }
 
 export default API

@@ -3,7 +3,7 @@ import { Text } from 'components/text'
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
 import { ButtonTextProps } from './ButtonText.props'
-import { theme } from 'theme'
+import { spacing } from 'theme/spacing'
 
 export function ButtonText(props: ButtonTextProps) {
   const {
@@ -24,7 +24,6 @@ export function ButtonText(props: ButtonTextProps) {
   ]
   const mergedButtonStyle = [
     styles.button,
-    styles.container,
     (preset && styles[preset]) || styles.primary,
     style && style,
   ]
@@ -42,9 +41,9 @@ export function ButtonText(props: ButtonTextProps) {
 
 const styles = StyleSheet.create({
   button: {
+    borderRadius: spacing[2],
+    height: spacing[7],
     alignSelf: 'stretch',
-    borderRadius: theme.spacing[2],
-    height: theme.spacing[7],
   },
 
   content: {
@@ -54,41 +53,34 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  container: {
-    alignSelf: 'stretch',
-    minHeight: 30,
-    minWidth: 30,
-  },
-
   text: {
     flex: 1,
-    // marginHorizontal: 10,
     textAlign: 'center',
   },
 
   primary: {
-    backgroundColor: theme.colors.primaryButton,
+    backgroundColor: '#53B175',
   },
 
   secondary: {
-    backgroundColor: theme.colors.secondaryButton,
+    backgroundColor: '#F2F3F2',
   },
 
   flat: {
-    backgroundColor: theme.colors.transparent,
+    backgroundColor: 'transparent',
   },
 })
 
 const textStyles = StyleSheet.create({
   primary: {
-    color: theme.colors.tertiaryText,
+    color: '#ffffff',
   },
 
   secondary: {
-    color: theme.colors.text,
+    color: '#999898',
   },
 
   flat: {
-    color: theme.colors.text,
+    color: '#000000',
   },
 })

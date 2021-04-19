@@ -1,5 +1,3 @@
-import { RouteProp } from '@react-navigation/native'
-import { StackNavigationProp } from '@react-navigation/stack'
 import { injectValue } from 'common/func'
 import regex from 'common/regex'
 import { ButtonText } from 'components/ButtonText'
@@ -10,32 +8,32 @@ import { useLocalizationContext } from 'localization'
 import { strings } from 'localization/strings'
 import { registerScreen } from 'navigator/RouteGeneric'
 import React from 'react'
-import { Dimensions, StyleSheet, View } from 'react-native'
+import { Dimensions, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { ScaledSheet } from 'rn-scaled-sheet'
+import { ISignUp } from 'services'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
-import { theme } from 'theme'
+import { Theme, useTheme } from 'theme'
 import * as Yup from 'yup'
 import { TextInput } from '../../../components/TextInput'
 import { RootStackParamList } from '../../../navigator/Navigator'
 import { NAV_SCREENS } from '../../../navigator/RouteNames'
-import { ISignUp } from 'services'
 
-type SignUpNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  NAV_SCREENS.SignUp
->
-type SignUpRoute = RouteProp<RootStackParamList, NAV_SCREENS.SignUp>
+// type SignUpNavigationProp = StackNavigationProp<
+//   RootStackParamList,
+//   NAV_SCREENS.SignUp
+// >
+// type SignUpRoute = RouteProp<RootStackParamList, NAV_SCREENS.SignUp>
 
 export type SignUpParams = {
   title: string
-  headerShown?: boolean
 }
 
-interface Props {
-  // navigation: SignUpNavigationProp
-  // route: SignUpRoute
-}
+// type Props = {
+// navigation: SignUpNavigationProp
+// route: SignUpRoute
+// }
 
 const FieldNames = {
   email: 'email',
@@ -44,9 +42,12 @@ const FieldNames = {
   name: 'name',
 }
 
-function _SignUp(props: Props) {
+function _SignUp() {
   const languages = useLocalizationContext()
   const dispatch = useAppDispatch()
+
+  const theme = useTheme()
+  const styles = makeStyles(theme)
 
   const onRegister = async (values: ISignUp) => {
     dispatch(authAsyncActions.signUp(values))
@@ -156,7 +157,6 @@ function _SignUp(props: Props) {
 
 const defaultOptions: SignUpParams = {
   title: strings.SignUp,
-  headerShown: false,
 }
 
 const SignUp = registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(
@@ -166,29 +166,30 @@ const SignUp = registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(
 )
 export default SignUp
 
-const styles = StyleSheet.create({
-  CONTAINER: {
-    flex: 1,
-    backgroundColor: theme.colors.background,
-  },
-  inner: {
-    marginHorizontal: theme.spacing[5],
-  },
-  logoView: {
-    paddingTop: theme.spacing[6],
-  },
-  logo: {
-    alignSelf: 'center',
-    aspectRatio: 1,
-    height: Dimensions.get('window').height * 0.2,
-  },
-  title: {},
-  form: {
-    marginTop: theme.spacing[5],
-  },
+const makeStyles = (theme: Theme) =>
+  ScaledSheet.create({
+    CONTAINER: {
+      flex: 1,
+      backgroundColor: theme.colors.backgroundColor,
+    },
+    inner: {
+      marginHorizontal: theme.spacing[5],
+    },
+    logoView: {
+      paddingTop: theme.spacing[6],
+    },
+    logo: {
+      alignSelf: 'center',
+      aspectRatio: 1,
+      height: Dimensions.get('window').height * 0.2,
+    },
+    title: {},
+    form: {
+      marginTop: theme.spacing[5],
+    },
 
-  buttonSignUp: {
-    height: theme.spacing[7],
-    marginVertical: theme.spacing[4],
-  },
-})
+    buttonSignUp: {
+      height: theme.spacing[7],
+      marginVertical: theme.spacing[4],
+    },
+  })

@@ -1,5 +1,5 @@
 import { ViewStyle, ImageStyle } from 'react-native'
-import { ImageAssetTypes } from '../../theme';
+import { ImageAssetTypes } from 'theme/images'
 
 export interface ButtonImageProps {
   /**

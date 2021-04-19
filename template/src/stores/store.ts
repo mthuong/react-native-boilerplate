@@ -14,6 +14,7 @@ const rootReducer = combineReducers({
 const store = configureStore({
   reducer: rootReducer,
   middleware: getDefaultMiddleware({
+    immutableCheck: false,
     serializableCheck: {
       ignoredActions: ['signUp/fulfilled', 'signIn/fulfilled'],
     },

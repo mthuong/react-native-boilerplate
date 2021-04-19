@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs')
+
 const imageFileNames = () => {
   const array = fs
     .readdirSync('src/theme/assets')
@@ -14,7 +16,7 @@ const imageFileNames = () => {
   return Array.from(new Set(array))
 }
 const generate = () => {
-  let properties = imageFileNames()
+  const properties = imageFileNames()
     .map((name) => {
       return `${name.replace(/-/g, '_')}: require('./assets/${name}.png')`
     })

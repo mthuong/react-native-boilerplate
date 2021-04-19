@@ -1,25 +1,22 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
-import React from 'react'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { RootStackParamList } from '../navigator/Navigator'
-import { RouteProp } from '@react-navigation/native'
-import { NAV_SCREENS } from '../navigator/RouteNames'
 import { navigate } from 'navigator/RootNavigation'
-import { useAppDispatch } from 'stores/hook'
+import React from 'react'
+import { Button, StyleSheet, Text, View } from 'react-native'
 import { authAsyncActions } from 'stores/authReducer'
+import { useAppDispatch } from 'stores/hook'
+import { NAV_SCREENS } from '../navigator/RouteNames'
 
-type HomeScreenNavigationProp = StackNavigationProp<
-  RootStackParamList,
-  NAV_SCREENS.Home
->
-type HomeScreenRoute = RouteProp<RootStackParamList, NAV_SCREENS.Home>
+// type HomeScreenNavigationProp = StackNavigationProp<
+//   RootStackParamList,
+//   NAV_SCREENS.Home
+// >
+// type HomeScreenRoute = RouteProp<RootStackParamList, NAV_SCREENS.Home>
 
-type Props = {
-  navigation: HomeScreenNavigationProp
-  route: HomeScreenRoute
-}
+// type Props = {
+//   navigation: HomeScreenNavigationProp
+//   route: HomeScreenRoute
+// }
 
-export function HomeScreen(props: Props) {
+export function HomeScreen() {
   const dispatch = useAppDispatch()
   return (
     <View style={styles.container}>

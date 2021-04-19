@@ -44,4 +44,4 @@ if (__DEV__) {
 }
 
 // ignore specific yellow box warnings
-LogBox.ignoreLogs(['Require cycle:'])
+// LogBox.ignoreLogs(['Require cycle:'])
