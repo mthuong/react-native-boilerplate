@@ -19,7 +19,7 @@ import {
   ScrollView,
 } from 'react-native'
 import { ScaledSheet } from 'rn-scaled-sheet'
-import { ISignIn } from 'services'
+import { ISignIn } from 'api'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
 import { Theme, useTheme } from 'theme'

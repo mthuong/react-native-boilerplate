@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { userService } from '../services'
+import { userService } from '../api'
 import { snackbarSlice } from './snackbarReducer'
-import { IUser, ISignIn, ISignUp } from 'services/types'
+import { ISignIn, ISignUp } from 'api/types'
 import { AuthState } from './types'
+import { TUser } from 'models/user'
 
 const initialState: AuthState = {
   isLoading: true,
@@ -103,7 +104,7 @@ export const authSlice = createSlice({
     // state.user = action.payload.email
     // },
 
-    [getUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+    [getUser.fulfilled.type]: (state, action: PayloadAction<TUser>) => {
       state.user = action.payload
       state.isLoading = false
     },

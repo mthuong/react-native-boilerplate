@@ -1,3 +1,5 @@
+import { conversations } from './en/conversations'
+
 export const en = {
   SignIn: 'Sign In',
   SignInSubTitle: 'Enter your emails and password',
@@ -21,4 +23,6 @@ export const en = {
     'Minimum {{value}} characters, at least one letter, one number and one capital letter.',
   ErrorPasswordNotMatch: 'Passwords do not match',
   ErrorRequiredConfirmPassword: 'Confirm password is required',
+
+  ...conversations,
 }

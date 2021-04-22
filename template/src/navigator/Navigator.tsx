@@ -18,6 +18,8 @@ import { authAsyncActions, authSlice } from '../stores/authReducer'
 import { useAppDispatch, useAppSelector } from '../stores/hook'
 import { navigationRef, navigationState } from './RootNavigation'
 import { NAV_SCREENS } from './RouteNames'
+import { ConversationScreenParams } from 'scenes/chat/conversation'
+import { ConversationsScreenParams } from 'scenes/chat/conversations'
 
 export type RootStackParamList = {
   [NAV_SCREENS.Splash]: undefined
@@ -27,6 +29,9 @@ export type RootStackParamList = {
 
   [NAV_SCREENS.SignIn]: SignInParams
   [NAV_SCREENS.SignUp]: SignUpParams
+
+  [NAV_SCREENS.Conversations]: ConversationsScreenParams
+  [NAV_SCREENS.Conversation]: ConversationScreenParams
 }
 
 // Update the param types when you have more screen params
