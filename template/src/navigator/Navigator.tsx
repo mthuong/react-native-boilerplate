@@ -19,7 +19,10 @@ import { useAppDispatch, useAppSelector } from '../stores/hook'
 import { navigationRef, navigationState } from './RootNavigation'
 import { NAV_SCREENS } from './RouteNames'
 import { ConversationScreenParams } from 'scenes/chat/conversation'
-import { ConversationsScreenParams } from 'scenes/chat/conversations'
+import {
+  ConversationsScreenParams,
+  ConversationsScreen,
+} from 'scenes/chat/conversations'
 
 export type RootStackParamList = {
   [NAV_SCREENS.Splash]: undefined
@@ -40,6 +43,8 @@ export type RootStackParamTypes =
   | SignInParams
   | HomeScreenParams
   | DetailsScreenParams
+  | ConversationsScreenParams
+  | ConversationScreenParams
 
 export const MainStack = createStackNavigator<RootStackParamList>()
 
@@ -107,6 +112,13 @@ function Navigator(props: NavigationProps) {
                   name={NAV_SCREENS.Details}
                   component={DetailsScreen}
                   options={{ title: 'My details' }}
+                />
+                <MainStack.Screen
+                  name={NAV_SCREENS.Conversations}
+                  component={ConversationsScreen}
+                  options={{
+                    title: localization.Conversations_Title,
+                  }}
                 />
               </>
             )}

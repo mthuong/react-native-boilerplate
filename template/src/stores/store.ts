@@ -5,10 +5,12 @@ import {
 } from '@reduxjs/toolkit'
 import authReducer from './authReducer'
 import snackbarReducer from './snackbarReducer'
+import conversationsReducer from './conversations/conversationsReducer'
 
 const rootReducer = combineReducers({
   auth: authReducer,
   snackbar: snackbarReducer,
+  conversations: conversationsReducer,
 })
 
 const store = configureStore({

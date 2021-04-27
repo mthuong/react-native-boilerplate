@@ -4,6 +4,7 @@ import { snackbarSlice } from './snackbarReducer'
 import { ISignIn, ISignUp } from 'api/types'
 import { AuthState } from './types'
 import { TUser } from 'models/user'
+import { listenForConversationAdded } from './conversations/conversationsFunctions'
 
 const initialState: AuthState = {
   isLoading: true,
@@ -65,7 +66,8 @@ const getUser = createAsyncThunk(
   async (uid: string, { rejectWithValue, dispatch }) => {
     try {
       const response = await userService.getUser(uid)
-
+      // Load conversations
+      listenForConversationAdded(response)
       return response
     } catch (error) {
       dispatch(snackbarSlice.actions.show(error.message))

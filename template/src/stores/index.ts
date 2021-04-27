@@ -1,4 +1,5 @@
 import { authSlice } from './authReducer'
 import { snackbarSlice } from './snackbarReducer'
+import { conversationsActions } from './conversations/conversationsReducer'
 
-export { authSlice, snackbarSlice }
+export { authSlice, snackbarSlice, conversationsActions }

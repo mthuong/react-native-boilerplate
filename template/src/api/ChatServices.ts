@@ -58,11 +58,17 @@ function listenForConversationAdd(
   user: TUser,
   onAdded: (conversations: TConversation[]) => void
 ) {
+  console.log('listenForConversationAdd', user.id)
+
   return firestore()
     .collection('users')
     .doc(user.id)
     .collection('conversations')
     .onSnapshot(async (snapshot) => {
+      console.log('listenForConversationAdd - snapshot:', snapshot)
+      if (!snapshot) {
+        return
+      }
       const conversationsPromises = snapshot
         .docChanges()
         .filter((t) => t.type === 'added')

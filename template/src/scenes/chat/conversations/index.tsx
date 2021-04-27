@@ -6,22 +6,15 @@ import { View } from 'react-native'
 import { Text } from 'components/text'
 import { Header } from 'components/Header'
 import { useLocalizationContext } from 'localization'
-import { ChatServices } from 'api/ChatServices'
 import { ConversationList } from './components/List'
+import { getConversations } from 'stores/conversations/conversationsSelectors'
 
 export type ConversationsScreenParams = undefined
 
 export function ConversationsScreen() {
   const user = useAppSelector((state) => state.auth.user)
   const languages = useLocalizationContext()
-
-  useEffect(() => {
-    // Load conversations
-    if (user) {
-      // TODO: Implement API to get conversations
-      ChatServices.loadConversations(user)
-    }
-  }, [user])
+  const conversations = getConversations()
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onPressConversation = (conversation: TConversation) => {
@@ -39,11 +32,10 @@ export function ConversationsScreen() {
 
   return (
     <Container>
-      <Header title={languages.Conversations_Title} />
+      <Header title={languages.Conversations_Title} backEnabled />
       <ConversationList
         currentUserId={user.id}
-        // conversations={conversations}
-        conversations={[]}
+        conversations={conversations}
         onPressConversation={onPressConversation}
       />
     </Container>

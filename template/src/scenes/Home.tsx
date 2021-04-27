@@ -2,8 +2,9 @@ import { navigate } from 'navigator/RootNavigation'
 import React from 'react'
 import { Button, StyleSheet, Text, View } from 'react-native'
 import { authAsyncActions } from 'stores/authReducer'
-import { useAppDispatch } from 'stores/hook'
+import { useAppDispatch, useAppSelector } from 'stores/hook'
 import { NAV_SCREENS } from '../navigator/RouteNames'
+import { useLocalizationContext } from 'localization'
 
 // type HomeScreenNavigationProp = StackNavigationProp<
 //   RootStackParamList,
@@ -18,15 +19,25 @@ import { NAV_SCREENS } from '../navigator/RouteNames'
 
 export function HomeScreen() {
   const dispatch = useAppDispatch()
+  const languages = useLocalizationContext()
+  const user = useAppSelector((state) => state.auth.user)
   return (
     <View style={styles.container}>
       <Text>Home Screen</Text>
       <Button
         title='Go to Details'
         onPress={() => {
-          navigate(NAV_SCREENS.Details, { userId: 'tom' })
+          navigate(NAV_SCREENS.Details, { userId: user?.id || '' })
         }}
       />
+
+      <Button
+        title={languages.Conversations_Title}
+        onPress={() => {
+          navigate(NAV_SCREENS.Conversations)
+        }}
+      />
+
       <Button
         title='Logout'
         onPress={() => {
