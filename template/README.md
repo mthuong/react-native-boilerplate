@@ -19,6 +19,7 @@
 - Icomoon - https://icomoon.io/ - Replace your icomoon.ttf + selection.json file at src/components/Icon - ✅
 - Custom fonts - https://github.com/oblador/react-native-vector-icons/issues/1074#issuecomment-586615887 - Add custom fonts you wish to use to src/theme/fonts - ✅
 - Chat function -
+- Update firestore rule into readme -
 - Storybook - https://github.com/storybookjs/react-native -
 
 # UI
