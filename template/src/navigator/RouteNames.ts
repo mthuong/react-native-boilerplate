@@ -7,4 +7,5 @@ export enum NAV_SCREENS {
   SignUp = 'SignUp',
   Conversation = 'Conversation',
   Conversations = 'Conversations',
+  CreateConversation = 'CreateConversation',
 }

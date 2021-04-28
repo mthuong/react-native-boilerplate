@@ -67,7 +67,7 @@ const getUser = createAsyncThunk(
     try {
       const response = await userService.getUser(uid)
       // Load conversations
-      listenForConversationAdded(response)
+      dispatch(listenForConversationAdded(response))
       return response
     } catch (error) {
       dispatch(snackbarSlice.actions.show(error.message))

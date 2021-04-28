@@ -1,7 +1,7 @@
 import { ChatServices } from 'api/ChatServices'
 import { conversationsActions } from './conversationsReducer'
 import { TUser } from 'models/user'
-import { useAppDispatch } from 'stores/hook'
+import { Dispatch } from '@reduxjs/toolkit'
 
 let conversationAddedSubscriber: (() => void) | null = null
 
@@ -17,18 +17,19 @@ export const unsubscribe = () => {
  * @param user firebase user information
  */
 export const listenForConversationAdded = (user: TUser | null | undefined) => {
-  if (!user) {
-    return
-  }
-  conversationAddedSubscriber && conversationAddedSubscriber()
-
-  conversationAddedSubscriber = ChatServices.listenForConversationAdd(
-    user,
-    (conversations) => {
-      console.tron.log(conversations)
-      // Insert conversations into store
-      const dispatch = useAppDispatch()
-      dispatch(conversationsActions.conversationsReceived(conversations))
+  return (dispatch: Dispatch) => {
+    if (!user) {
+      return
     }
-  )
+    conversationAddedSubscriber && conversationAddedSubscriber()
+
+    conversationAddedSubscriber = ChatServices.listenForConversationAdd(
+      user,
+      (conversations) => {
+        console.tron.log(conversations)
+        // Insert conversations into store
+        dispatch(conversationsActions.conversationsReceived(conversations))
+      }
+    )
+  }
 }

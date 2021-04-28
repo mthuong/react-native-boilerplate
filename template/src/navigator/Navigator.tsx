@@ -23,6 +23,7 @@ import {
   ConversationsScreenParams,
   ConversationsScreen,
 } from 'scenes/chat/conversations'
+import { CreateConversationScreenParams, CreateConversationScreen } from 'scenes/chat/create-conversation'
 
 export type RootStackParamList = {
   [NAV_SCREENS.Splash]: undefined
@@ -35,6 +36,7 @@ export type RootStackParamList = {
 
   [NAV_SCREENS.Conversations]: ConversationsScreenParams
   [NAV_SCREENS.Conversation]: ConversationScreenParams
+  [NAV_SCREENS.CreateConversation]: CreateConversationScreenParams
 }
 
 // Update the param types when you have more screen params
@@ -45,6 +47,7 @@ export type RootStackParamTypes =
   | DetailsScreenParams
   | ConversationsScreenParams
   | ConversationScreenParams
+  | CreateConversationScreenParams
 
 export const MainStack = createStackNavigator<RootStackParamList>()
 
@@ -118,6 +121,13 @@ function Navigator(props: NavigationProps) {
                   component={ConversationsScreen}
                   options={{
                     title: localization.Conversations_Title,
+                  }}
+                />
+                <MainStack.Screen
+                  name={NAV_SCREENS.CreateConversation}
+                  component={CreateConversationScreen}
+                  options={{
+                    title: localization.ConversationNew,
                   }}
                 />
               </>
