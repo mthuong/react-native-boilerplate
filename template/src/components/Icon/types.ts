@@ -1,0 +1,1 @@
+export type IconTypes = 'search' | 'cog' | 'comment-o' | 'arrow_back_ios'

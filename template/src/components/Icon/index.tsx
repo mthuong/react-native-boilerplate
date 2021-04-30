@@ -3,13 +3,12 @@ import { StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons'
 import { Theme, useTheme } from 'theme'
 import icoMoonConfig from './selection.json'
-
-export type IconTypes = 'cog' | 'gear' | 'comment-o' | 'arrow_back_ios'
+import { IconTypes } from './types'
 
 const IcoMoonIcon = createIconSetFromIcoMoon(icoMoonConfig)
 
 type IconProps = {
-  name?: IconTypes
+  name: IconTypes
   style?: StyleProp<TextStyle & ViewStyle>
   small?: boolean
   medium?: boolean

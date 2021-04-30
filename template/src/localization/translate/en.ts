@@ -1,4 +1,5 @@
 import { conversations } from './en/conversations'
+import { common } from './en/common'
 
 export const en = {
   SignIn: 'Sign In',
@@ -25,4 +26,6 @@ export const en = {
   ErrorRequiredConfirmPassword: 'Confirm password is required',
 
   ...conversations,
+
+  ...common,
 }

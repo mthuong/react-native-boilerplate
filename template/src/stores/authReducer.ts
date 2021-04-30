@@ -21,6 +21,7 @@ const signIn = createAsyncThunk(
         email: body.email,
         password: body.password,
       })
+
       return response
     } catch (error) {
       dispatch(snackbarSlice.actions.show(error.message))

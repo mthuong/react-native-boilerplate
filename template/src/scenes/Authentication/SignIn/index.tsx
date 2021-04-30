@@ -61,7 +61,7 @@ function _SignIn() {
 
   const onSignIn = (values: ISignIn) => {
     console.tron.log('Sign in')
-    Keyboard.dismiss()
+
     dispatch(authAsyncActions.signIn(values))
   }
 
@@ -85,7 +85,7 @@ function _SignIn() {
             <TextInput
               label={languages.Email}
               keyboardType='default'
-              autoCapitalize='words'
+              autoCapitalize='none'
               onChangeText={handleChange(FieldNames.email)}
               onBlur={handleBlur(FieldNames.email)}
               value={values.email}

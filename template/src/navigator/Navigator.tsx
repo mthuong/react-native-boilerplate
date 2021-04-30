@@ -23,7 +23,10 @@ import {
   ConversationsScreenParams,
   ConversationsScreen,
 } from 'scenes/chat/conversations'
-import { CreateConversationScreenParams, CreateConversationScreen } from 'scenes/chat/create-conversation'
+import {
+  CreateConversationScreenParams,
+  CreateConversationScreen,
+} from 'scenes/chat/create-conversation'
 
 export type RootStackParamList = {
   [NAV_SCREENS.Splash]: undefined
