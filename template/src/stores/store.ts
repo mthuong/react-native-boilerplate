@@ -6,11 +6,13 @@ import {
 import authReducer from './authReducer'
 import snackbarReducer from './snackbarReducer'
 import conversationsReducer from './conversations/conversationsReducer'
+import usersReducer from './conversations/usersReducer'
 
 const rootReducer = combineReducers({
   auth: authReducer,
   snackbar: snackbarReducer,
   conversations: conversationsReducer,
+  users: usersReducer,
 })
 
 const store = configureStore({

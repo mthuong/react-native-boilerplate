@@ -34,7 +34,7 @@ export function ConversationsScreen(props: Props) {
 
   const user = useAppSelector((state) => state.auth.user)
   const languages = useLocalizationContext()
-  const conversations = getConversations()
+  const conversations = useAppSelector(getConversations)
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onPressConversation = (conversation: TConversation) => {
@@ -63,7 +63,7 @@ export function ConversationsScreen(props: Props) {
         onPressRight={onPressNewConversation}
       />
       <ConversationList
-        currentUserId={user.id}
+        currentUserId={user.uid}
         conversations={conversations}
         onPressConversation={onPressConversation}
       />

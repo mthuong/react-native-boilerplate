@@ -20,7 +20,7 @@ const fonts = {
     // fontFamily: 'sans-serif-thin',
     fontWeight: '100',
   } as TextStyle,
-}
+} as const
 
 export default fonts
 

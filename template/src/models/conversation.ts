@@ -18,7 +18,7 @@ function getConversationName(
   if (conversation.name) {
     return conversation.name
   }
-  const otherUser = conversation.users.filter((t) => t.id !== currentUserId)[0]
+  const otherUser = conversation.users.filter((t) => t.uid !== currentUserId)[0]
   if (otherUser) {
     return TUserFunc.userDisplayName(otherUser)
   }
@@ -32,12 +32,12 @@ function updatedAtText(conversation: TConversation) {
 
 function getDefaultUnread(conversation: TConversation, currentUserId: string) {
   return conversation.users
-    .filter((t) => t.id !== currentUserId)
-    .map((t) => t.id)
+    .filter((t) => t.uid !== currentUserId)
+    .map((t) => t.uid)
 }
 
 function findUser(conversation: TConversation, userId: string) {
-  return conversation.users.filter((t) => t.id === userId)[0]
+  return conversation.users.filter((t) => t.uid === userId)[0]
 }
 
 function update(conversation: TConversation, newConversation: TConversation) {

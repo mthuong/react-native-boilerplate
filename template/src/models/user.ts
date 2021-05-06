@@ -1,14 +1,12 @@
 export type TUser = {
-  id: string
+  uid: string
   name: string
   email: string
-  firstName: string
-  lastName?: string
   createdAt: number
 }
 
 function userDisplayName(user: TUser) {
-  return [user.firstName, user.lastName].filter((t) => !!t).join(' ')
+  return user.name
 }
 
 export const TUserFunc = {

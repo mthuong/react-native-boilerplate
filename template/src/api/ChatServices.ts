@@ -17,7 +17,7 @@ async function loadConversations(
 ): Promise<(TConversation | null)[]> {
   const conversationsPromise = await firestore()
     .collection<TUser>('users')
-    .doc(user.id)
+    .doc(user.uid)
     .collection('conversations')
     .get()
   const promises = conversationsPromise.docs
@@ -37,10 +37,13 @@ async function loadUsers() {
   return users
 }
 
-function listenForUserRegistered(onUserAdded: (users: TUser[]) => void) {
+function listenForUserAdded(onUserAdded: (users: TUser[]) => void) {
   return firestore()
     .collection<TUser>('users')
     .onSnapshot((snapshot) => {
+      if (!snapshot) {
+        return
+      }
       const users = snapshot
         .docChanges()
         .filter((t) => t.type === 'added')
@@ -58,11 +61,11 @@ function listenForConversationAdd(
   user: TUser,
   onAdded: (conversations: TConversation[]) => void
 ) {
-  console.log('listenForConversationAdd', user.id)
+  console.log('listenForConversationAdd', user.uid)
 
   return firestore()
     .collection('users')
-    .doc(user.id)
+    .doc(user.uid)
     .collection('conversations')
     .onSnapshot(async (snapshot) => {
       console.log('listenForConversationAdd - snapshot:', snapshot)
@@ -99,10 +102,10 @@ async function loadConversation(
       // get users array
       const usersRef = t.users
       const usersPromises = usersRef.map(async (userRef) => {
-        if (userRef.id === user.id) {
+        if (userRef.uid === user.uid) {
           return user
         }
-        const mUser = await loadUser(userRef.id)
+        const mUser = await loadUser(userRef.uid)
         return mUser
       })
       const conversation = t
@@ -117,7 +120,7 @@ async function loadConversation(
 }
 
 function getUserRef(user: TUser) {
-  return firestore().collection<TUser>('users').doc(user.id)
+  return firestore().collection<TUser>('users').doc(user.uid)
 }
 
 async function createConversation(
@@ -125,7 +128,9 @@ async function createConversation(
   user2: TUser
 ): Promise<TConversation> {
   const conversationId =
-    user1.id < user2.id ? `${user1.id}_${user2.id}` : `${user2.id}_${user1.id}`
+    user1.uid < user2.uid
+      ? `${user1.uid}_${user2.uid}`
+      : `${user2.uid}_${user1.uid}`
   const now = Date.now()
   const data = {
     id: conversationId,
@@ -277,7 +282,7 @@ async function markMessageAsRead(
 export const ChatServices = {
   loadUser,
   loadUsers,
-  listenForUserRegistered,
+  listenForUserAdded,
 
   loadConversations,
   listenForConversationChanged,

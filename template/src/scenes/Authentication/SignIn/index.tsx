@@ -11,13 +11,7 @@ import { navigate } from 'navigator/RootNavigation'
 import { registerScreen } from 'navigator/RouteGeneric'
 import { NAV_SCREENS } from 'navigator/RouteNames'
 import React from 'react'
-import {
-  Dimensions,
-  Keyboard,
-  View,
-  TouchableOpacity,
-  ScrollView,
-} from 'react-native'
+import { Dimensions, View, TouchableOpacity, ScrollView } from 'react-native'
 import { ScaledSheet } from 'rn-scaled-sheet'
 import { ISignIn } from 'api'
 import { authAsyncActions } from 'stores/authReducer'
