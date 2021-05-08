@@ -22,7 +22,7 @@ function toGiftedMessage(msg: TMessage): IMessage {
     createdAt: msg.createdAt,
     text: msg.content,
     user: {
-      _id: msg.sender.uid,
+      _id: msg.sender.id,
       name: TUserFunc.userDisplayName(msg.sender),
     },
   }

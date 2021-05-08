@@ -63,7 +63,7 @@ export function ConversationsScreen(props: Props) {
         onPressRight={onPressNewConversation}
       />
       <ConversationList
-        currentUserId={user.uid}
+        currentUserId={user.id}
         conversations={conversations}
         onPressConversation={onPressConversation}
       />

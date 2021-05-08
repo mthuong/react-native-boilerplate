@@ -4,21 +4,29 @@ import { TConversation } from 'models/conversation'
 import { TMessage, TMessageType } from 'models/Message'
 import { TUser } from 'models/user'
 
+enum CollectionNames {
+  users = 'users',
+  conversations = 'conversations',
+  messages = 'messages',
+}
+
 async function loadUser(userId: string) {
   const document = await firestore()
-    .collection<TUser>('users')
+    .collection<TUser>(CollectionNames.users)
     .doc(userId)
     .get()
-  return document.data()
+  const data = document.data()
+
+  return data
 }
 
 async function loadConversations(
   user: TUser
 ): Promise<(TConversation | null)[]> {
   const conversationsPromise = await firestore()
-    .collection<TUser>('users')
-    .doc(user.uid)
-    .collection('conversations')
+    .collection<TUser>(CollectionNames.users)
+    .doc(user.id)
+    .collection(CollectionNames.conversations)
     .get()
   const promises = conversationsPromise.docs
     .map((c) => c.data())
@@ -32,19 +40,24 @@ async function loadConversations(
 }
 
 async function loadUsers() {
-  const userPromise = await firestore().collection<TUser>('users').get()
+  const userPromise = await firestore()
+    .collection<TUser>(CollectionNames.users)
+    .get()
   const users = userPromise.docs.map((t) => t.data())
   return users
 }
 
-function listenForUserAdded(onUserAdded: (users: TUser[]) => void) {
+function listenForUserAdded(
+  currentUser: TUser,
+  onUserAdded: (users: TUser[]) => void
+) {
   return firestore()
-    .collection<TUser>('users')
+    .collection<TUser>(CollectionNames.users)
     .onSnapshot((snapshot) => {
       if (!snapshot) {
         return
       }
-      const users = snapshot
+      let users = snapshot
         .docChanges()
         .filter((t) => t.type === 'added')
         .map((doc) => {
@@ -52,7 +65,8 @@ function listenForUserAdded(onUserAdded: (users: TUser[]) => void) {
           const user = doc.doc.data()
           return user
         })
-
+      // Filter out current user
+      users = users.filter((u) => u.id != currentUser.id)
       if (users.length > 0) {
         onUserAdded(users)
       }
@@ -63,14 +77,11 @@ function listenForConversationAdd(
   user: TUser,
   onAdded: (conversations: TConversation[]) => void
 ) {
-  console.log('listenForConversationAdd', user.uid)
-
   return firestore()
-    .collection('users')
-    .doc(user.uid)
-    .collection('conversations')
+    .collection(CollectionNames.users)
+    .doc(user.id)
+    .collection(CollectionNames.conversations)
     .onSnapshot(async (snapshot) => {
-      console.log('listenForConversationAdd - snapshot:', snapshot)
       if (!snapshot) {
         return
       }
@@ -98,24 +109,27 @@ async function loadConversation(
 ): Promise<TConversation | null> {
   const conversations = (
     await firestore()
-      .collection<TConversation>('conversations')
+      .collection<TConversation>(CollectionNames.conversations)
       .where('id', '==', id)
       .get()
   ).docs
-    .map((t) => t.data())
+    .map((t) => {
+      const data = t.data()
+      return data
+    })
     .map(async (t) => {
       // get users array
       const usersRef = t.users
       const usersPromises = usersRef.map(async (userRef) => {
-        if (userRef.uid === user.uid) {
+        if (userRef.id === user.id) {
           return user
         }
-        const mUser = await loadUser(userRef.uid)
+        const mUser = await loadUser(userRef.id)
         return mUser
       })
       const conversation = t
-      const users = (await Promise.all(usersPromises)).filter(notEmpty)
-      conversation.users = users
+      const users = await Promise.all(usersPromises)
+      conversation.users = users.filter(notEmpty)
       return conversation
     })
   if (conversations.length > 0) {
@@ -125,49 +139,77 @@ async function loadConversation(
 }
 
 function getUserRef(user: TUser) {
-  return firestore().collection<TUser>('users').doc(user.uid)
+  return firestore().collection<TUser>(CollectionNames.users).doc(user.id)
+}
+
+async function startConversation(
+  user1: TUser,
+  user2: TUser
+): Promise<TConversation> {
+  // TODO: Search conversation
+  // Create conversation if it's not existing
+  return createConversation(user1, user2)
 }
 
 async function createConversation(
   user1: TUser,
   user2: TUser
 ): Promise<TConversation> {
-  const conversationId =
-    user1.uid < user2.uid
-      ? `${user1.uid}_${user2.uid}`
-      : `${user2.uid}_${user1.uid}`
+  const conversationRef = firestore()
+    .collection(CollectionNames.conversations)
+    .doc()
+  const conversationId = conversationRef.id
   const now = Date.now()
+  const user1Ref = getUserRef(user1)
+  const user2Ref = getUserRef(user2)
   const data = {
     id: conversationId,
     createdAt: now,
-    users: [getUserRef(user1), getUserRef(user2)],
+    updatedAt: now,
+    users: [user1Ref, user2Ref],
     lastMessage: '',
+    unreadCount: 0,
   }
 
-  // create conversation in /conversations
-  const create1 = firestore()
-    .collection('conversations')
+  // create conversation ref
+  const createConversationRef = firestore()
+    .collection(CollectionNames.conversations)
     .doc(conversationId)
-    .set(data)
-  // create conversation in users/{id}/conversations
-  const create2 = [user1, user2].map((user) => {
-    return getUserRef(user)
-      .collection('conversations')
-      .doc(conversationId)
-      .set({
+
+  try {
+    await firestore().runTransaction(async (t) => {
+      // Create new conversation in /conversations
+      await t.set(createConversationRef, data)
+
+      // create conversation in users/{id}/conversations
+      const conversationData = {
         id: conversationId,
         createdAt: now,
-      })
-  })
+        updatedAt: now,
+      }
+      const user1ConversationRef = user1Ref
+        .collection(CollectionNames.conversations)
+        .doc(conversationId)
+      await t.set(user1ConversationRef, conversationData)
 
-  await Promise.all([create1, ...create2])
-  const conversation = data
+      const user2ConversationRef = user2Ref
+        .collection(CollectionNames.conversations)
+        .doc(conversationId)
+      await t.set(user2ConversationRef, conversationData)
+    })
+  } catch (e) {
+    throw e
+  }
 
-  // FIXME: Need to check TUser type here
-  // @ts-ignore
-  conversation.users = [user1, user2]
+  const conversation: TConversation = {
+    id: conversationId,
+    createdAt: now,
+    updatedAt: now,
+    users: [user1, user2],
+    lastMessage: '',
+    unreadCount: 0,
+  }
 
-  // @ts-ignore
   return conversation
 }
 
@@ -241,6 +283,8 @@ function listenForConversationChanged(
 }
 
 async function loadUnreadCount(conversationId: string, userId: string) {
+  // TODO: Load unreadCount
+  return 0
   const data = await firestore()
     .collection('conversations')
     .doc(conversationId)
@@ -292,7 +336,7 @@ export const ChatServices = {
   loadConversations,
   listenForConversationChanged,
   listenForConversationAdd,
-  createConversation,
+  startConversation,
 
   sendMessage,
   markMessageAsRead,

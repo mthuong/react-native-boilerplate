@@ -27,7 +27,7 @@ export function HomeScreen() {
       <Button
         title='Go to Details'
         onPress={() => {
-          navigate(NAV_SCREENS.Details, { userId: user?.uid || '' })
+          navigate(NAV_SCREENS.Details, { userId: user?.id || '' })
         }}
       />
 

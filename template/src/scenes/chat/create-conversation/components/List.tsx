@@ -40,7 +40,7 @@ function List(props: ListProps) {
   )
 
   const _keyExtractor = useCallback((item: TUser) => {
-    return item.uid
+    return item.id
   }, [])
 
   return (

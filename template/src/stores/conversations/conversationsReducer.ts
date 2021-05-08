@@ -13,7 +13,7 @@ const conversationsSlice = createSlice({
   reducers: {
     conversationAdded: conversationsAdapter.addOne,
     conversationsReceived(state, action) {
-      conversationsAdapter.upsertMany(state, action.payload.conversations)
+      conversationsAdapter.upsertMany(state, action.payload)
     },
     conversationUpdated: conversationsAdapter.updateOne,
   },

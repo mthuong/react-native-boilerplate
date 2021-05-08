@@ -40,7 +40,7 @@ export function ConversationScreen(props: Props) {
   useEffect(() => {
     return ChatServices.listenForMessages(conversation.id, (message) => {
       if (user) {
-        ChatServices.markMessageAsRead(conversation.id, message.id, user.uid)
+        ChatServices.markMessageAsRead(conversation.id, message.id, user.id)
       }
       TMessageFunc.setSender(
         message,
@@ -61,10 +61,10 @@ export function ConversationScreen(props: Props) {
     const message = messages[0]
     ChatServices.sendMessage(
       conversation.id,
-      user.uid,
+      user.id,
       message.text,
       'TEXT',
-      ConversationFunc.getDefaultUnread(conversation, user.uid)
+      ConversationFunc.getDefaultUnread(conversation, user.id)
     )
   }
 
@@ -83,7 +83,7 @@ export function ConversationScreen(props: Props) {
         messages={messages}
         onSend={(msgs) => _onSend(msgs)}
         user={{
-          _id: user.uid,
+          _id: user.id,
         }}
       />
     </Container>

@@ -4,8 +4,8 @@ import { snackbarSlice } from './snackbarReducer'
 import { ISignIn, ISignUp } from 'api/types'
 import { AuthState } from './types'
 import { TUser } from 'models/user'
-import { listenForConversationAdded } from './conversations/conversationsFunctions'
-import { listenForUserAdded } from './conversations/usersFunctions'
+import { usersFunctions } from './conversations/usersFunctions'
+import { conversationsFunctions } from './conversations/conversationsFunctions'
 
 const initialState: AuthState = {
   isLoading: true,
@@ -55,6 +55,9 @@ const signOut = createAsyncThunk(
   async (_, { rejectWithValue, dispatch }) => {
     try {
       await userService.signOut()
+
+      usersFunctions.unsubscribe()
+      conversationsFunctions.unsubscribe()
     } catch (error) {
       dispatch(snackbarSlice.actions.show(error.message))
 
@@ -69,9 +72,9 @@ const getUser = createAsyncThunk(
     try {
       const response = await userService.getUser(uid)
       // Load conversations
-      dispatch(listenForConversationAdded(response))
+      dispatch(conversationsFunctions.listenForConversationAdded(response))
       // Load users
-      dispatch(listenForUserAdded())
+      dispatch(usersFunctions.listenForUserAdded(response))
       return response
     } catch (error) {
       dispatch(snackbarSlice.actions.show(error.message))

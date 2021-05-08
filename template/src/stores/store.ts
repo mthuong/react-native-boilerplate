@@ -21,6 +21,10 @@ const store = configureStore({
     immutableCheck: false,
     serializableCheck: {
       ignoredActions: ['signUp/fulfilled', 'signIn/fulfilled'],
+      // Ignore these field paths in all actions
+      ignoredActionPaths: [],
+      // Ignore these paths in the state
+      ignoredPaths: [],
     },
   }),
 })

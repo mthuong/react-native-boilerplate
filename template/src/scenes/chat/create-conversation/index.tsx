@@ -11,6 +11,8 @@ import List from './components/List'
 import { getUsers } from 'stores/conversations/usersSelectors'
 import { TUser } from 'models/user'
 import { useAppSelector } from 'stores/hook'
+import { getCurrentUser } from 'stores/authSelectors'
+import { ChatServices } from 'api/ChatServices'
 
 type CreateConversationScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -29,8 +31,12 @@ type Props = {
 }
 
 export function CreateConversationScreen(props: Props) {
+  const { navigation } = props
+
   const languages = useLocalizationContext()
+
   const users = useAppSelector(getUsers)
+  const currentUser = useAppSelector(getCurrentUser)
 
   const [search, setSearch] = React.useState('')
 
@@ -42,9 +48,23 @@ export function CreateConversationScreen(props: Props) {
     console.tron.log(search)
   }, [search])
 
-  const onPressUser = React.useCallback((user: TUser) => {
-    console.tron.log(user)
-  }, [])
+  const onPressUser = React.useCallback(
+    async (user: TUser) => {
+      // User has not login yet
+      if (!currentUser) {
+        return
+      }
+      const conversation = await ChatServices.startConversation(
+        currentUser,
+        user
+      )
+      // Go to conversation detail
+      // navigation.navigate(NAV_SCREENS.Conversation, {
+      //   conversation,
+      // })
+    },
+    [currentUser]
+  )
 
   return (
     <Container>

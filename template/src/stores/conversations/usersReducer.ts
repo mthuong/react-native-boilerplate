@@ -4,7 +4,7 @@ import { RootState } from 'stores/store'
 
 const usersAdapter = createEntityAdapter<TUser>({
   selectId: (user) => {
-    return user.uid
+    return user.id
   },
   sortComparer: (a, b) => (a.name > b.name ? 1 : -1),
 })

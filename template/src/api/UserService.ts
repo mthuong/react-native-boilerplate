@@ -53,9 +53,10 @@ export async function updateUser(
 ) {
   try {
     await firestore().collection('users').doc(user.uid).set({
-      uid: user.uid,
+      id: user.uid,
       name: params.name,
       email: params.email,
+      createdAt: Date.now(),
     })
   } catch (error) {
     console.tron.log(error.message)
