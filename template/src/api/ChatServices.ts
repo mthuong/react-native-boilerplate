@@ -27,7 +27,7 @@ async function loadConversations(
     })
 
   const conversations = await Promise.all(promises)
-  console.log('conversations', conversations)
+
   return conversations
 }
 
@@ -48,12 +48,14 @@ function listenForUserAdded(onUserAdded: (users: TUser[]) => void) {
         .docChanges()
         .filter((t) => t.type === 'added')
         .map((doc) => {
-          console.log('on snapshot 2', doc)
-          // user registered;
+          // user added
           const user = doc.doc.data()
           return user
         })
-      onUserAdded(users)
+
+      if (users.length > 0) {
+        onUserAdded(users)
+      }
     })
 }
 
@@ -83,7 +85,10 @@ function listenForConversationAdd(
       const conversations = await Promise.all(conversationsPromises)
 
       const filtered = conversations.filter(notEmpty)
-      onAdded(filtered)
+
+      if (filtered.length > 0) {
+        onAdded(filtered)
+      }
     })
 }
 

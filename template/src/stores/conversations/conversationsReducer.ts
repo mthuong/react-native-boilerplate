@@ -11,12 +11,9 @@ const conversationsSlice = createSlice({
   name: 'conversations',
   initialState: conversationsAdapter.getInitialState(),
   reducers: {
-    // Can pass adapter functions directly as case reducers.  Because we're passing this
-    // as a value, `createSlice` will auto-generate the `bookAdded` action type / creator
     conversationAdded: conversationsAdapter.addOne,
     conversationsReceived(state, action) {
-      // Or, call them as "mutating" helpers in a case reducer
-      conversationsAdapter.setAll(state, action.payload.conversations)
+      conversationsAdapter.upsertMany(state, action.payload.conversations)
     },
     conversationUpdated: conversationsAdapter.updateOne,
   },
