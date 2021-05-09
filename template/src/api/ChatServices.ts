@@ -1,4 +1,6 @@
-import firestore from '@react-native-firebase/firestore'
+import firestore, {
+  FirebaseFirestoreTypes,
+} from '@react-native-firebase/firestore'
 import { notEmpty } from 'common/func'
 import { TConversation } from 'models/conversation'
 import { TMessage, TMessageType } from 'models/Message'
@@ -142,13 +144,60 @@ function getUserRef(user: TUser) {
   return firestore().collection<TUser>(CollectionNames.users).doc(user.id)
 }
 
+async function filterConversation(
+  user1: TUser,
+  user2: TUser
+): Promise<TConversation | undefined> {
+  let conversationsRef: FirebaseFirestoreTypes.Query<TConversation> | undefined
+  const users = [user1, user2]
+
+  conversationsRef = firestore()
+    .collection<TConversation>(CollectionNames.conversations)
+    .where('members', 'array-contains', user2.id)
+    .where('members', 'array-contains', user1.id)
+
+  // users.forEach((user) => {
+  //   if (!conversationsRef) {
+  //     conversationsRef = firestore()
+  //       .collection<TConversation>(CollectionNames.conversations)
+  //       .where('members', '==', user.id)
+  //   } else {
+  //     conversationsRef = conversationsRef.where('members', '==', user.id)
+  //   }
+  // })
+
+  console.tron.log('conversationsRef', conversationsRef)
+
+  if (!conversationsRef) {
+    return
+  }
+
+  const conversations = (await conversationsRef.get()).docs.map((t) => {
+    const data = t.data()
+    data.users = users
+    return data
+  })
+
+  console.tron.log('conversations', conversations)
+
+  if (conversations.length > 0) {
+    return conversations[0]
+  }
+}
+
 async function startConversation(
   user1: TUser,
   user2: TUser
 ): Promise<TConversation> {
-  // TODO: Search conversation
-  // Create conversation if it's not existing
-  return createConversation(user1, user2)
+  // Search conversation
+  const conversation = await filterConversation(user1, user2)
+  if (conversation) {
+    console.tron.log('filterConversation', conversation)
+    return conversation
+  } else {
+    // Create conversation if it's not existing
+    // return createConversation(user1, user2)
+  }
 }
 
 async function createConversation(

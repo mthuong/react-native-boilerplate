@@ -8,6 +8,7 @@ export type TConversation = {
   createdAt: number
   updatedAt: number
   users: TUser[]
+  members: string[]
   unreadCount: number
 }
 
