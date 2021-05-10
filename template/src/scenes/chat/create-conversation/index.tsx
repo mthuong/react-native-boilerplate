@@ -58,12 +58,13 @@ export function CreateConversationScreen(props: Props) {
         currentUser,
         user
       )
+
       // Go to conversation detail
-      // navigation.navigate(NAV_SCREENS.Conversation, {
-      //   conversation,
-      // })
+      navigation.navigate(NAV_SCREENS.Conversation, {
+        conversation,
+      })
     },
-    [currentUser]
+    [currentUser, navigation]
   )
 
   return (

@@ -38,7 +38,8 @@ export function ConversationsScreen(props: Props) {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onPressConversation = (conversation: TConversation) => {
-    // TODO: Go to conversation screen
+    // Go to conversation screen
+    navigation.navigate(NAV_SCREENS.Conversation, { conversation })
   }
 
   const onPressNewConversation = () => {

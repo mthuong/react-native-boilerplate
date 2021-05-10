@@ -3,12 +3,13 @@ import dayjs from 'dayjs'
 
 export type TConversation = {
   id: string
+  conversationKey: string
   name?: string
   lastMessage?: string
   createdAt: number
   updatedAt: number
   users: TUser[]
-  members: string[]
+  userIds: string[]
   unreadCount: number
 }
 

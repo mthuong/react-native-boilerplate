@@ -10,11 +10,8 @@ import { GiftedChat, IMessage } from 'react-native-gifted-chat'
 import { ChatServices } from '../../../api/ChatServices'
 import { useAppSelector } from 'stores/hook'
 import { TMessageFunc } from 'models/Message'
+import { getCurrentUser } from 'stores/authSelectors'
 
-// type ConversationScreenNavigationProp = StackNavigationProp<
-//   RootStackParamList,
-//   NAV_SCREENS.Conversation
-// >
 type ConversationScreenRoute = RouteProp<
   RootStackParamList,
   NAV_SCREENS.Conversation
@@ -25,7 +22,6 @@ export type ConversationScreenParams = {
 }
 
 type Props = {
-  // navigation: ConversationScreenNavigationProp
   route: ConversationScreenRoute
 }
 
@@ -35,7 +31,7 @@ export function ConversationScreen(props: Props) {
 
   const conversation: TConversation = route.params.conversation
 
-  const user = useAppSelector((state) => state.auth.user)
+  const user = useAppSelector(getCurrentUser)
 
   useEffect(() => {
     return ChatServices.listenForMessages(conversation.id, (message) => {
@@ -47,6 +43,7 @@ export function ConversationScreen(props: Props) {
         ConversationFunc.findUser(conversation, message.senderId)
       )
 
+      // FIXME: Fix merge message
       const newState = GiftedChat.append(messages, [
         TMessageFunc.toGiftedMessage(message),
       ])
@@ -58,7 +55,8 @@ export function ConversationScreen(props: Props) {
     if (!msgs || msgs.length === 0 || !user) {
       return
     }
-    const message = messages[0]
+
+    const message = msgs[0]
     ChatServices.sendMessage(
       conversation.id,
       user.id,

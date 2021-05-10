@@ -12,6 +12,18 @@ enum CollectionNames {
   messages = 'messages',
 }
 
+/**
+ * Make a conversation key by join a sorted user id by alphabet
+ * @param users list of user
+ */
+function createConversationKey(users: TUser[]): string {
+  const array = users.map((u) => u.id)
+  array.sort((a, b) => (a > b ? 1 : -1))
+
+  const key = array.join('_')
+  return key
+}
+
 async function loadUser(userId: string) {
   const document = await firestore()
     .collection<TUser>(CollectionNames.users)
@@ -56,11 +68,8 @@ function listenForUserAdded(
   return firestore()
     .collection<TUser>(CollectionNames.users)
     .onSnapshot((snapshot) => {
-      if (!snapshot) {
-        return
-      }
       let users = snapshot
-        .docChanges()
+        ?.docChanges()
         .filter((t) => t.type === 'added')
         .map((doc) => {
           // user added
@@ -84,14 +93,12 @@ function listenForConversationAdd(
     .doc(user.id)
     .collection(CollectionNames.conversations)
     .onSnapshot(async (snapshot) => {
-      if (!snapshot) {
-        return
-      }
       const conversationsPromises = snapshot
-        .docChanges()
+        ?.docChanges()
         .filter((t) => t.type === 'added')
         .map(async (doc) => {
           const conversationId = doc.doc.data().id
+          console.tron.log('conversationId', conversationId)
           const conversation = await loadConversation(conversationId, user)
           return conversation
         })
@@ -109,35 +116,33 @@ async function loadConversation(
   id: string,
   user: TUser
 ): Promise<TConversation | null> {
-  const conversations = (
-    await firestore()
-      .collection<TConversation>(CollectionNames.conversations)
-      .where('id', '==', id)
-      .get()
-  ).docs
-    .map((t) => {
-      const data = t.data()
-      return data
-    })
-    .map(async (t) => {
-      // get users array
-      const usersRef = t.users
-      const usersPromises = usersRef.map(async (userRef) => {
-        if (userRef.id === user.id) {
-          return user
-        }
-        const mUser = await loadUser(userRef.id)
-        return mUser
-      })
-      const conversation = t
-      const users = await Promise.all(usersPromises)
-      conversation.users = users.filter(notEmpty)
-      return conversation
-    })
-  if (conversations.length > 0) {
-    return conversations[0]
+  const snapshot = await firestore()
+    .collection<TConversation>(CollectionNames.conversations)
+    .doc(id)
+    .get()
+
+  if (!snapshot) {
+    return null
   }
-  return null
+
+  const conversation = snapshot.data()
+
+  if (!conversation) {
+    return null
+  }
+
+  // get users array
+  const usersRef = conversation.users
+  const usersPromises = usersRef.map(async (userRef) => {
+    if (userRef.id === user.id) {
+      return user
+    }
+    const mUser = await loadUser(userRef.id)
+    return mUser
+  })
+  const users = await Promise.all(usersPromises)
+  conversation.users = users.filter(notEmpty)
+  return conversation
 }
 
 function getUserRef(user: TUser) {
@@ -148,37 +153,18 @@ async function filterConversation(
   user1: TUser,
   user2: TUser
 ): Promise<TConversation | undefined> {
-  let conversationsRef: FirebaseFirestoreTypes.Query<TConversation> | undefined
   const users = [user1, user2]
+  const conversationKey = createConversationKey(users)
 
-  conversationsRef = firestore()
+  const conversationsRef: FirebaseFirestoreTypes.Query<TConversation> = firestore()
     .collection<TConversation>(CollectionNames.conversations)
-    .where('members', 'array-contains', user2.id)
-    .where('members', 'array-contains', user1.id)
-
-  // users.forEach((user) => {
-  //   if (!conversationsRef) {
-  //     conversationsRef = firestore()
-  //       .collection<TConversation>(CollectionNames.conversations)
-  //       .where('members', '==', user.id)
-  //   } else {
-  //     conversationsRef = conversationsRef.where('members', '==', user.id)
-  //   }
-  // })
-
-  console.tron.log('conversationsRef', conversationsRef)
-
-  if (!conversationsRef) {
-    return
-  }
+    .where('conversationKey', '==', conversationKey)
 
   const conversations = (await conversationsRef.get()).docs.map((t) => {
     const data = t.data()
     data.users = users
     return data
   })
-
-  console.tron.log('conversations', conversations)
 
   if (conversations.length > 0) {
     return conversations[0]
@@ -192,11 +178,10 @@ async function startConversation(
   // Search conversation
   const conversation = await filterConversation(user1, user2)
   if (conversation) {
-    console.tron.log('filterConversation', conversation)
     return conversation
   } else {
     // Create conversation if it's not existing
-    // return createConversation(user1, user2)
+    return createConversation(user1, user2)
   }
 }
 
@@ -211,8 +196,11 @@ async function createConversation(
   const now = Date.now()
   const user1Ref = getUserRef(user1)
   const user2Ref = getUserRef(user2)
+  const userIds = [user1.id, user2.id]
   const data = {
     id: conversationId,
+    conversationKey: createConversationKey([user1, user2]),
+    userIds,
     createdAt: now,
     updatedAt: now,
     users: [user1Ref, user2Ref],
@@ -233,6 +221,7 @@ async function createConversation(
       // create conversation in users/{id}/conversations
       const conversationData = {
         id: conversationId,
+        conversationKey: createConversationKey([user1, user2]),
         createdAt: now,
         updatedAt: now,
       }
@@ -252,9 +241,11 @@ async function createConversation(
 
   const conversation: TConversation = {
     id: conversationId,
+    conversationKey: createConversationKey([user1, user2]),
     createdAt: now,
     updatedAt: now,
     users: [user1, user2],
+    userIds,
     lastMessage: '',
     unreadCount: 0,
   }
@@ -272,7 +263,7 @@ function listenForMessages(
     .collection('messages')
     .orderBy('createdAt')
     .onSnapshot((snapshot) => {
-      snapshot.docChanges().forEach((doc) => {
+      snapshot?.docChanges().forEach((doc) => {
         if (doc.type === 'added') {
           // message arrived;
           const message = doc.doc.data() as TMessage
@@ -291,28 +282,38 @@ async function sendMessage(
 ) {
   const now = Date.now()
   const doc = firestore()
-    .collection('conversations')
+    .collection(CollectionNames.conversations)
     .doc(conversationId)
-    .collection('messages')
+    .collection(CollectionNames.messages)
     .doc()
-  // send message to /conversations/{id}/messages
-  const sendMessagePromise = doc.set({
-    id: doc.id,
-    createdAt: now,
-    content,
-    senderId,
-    type,
-    unread,
-  })
-  // update last message to /conversations/{id}/
-  const updateLastMessagePromise = firestore()
-    .collection('conversations')
-    .doc(conversationId)
-    .update({
-      updatedAt: now,
-      lastMessage: content,
+
+  try {
+    await firestore().runTransaction(async (t) => {
+      // send message to /conversations/{id}/messages
+      t.set(doc, {
+        id: doc.id,
+        createdAt: now,
+        content,
+        senderId,
+        type,
+        unread,
+      })
+
+      // update last message to /conversations/{id}/
+      t.update(
+        firestore()
+          .collection(CollectionNames.conversations)
+          .doc(conversationId),
+        {
+          updatedAt: now,
+          lastMessage: content,
+        }
+      )
     })
-  await Promise.all([sendMessagePromise, updateLastMessagePromise])
+  } catch (error) {
+    console.tron.log('sendMessage error', error)
+    throw error
+  }
 }
 
 function listenForConversationChanged(
@@ -323,9 +324,9 @@ function listenForConversationChanged(
     .collection('conversations')
     .doc(conversationId)
     .onSnapshot((snapshot) => {
-      console.log('listenForConversationChanged', snapshot.data())
+      console.log('listenForConversationChanged', snapshot?.data())
       // conversation data
-      const data = snapshot.data()
+      const data = snapshot?.data()
       const conversation = data as TConversation
       onChanged(conversation)
     })

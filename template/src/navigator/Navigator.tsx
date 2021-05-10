@@ -18,7 +18,10 @@ import { authAsyncActions, authSlice } from '../stores/authReducer'
 import { useAppDispatch, useAppSelector } from '../stores/hook'
 import { navigationRef, navigationState } from './RootNavigation'
 import { NAV_SCREENS } from './RouteNames'
-import { ConversationScreenParams } from 'scenes/chat/conversation'
+import {
+  ConversationScreenParams,
+  ConversationScreen,
+} from 'scenes/chat/conversation'
 import {
   ConversationsScreenParams,
   ConversationsScreen,
@@ -131,6 +134,13 @@ function Navigator(props: NavigationProps) {
                   component={CreateConversationScreen}
                   options={{
                     title: localization.ConversationNew,
+                  }}
+                />
+                <MainStack.Screen
+                  name={NAV_SCREENS.Conversation}
+                  component={ConversationScreen}
+                  options={{
+                    title: localization.ConversationDetail,
                   }}
                 />
               </>

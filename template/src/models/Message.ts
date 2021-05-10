@@ -12,23 +12,20 @@ export type TMessage = {
   sender: TUser
 }
 
-function setSender(msg: TMessage, user: TUser) {
-  msg.sender = user
-}
-
-function toGiftedMessage(msg: TMessage): IMessage {
-  return {
-    _id: msg.id,
-    createdAt: msg.createdAt,
-    text: msg.content,
-    user: {
-      _id: msg.sender.id,
-      name: TUserFunc.userDisplayName(msg.sender),
-    },
-  }
-}
-
 export const TMessageFunc = {
-  setSender,
-  toGiftedMessage,
+  setSender(msg: TMessage, user: TUser) {
+    msg.sender = user
+  },
+
+  toGiftedMessage(msg: TMessage): IMessage {
+    return {
+      _id: msg.id,
+      createdAt: msg.createdAt,
+      text: msg.content,
+      user: {
+        _id: msg.sender.id,
+        name: TUserFunc.userDisplayName(msg.sender),
+      },
+    }
+  },
 }
