@@ -34,7 +34,7 @@ export function ConversationScreen(props: Props) {
   const user = useAppSelector(getCurrentUser)
 
   useEffect(() => {
-    return ChatServices.listenForMessages(conversation.id, (message) => {
+    return ChatServices.listenForMessages(conversation, (message) => {
       if (user) {
         ChatServices.markMessageAsRead(conversation.id, message.id, user.id)
       }
@@ -43,13 +43,14 @@ export function ConversationScreen(props: Props) {
         ConversationFunc.findUser(conversation, message.senderId)
       )
 
-      // FIXME: Fix merge message
-      const newState = GiftedChat.append(messages, [
-        TMessageFunc.toGiftedMessage(message),
-      ])
-      setMessages(newState)
+      setMessages((oldMessages) => {
+        const newState = GiftedChat.append(oldMessages, [
+          TMessageFunc.toGiftedMessage(message),
+        ])
+        return newState
+      })
     })
-  }, [conversation, messages, user])
+  }, [conversation, user])
 
   const _onSend = (msgs: IMessage[]) => {
     if (!msgs || msgs.length === 0 || !user) {
