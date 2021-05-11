@@ -2,10 +2,9 @@ import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore'
 import { notEmpty } from 'common/func'
-import { TConversation, ConversationFunc } from 'models/conversation'
-import { TMessage, TMessageType, TMessageFunc } from 'models/Message'
+import { TConversation } from 'models/conversation'
+import { TMessage, TMessageType } from 'models/Message'
 import { TUser } from 'models/user'
-import { GiftedChat } from 'react-native-gifted-chat'
 
 enum CollectionNames {
   users = 'users',
@@ -206,7 +205,6 @@ async function createConversation(
     updatedAt: now,
     users: [user1Ref, user2Ref],
     lastMessage: '',
-    unreadCount: 0,
   }
 
   // create conversation ref
@@ -254,22 +252,40 @@ async function createConversation(
   return conversation
 }
 
+/**
+ * Listen new messages added, modified or removed
+ * @param conversation The conversation info
+ * @param onMessageReceived This callback will be trigger when receive added message for the conversation
+ */
 function listenForMessages(
   conversation: TConversation,
   onMessageReceived: (message: TMessage) => void
 ) {
   return firestore()
-    .collection('conversations')
+    .collection(CollectionNames.conversations)
     .doc(conversation.id)
-    .collection('messages')
+    .collection(CollectionNames.messages)
     .orderBy('createdAt')
     .onSnapshot((snapshot) => {
       snapshot?.docChanges().forEach((doc) => {
-        if (doc.type === 'added') {
-          // message arrived;
-          const message = doc.doc.data() as TMessage
+        switch (doc.type) {
+          case 'added':
+            // message arrived;
+            const message = doc.doc.data() as TMessage
 
-          onMessageReceived(message)
+            onMessageReceived(message)
+            break
+
+          case 'modified':
+            // TODO: Modified message
+            break
+
+          case 'removed':
+            // TODO: Removed message
+            break
+
+          default:
+            break
         }
       })
     })
@@ -318,29 +334,52 @@ async function sendMessage(
   }
 }
 
+/**
+ * Listen for conversation updated. MUST to unsubscribe this listener
+ * @param conversationId conversation id
+ * @param currentUser current logged in user
+ * @param onChanged The callback will be trigger when received the updated conversation
+ */
 function listenForConversationChanged(
   conversationId: string,
+  currentUser: TUser | undefined | null,
   onChanged: (conversation: TConversation) => void
 ) {
   return firestore()
-    .collection('conversations')
+    .collection(CollectionNames.conversations)
     .doc(conversationId)
-    .onSnapshot((snapshot) => {
-      console.log('listenForConversationChanged', snapshot?.data())
+    .onSnapshot(async (snapshot) => {
       // conversation data
       const data = snapshot?.data()
       const conversation = data as TConversation
+      // get users array
+      const usersRef = conversation.users
+      const usersPromises = usersRef.map(async (userRef) => {
+        if (userRef.id === currentUser?.id) {
+          return { ...currentUser }
+        }
+        const mUser = await loadUser(userRef.id)
+        return mUser
+      })
+      const users = await Promise.all(usersPromises)
+      conversation.users = users.filter(notEmpty)
+
+      console.log('listenForConversationChanged', data)
+
       onChanged(conversation)
     })
 }
 
+/**
+ * Load unread count of the conversation that user are attending
+ * @param conversationId Conversation id
+ * @param userId user id
+ */
 async function loadUnreadCount(conversationId: string, userId: string) {
-  // TODO: Load unreadCount
-  return 0
   const data = await firestore()
-    .collection('conversations')
+    .collection(CollectionNames.conversations)
     .doc(conversationId)
-    .collection('messages')
+    .collection(CollectionNames.messages)
     .where('unread', 'array-contains', userId)
     .get()
   return data.docs.length
@@ -352,9 +391,9 @@ function listenForMessagesUnreadChanged(
   onUnreadChange: (unreadCount: number) => void
 ) {
   return firestore()
-    .collection('conversations')
+    .collection(CollectionNames.conversations)
     .doc(conversationId)
-    .collection('messages')
+    .collection(CollectionNames.messages)
     .onSnapshot(async () => {
       const unreadCount = await loadUnreadCount(conversationId, userId)
       onUnreadChange(unreadCount)
@@ -368,15 +407,15 @@ async function markMessageAsRead(
 ) {
   try {
     await firestore()
-      .collection('conversations')
+      .collection(CollectionNames.conversations)
       .doc(conversationId)
-      .collection('messages')
+      .collection(CollectionNames.messages)
       .doc(messageId)
       .update({
         unread: firestore.FieldValue.arrayRemove(userId),
       })
   } catch (e) {
-    console.log(e)
+    console.tron.log(e)
   }
 }
 

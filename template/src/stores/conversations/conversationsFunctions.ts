@@ -2,6 +2,7 @@ import { ChatServices } from 'api/ChatServices'
 import { conversationsActions } from './conversationsReducer'
 import { TUser } from 'models/user'
 import { Dispatch } from '@reduxjs/toolkit'
+import { TConversation } from 'models/conversation'
 
 let conversationAddedSubscriber: (() => void) | null = null
 
@@ -30,6 +31,30 @@ export const conversationsFunctions = {
           // Insert conversations into store
           dispatch(conversationsActions.conversationsReceived(conversations))
         }
+      )
+    }
+  },
+
+  updateConversation(conversation: TConversation) {
+    return (dispatch: Dispatch) => {
+      dispatch(
+        conversationsActions.conversationUpdated({
+          id: conversation.id,
+          changes: conversation,
+        })
+      )
+    }
+  },
+
+  updateUnreadCount(conversationId: string, unreadCount: number) {
+    return (dispatch: Dispatch) => {
+      dispatch(
+        conversationsActions.conversationUpdated({
+          id: conversationId,
+          changes: {
+            unreadCount: unreadCount,
+          },
+        })
       )
     }
   },

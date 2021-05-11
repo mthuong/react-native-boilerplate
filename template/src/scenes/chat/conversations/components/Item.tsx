@@ -1,41 +1,50 @@
-import { TConversation, ConversationFunc } from 'models/conversation'
-import * as React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
-import { ScaledSheet } from 'rn-scaled-sheet'
-import { Theme, useTheme } from 'theme'
 import { ChatServices } from 'api/ChatServices'
+import { ConversationFunc, TConversation } from 'models/conversation'
+import * as React from 'react'
+import { Text, TouchableOpacity, View } from 'react-native'
+import { ScaledSheet } from 'rn-scaled-sheet'
+import { conversationsFunctions } from 'stores/conversations/conversationsFunctions'
+import { useAppDispatch, useAppSelector } from 'stores/hook'
+import { Theme, useTheme } from 'theme'
+import { getCurrentUser } from 'stores/authSelectors'
 
 type ConversationItemProps = {
   currentUserId: string
-  onPressConversation: (conversation: TConversation) => void
+  conversationId: string
   data: TConversation
+  onPressConversation: (conversation: TConversation) => void
 }
 
 const bgColors = ['red', 'green', 'blue']
 
 export function ConversationItem(props: ConversationItemProps) {
-  const { data, currentUserId, onPressConversation } = props
+  const { conversationId, data, currentUserId, onPressConversation } = props
+  const currentUser = useAppSelector(getCurrentUser)
+  const dispatch = useAppDispatch()
 
   React.useEffect(() => {
     // Start listen conversation changed
     return ChatServices.listenForConversationChanged(
-      data.id,
+      conversationId,
+      currentUser,
       (conversation: TConversation) => {
-        ConversationFunc.update(data, conversation)
+        dispatch(conversationsFunctions.updateConversation(conversation))
       }
     )
-  }, [data])
+  }, [conversationId, dispatch, currentUser])
 
   React.useEffect(() => {
     // Start listen message unread changed
     return ChatServices.listenForMessagesUnreadChanged(
-      data.id,
+      conversationId,
       currentUserId,
       (unread: number) => {
-        ConversationFunc.setUnreadCount(data, unread)
+        dispatch(
+          conversationsFunctions.updateUnreadCount(conversationId, unread)
+        )
       }
     )
-  }, [currentUserId, data])
+  }, [currentUserId, conversationId, dispatch])
 
   const conversationName = ConversationFunc.getConversationName(
     data,

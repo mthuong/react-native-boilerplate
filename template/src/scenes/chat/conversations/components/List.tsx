@@ -15,6 +15,7 @@ export function ConversationList(props: ConversationListProps) {
   const _renderItem = ({ item: data }: { item: TConversation }) => (
     <ConversationItem
       data={data}
+      conversationId={data.id}
       currentUserId={currentUserId}
       onPressConversation={onPressConversation}
     />
