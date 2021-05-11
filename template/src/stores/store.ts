@@ -5,10 +5,14 @@ import {
 } from '@reduxjs/toolkit'
 import authReducer from './authReducer'
 import snackbarReducer from './snackbarReducer'
+import conversationsReducer from './conversations/conversationsReducer'
+import usersReducer from './conversations/usersReducer'
 
 const rootReducer = combineReducers({
   auth: authReducer,
   snackbar: snackbarReducer,
+  conversations: conversationsReducer,
+  users: usersReducer,
 })
 
 const store = configureStore({
@@ -17,6 +21,10 @@ const store = configureStore({
     immutableCheck: false,
     serializableCheck: {
       ignoredActions: ['signUp/fulfilled', 'signIn/fulfilled'],
+      // Ignore these field paths in all actions
+      ignoredActionPaths: [],
+      // Ignore these paths in the state
+      ignoredPaths: [],
     },
   }),
 })

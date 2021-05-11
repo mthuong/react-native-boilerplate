@@ -85,7 +85,11 @@ export const presets = {
   default: styles.BASE,
 
   bold: { ...styles.BASE, ...fonts.bold } as TextStyle,
-  header: { ...styles.BASE } as TextStyle,
+  header: {
+    ...styles.BASE,
+    ...fonts.bold,
+    fontSize: fontSizes.large,
+  } as TextStyle,
   light: { ...styles.BASE, ...fonts.light } as TextStyle,
   error: { ...styles.BASE, ...fonts.light, color: '#FE3B2F' },
 }

@@ -31,7 +31,7 @@ export const Header = (props: HeaderProps) => {
     children,
   } = props
   const theme = useTheme()
-  const iconLeft = leftIcon || (backEnabled ? 'left' : undefined)
+  const iconLeft = leftIcon || (backEnabled ? 'arrow_back_ios' : undefined)
 
   const onLeftPress =
     onPressLeft || backEnabled ? RootNavigation.back : undefined

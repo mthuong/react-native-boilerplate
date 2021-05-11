@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { TextInput as Input } from 'react-native-paper'
-// eslint-disable-next-line import/no-unresolved
 import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput'
 import { StyleSheet } from 'react-native'
 import { Text } from 'components/text'

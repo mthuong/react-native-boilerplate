@@ -8,5 +8,6 @@
     "idev",
     "iprod",
     "reactnativeboilerplate"
-  ]
+  ],
+  "editor.formatOnSave": true
 }

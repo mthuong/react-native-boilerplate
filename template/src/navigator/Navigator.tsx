@@ -18,6 +18,18 @@ import { authAsyncActions, authSlice } from '../stores/authReducer'
 import { useAppDispatch, useAppSelector } from '../stores/hook'
 import { navigationRef, navigationState } from './RootNavigation'
 import { NAV_SCREENS } from './RouteNames'
+import {
+  ConversationScreenParams,
+  ConversationScreen,
+} from 'scenes/chat/conversation'
+import {
+  ConversationsScreenParams,
+  ConversationsScreen,
+} from 'scenes/chat/conversations'
+import {
+  CreateConversationScreenParams,
+  CreateConversationScreen,
+} from 'scenes/chat/create-conversation'
 
 export type RootStackParamList = {
   [NAV_SCREENS.Splash]: undefined
@@ -27,6 +39,10 @@ export type RootStackParamList = {
 
   [NAV_SCREENS.SignIn]: SignInParams
   [NAV_SCREENS.SignUp]: SignUpParams
+
+  [NAV_SCREENS.Conversations]: ConversationsScreenParams
+  [NAV_SCREENS.Conversation]: ConversationScreenParams
+  [NAV_SCREENS.CreateConversation]: CreateConversationScreenParams
 }
 
 // Update the param types when you have more screen params
@@ -35,6 +51,9 @@ export type RootStackParamTypes =
   | SignInParams
   | HomeScreenParams
   | DetailsScreenParams
+  | ConversationsScreenParams
+  | ConversationScreenParams
+  | CreateConversationScreenParams
 
 export const MainStack = createStackNavigator<RootStackParamList>()
 
@@ -102,6 +121,27 @@ function Navigator(props: NavigationProps) {
                   name={NAV_SCREENS.Details}
                   component={DetailsScreen}
                   options={{ title: 'My details' }}
+                />
+                <MainStack.Screen
+                  name={NAV_SCREENS.Conversations}
+                  component={ConversationsScreen}
+                  options={{
+                    title: localization.Conversations_Title,
+                  }}
+                />
+                <MainStack.Screen
+                  name={NAV_SCREENS.CreateConversation}
+                  component={CreateConversationScreen}
+                  options={{
+                    title: localization.ConversationNew,
+                  }}
+                />
+                <MainStack.Screen
+                  name={NAV_SCREENS.Conversation}
+                  component={ConversationScreen}
+                  options={{
+                    title: localization.ConversationDetail,
+                  }}
                 />
               </>
             )}

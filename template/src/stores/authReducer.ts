@@ -1,8 +1,11 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { userService } from '../services'
+import { userService } from '../api'
 import { snackbarSlice } from './snackbarReducer'
-import { IUser, ISignIn, ISignUp } from 'services/types'
+import { ISignIn, ISignUp } from 'api/types'
 import { AuthState } from './types'
+import { TUser } from 'models/user'
+import { usersFunctions } from './conversations/usersFunctions'
+import { conversationsFunctions } from './conversations/conversationsFunctions'
 
 const initialState: AuthState = {
   isLoading: true,
@@ -19,6 +22,7 @@ const signIn = createAsyncThunk(
         email: body.email,
         password: body.password,
       })
+
       return response
     } catch (error) {
       dispatch(snackbarSlice.actions.show(error.message))
@@ -51,6 +55,9 @@ const signOut = createAsyncThunk(
   async (_, { rejectWithValue, dispatch }) => {
     try {
       await userService.signOut()
+
+      usersFunctions.unsubscribe()
+      conversationsFunctions.unsubscribe()
     } catch (error) {
       dispatch(snackbarSlice.actions.show(error.message))
 
@@ -64,7 +71,10 @@ const getUser = createAsyncThunk(
   async (uid: string, { rejectWithValue, dispatch }) => {
     try {
       const response = await userService.getUser(uid)
-
+      // Load conversations
+      dispatch(conversationsFunctions.listenForConversationAdded(response))
+      // Load users
+      dispatch(usersFunctions.listenForUserAdded(response))
       return response
     } catch (error) {
       dispatch(snackbarSlice.actions.show(error.message))
@@ -103,7 +113,7 @@ export const authSlice = createSlice({
     // state.user = action.payload.email
     // },
 
-    [getUser.fulfilled.type]: (state, action: PayloadAction<IUser>) => {
+    [getUser.fulfilled.type]: (state, action: PayloadAction<TUser>) => {
       state.user = action.payload
       state.isLoading = false
     },

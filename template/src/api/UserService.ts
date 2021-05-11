@@ -1,6 +1,7 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
-import { ISignIn, ISignUp, IUser } from './types'
+import { ISignIn, ISignUp } from './types'
+import { TUser } from 'models/user'
 
 export async function login(params: ISignIn) {
   const { email: username, password } = params
@@ -52,9 +53,10 @@ export async function updateUser(
 ) {
   try {
     await firestore().collection('users').doc(user.uid).set({
-      uid: user.uid,
+      id: user.uid,
       name: params.name,
       email: params.email,
+      createdAt: Date.now(),
     })
   } catch (error) {
     console.tron.log(error.message)
@@ -64,7 +66,7 @@ export async function updateUser(
 
 export async function getUser(uid: string) {
   try {
-    const user = await firestore().collection<IUser>('users').doc(uid).get()
+    const user = await firestore().collection<TUser>('users').doc(uid).get()
     const data = user.data()
     return data
   } catch (error) {

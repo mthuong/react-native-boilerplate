@@ -35,7 +35,7 @@ export const sharedStyle = {
     alignItems: 'center',
     justifyContent: 'center',
   },
-}
+} as const
 
 export const dimensions = {
   buttonHeight: 50,
@@ -65,6 +65,6 @@ export const dimensions = {
       scrollViewExtraHeight: 20,
     },
   }),
-}
+} as const
 
 export type Dimensions = typeof dimensions

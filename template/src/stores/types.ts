@@ -1,4 +1,4 @@
-import { IUser } from 'services'
+import { TUser } from 'models/user'
 
 export type ReduxState = {
   auth: AuthState
@@ -7,6 +7,6 @@ export type ReduxState = {
 export type AuthState = {
   isLoading: boolean
   isSignOut: boolean
-  user: IUser | null | undefined
+  user: TUser | null | undefined
   error: string | null | undefined
 }

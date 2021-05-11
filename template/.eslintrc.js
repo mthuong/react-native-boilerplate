@@ -12,7 +12,7 @@ module.exports = {
     'react-hooks',
   ],
   extends: [
-    'airbnb-typescript-prettier',
+    // 'airbnb-typescript-prettier',
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
   ],
@@ -67,7 +67,9 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      'babel-module': {},
+      'babel-module': {
+        allowExistingDirectories: true,
+      },
     },
   },
 }

@@ -12,7 +12,6 @@ type DetailsScreenNavigationProp = StackNavigationProp<
 type DetailsScreenRoute = RouteProp<RootStackParamList, NAV_SCREENS.Details>
 
 type Props = {
-  // eslint-disable-next-line react/no-unused-prop-types
   navigation: DetailsScreenNavigationProp
   route: DetailsScreenRoute
 }
