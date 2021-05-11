@@ -1,4 +1,4 @@
-import { TUser } from 'models/user'
+import { TUser } from 'models'
 
 export type ReduxState = {
   auth: AuthState

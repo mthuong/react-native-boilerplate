@@ -1,4 +1,4 @@
-import { TConversation } from 'models/conversation'
+import { TConversation } from 'scenes/chat/models'
 import React from 'react'
 import { ConversationItem } from './Item'
 import { FlatList } from 'react-native'

@@ -5,10 +5,8 @@ export type TUser = {
   createdAt: number
 }
 
-function userDisplayName(user: TUser) {
-  return user.name
-}
-
 export const TUserFunc = {
-  userDisplayName,
+  userDisplayName(user: TUser) {
+    return user.name
+  },
 }

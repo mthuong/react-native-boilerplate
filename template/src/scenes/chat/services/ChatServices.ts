@@ -2,9 +2,8 @@ import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore'
 import { notEmpty } from 'common/func'
-import { TConversation } from 'models/conversation'
-import { TMessage, TMessageType } from 'models/Message'
-import { TUser } from 'models/user'
+import { TConversation, TMessage, TMessageType } from 'scenes/chat/models'
+import { TUser } from 'models'
 
 enum CollectionNames {
   users = 'users',

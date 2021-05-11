@@ -8,11 +8,11 @@ import { Header } from 'components/Header'
 import { useLocalizationContext } from 'localization'
 import { Searchbar } from 'react-native-paper'
 import List from './components/List'
-import { getUsers } from 'stores/conversations/usersSelectors'
-import { TUser } from 'models/user'
+import { TUser } from 'models'
 import { useAppSelector } from 'stores/hook'
 import { getCurrentUser } from 'stores/authSelectors'
-import { ChatServices } from 'api/ChatServices'
+import { ChatServices } from 'scenes/chat/services/ChatServices'
+import { getUsers } from '../store/usersSelectors'
 
 type CreateConversationScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
