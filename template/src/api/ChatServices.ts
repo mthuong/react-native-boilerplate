@@ -2,9 +2,10 @@ import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore'
 import { notEmpty } from 'common/func'
-import { TConversation } from 'models/conversation'
-import { TMessage, TMessageType } from 'models/Message'
+import { TConversation, ConversationFunc } from 'models/conversation'
+import { TMessage, TMessageType, TMessageFunc } from 'models/Message'
 import { TUser } from 'models/user'
+import { GiftedChat } from 'react-native-gifted-chat'
 
 enum CollectionNames {
   users = 'users',
@@ -254,12 +255,12 @@ async function createConversation(
 }
 
 function listenForMessages(
-  conversationId: string,
+  conversation: TConversation,
   onMessageReceived: (message: TMessage) => void
 ) {
   return firestore()
     .collection('conversations')
-    .doc(conversationId)
+    .doc(conversation.id)
     .collection('messages')
     .orderBy('createdAt')
     .onSnapshot((snapshot) => {
@@ -267,6 +268,7 @@ function listenForMessages(
         if (doc.type === 'added') {
           // message arrived;
           const message = doc.doc.data() as TMessage
+
           onMessageReceived(message)
         }
       })
