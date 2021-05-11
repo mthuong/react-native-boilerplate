@@ -1,5 +1,7 @@
 # React Native Boilerplate
 
+Dependencies
+
 - React Native Config - https://github.com/luggit/react-native-config - ✅
 - React Navigation v6 - https://reactnavigation.org/docs/6.x/getting-started - ✅
 - Reactotron - https://github.com/infinitered/reactotron - ✅
@@ -18,10 +20,6 @@
 - Theme - ✅
 - Icomoon - https://icomoon.io/ - Replace your icomoon.ttf + selection.json file at src/components/Icon - ✅
 - Custom fonts - https://github.com/oblador/react-native-vector-icons/issues/1074#issuecomment-586615887 - Add custom fonts you wish to use to src/theme/fonts - ✅
-- Chat function -
+- Chat function - ✅
 - Update firestore rule into readme -
 - Storybook - https://github.com/storybookjs/react-native -
-
-# UI
-
-- https://www.figma.com/file/1YKLRKgq1fyN5MkFc80JBW/Online-Groceries-App-UI-(Community)?node-id=1%3A2
