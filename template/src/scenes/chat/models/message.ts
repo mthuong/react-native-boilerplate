@@ -1,5 +1,5 @@
 import { IMessage } from 'react-native-gifted-chat'
-import { TUser, TUserFunc } from './user'
+import { TUser, TUserFunc } from 'models'
 
 export type TMessageType = 'TEXT' | 'IMAGE'
 export type TMessage = {

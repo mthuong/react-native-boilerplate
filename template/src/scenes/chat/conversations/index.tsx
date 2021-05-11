@@ -4,14 +4,14 @@ import { Container } from 'components/Container'
 import { Header } from 'components/Header'
 import { Text } from 'components/text'
 import { useLocalizationContext } from 'localization'
-import { TConversation } from 'models/conversation'
+import { TConversation } from 'scenes/chat/models'
 import { RootStackParamList } from 'navigator/Navigator'
 import { NAV_SCREENS } from 'navigator/RouteNames'
 import React from 'react'
 import { View } from 'react-native'
-import { getConversations } from 'stores/conversations/conversationsSelectors'
 import { useAppSelector } from 'stores/hook'
 import { ConversationList } from './components/List'
+import { getConversations } from '../store/conversationsSelectors'
 
 type ConversationsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,

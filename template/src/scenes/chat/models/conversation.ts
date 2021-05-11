@@ -1,4 +1,4 @@
-import { TUser, TUserFunc } from 'models/user'
+import { TUser, TUserFunc } from 'models'
 import dayjs from 'dayjs'
 
 export type TConversation = {
@@ -24,7 +24,7 @@ export const ConversationFunc = {
     if (otherUser) {
       return TUserFunc.userDisplayName(otherUser)
     }
-    // FIXME: Need to fix
+
     return 'No name'
   },
 

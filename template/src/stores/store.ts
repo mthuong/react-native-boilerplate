@@ -5,8 +5,8 @@ import {
 } from '@reduxjs/toolkit'
 import authReducer from './authReducer'
 import snackbarReducer from './snackbarReducer'
-import conversationsReducer from './conversations/conversationsReducer'
-import usersReducer from './conversations/usersReducer'
+import conversationsReducer from 'scenes/chat/store/conversationsReducer'
+import usersReducer from 'scenes/chat/store/usersReducer'
 
 const rootReducer = combineReducers({
   auth: authReducer,

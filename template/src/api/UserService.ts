@@ -1,7 +1,7 @@
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import firestore from '@react-native-firebase/firestore'
 import { ISignIn, ISignUp } from './types'
-import { TUser } from 'models/user'
+import { TUser } from 'models'
 
 export async function login(params: ISignIn) {
   const { email: username, password } = params
