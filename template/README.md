@@ -54,7 +54,7 @@
 | Navigation                 |         ✅        |
 | Login - Sign up            |         ✅        |
 | Authenticaion flows        |         ✅        |
-| Them                       |         ✅        |
+| Theme                      |         ✅        |
 | Localization               |         ✅        |
 | Custom fonts               |         ✅        |
 | Localization               |         ✅        |
@@ -86,6 +86,53 @@
   
 </details>
   
+### Firestore setup for Chat function
+
+<details close><summary><b>Show instructions</b></summary>
+
+1. Structure 
++ User
+
+![image](https://user-images.githubusercontent.com/1086057/118006026-1c2a1e80-b375-11eb-8cba-094d8a3821ec.png)
+
+![image](https://user-images.githubusercontent.com/1086057/118006057-221fff80-b375-11eb-818a-4ed6f3d6ee9b.png)
+
++ Conversations
+
+![image](https://user-images.githubusercontent.com/1086057/118006092-2ba96780-b375-11eb-97bf-a45bb9c3b01c.png)
+
+![image](https://user-images.githubusercontent.com/1086057/118006111-2fd58500-b375-11eb-9d0a-19a1f5fd97cf.png)
+
+2. Firestore rules
+
+```ruby
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{user_id} {
+      allow read: if request.auth != null;
+      
+      allow write: if request.auth.uid == user_id;
+      
+      match /conversations/{document=**} {
+        allow read, write: if request.auth != null;
+      }
+    }
+
+    match /conversations/{conversation_id} {
+      allow read: if request.auth != null && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversation_id)).data.userIds;
+      allow write: if request.auth != null && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversation_id)).data.userIds;
+      
+      match /messages/{document=**} {      
+      	allow read, write: if request.auth != null && request.auth.uid in get(/databases/$(database)/documents/conversations/$(conversation_id)).data.userIds;
+    	}
+    }
+  }
+}
+```
+
+</details>
+ 
 ### Icomoon
 
 <details close><summary><b>Show instructions</b></summary>
@@ -109,20 +156,38 @@
 
 6. Update font on Android + iOS
 
-  ```sh
+  ```ruby
   npx react-native link
   ```
 
+</details>
+
+### Fonts
+
+<details close><summary><b>Show instructions</b></summary>
+
+1. Add custom fonts you wish to use to 
+```ruby
+src/theme/fonts
+```
+2. Update font on Android + iOS
+```ruby
+npx react-native link
+```
+3. Update your font family at
+```ruby
+src/theme/fonts/index.tsx
+```
+
+</details>
+
+### Storybook
+
+<details close><summary><b>Show instructions</b></summary>
+- Storybook - https://github.com/storybookjs/react-native -
 </details>
 
 <!-- CONTACT -->
 ## Contact
 
 Thuong Nguyen - [@mthuong](https://twitter.com/mthuong) - mttbit@gmail.com
-
-- Theme - ✅
--  -  - Replace your icomoon.ttf + selection.json file at src/components/Icon - ✅
-- Custom fonts - https://github.com/oblador/react-native-vector-icons/issues/1074#issuecomment-586615887 - Add custom fonts you wish to use to src/theme/fonts - ✅
-- Chat function - ✅
-- Update firestore rule into readme -
-- Storybook - https://github.com/storybookjs/react-native -
