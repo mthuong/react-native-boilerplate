@@ -1,16 +1,16 @@
 import { RouteProp } from '@react-navigation/native'
 import { Container } from 'components/Container'
 import { Header } from 'components/Header'
-import { TConversation, ConversationFunc } from 'models/conversation'
+import { TConversation, ConversationFunc } from 'scenes/chat/models'
 import { RootNavigation } from 'navigator'
 import { RootStackParamList } from 'navigator/Navigator'
 import { NAV_SCREENS } from 'navigator/RouteNames'
 import React, { useState, useEffect } from 'react'
 import { GiftedChat, IMessage } from 'react-native-gifted-chat'
-import { ChatServices } from '../../../api/ChatServices'
 import { useAppSelector } from 'stores/hook'
-import { TMessageFunc } from 'models/Message'
 import { getCurrentUser } from 'stores/authSelectors'
+import { ChatServices } from '../services/ChatServices'
+import { TMessageFunc } from '../models/message'
 
 type ConversationScreenRoute = RouteProp<
   RootStackParamList,

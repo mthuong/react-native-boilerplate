@@ -1,11 +1,11 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
+import { TUser } from 'models'
+import { ISignIn, ISignUp } from 'api/types'
+import { conversationsFunctions } from 'scenes/chat/store/conversationsFunctions'
+import { usersFunctions } from 'scenes/chat/store/usersFunctions'
 import { userService } from '../api'
 import { snackbarSlice } from './snackbarReducer'
-import { ISignIn, ISignUp } from 'api/types'
 import { AuthState } from './types'
-import { TUser } from 'models/user'
-import { usersFunctions } from './conversations/usersFunctions'
-import { conversationsFunctions } from './conversations/conversationsFunctions'
 
 const initialState: AuthState = {
   isLoading: true,

@@ -1,8 +1,8 @@
-import { ChatServices } from 'api/ChatServices'
+import { ChatServices } from 'scenes/chat/services/ChatServices'
 import { conversationsActions } from './conversationsReducer'
-import { TUser } from 'models/user'
+import { TUser } from 'models'
 import { Dispatch } from '@reduxjs/toolkit'
-import { TConversation } from 'models/conversation'
+import { TConversation } from 'scenes/chat/models'
 
 let conversationAddedSubscriber: (() => void) | null = null
 

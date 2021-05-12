@@ -1,5 +1,5 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit'
-import { TConversation } from 'models/conversation'
+import { TConversation } from 'scenes/chat/models'
 import { RootState } from 'stores/store'
 
 const conversationsAdapter = createEntityAdapter<TConversation>({
