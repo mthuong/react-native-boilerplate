@@ -30,6 +30,9 @@ See the below table to find out which version of the template to use.
 |---	            |---	        |
 | 0.63.4  	      | 0.63.4      |
 
+## 🍎 Guide
+
+👉 [Check this out](/template/README.md)
 
 ## :computer: Contributing
 
