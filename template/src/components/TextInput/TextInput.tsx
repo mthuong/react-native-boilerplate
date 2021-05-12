@@ -1,29 +1,55 @@
 import * as React from 'react'
-import { TextInput as Input } from 'react-native-paper'
-import { TextInputProps } from 'react-native-paper/lib/typescript/components/TextInput/TextInput'
-import { StyleSheet } from 'react-native'
+import {
+  StyleSheet,
+  TextInputProps,
+  TextInput as Input,
+  View,
+  StyleProp,
+  ViewStyle,
+} from 'react-native'
 import { Text } from 'components/text'
+import { Separator } from 'components/modal-picker/components/separator'
 
-// @ts-ignore
 export interface InputProps extends TextInputProps {
-  theme?: ReactNativePaper.Theme
+  /**
+   * The text to use for the floating label.
+   */
+  label?: string
 
   // Error string will display under text field. If error is not empty, it will activate error style on input field
   error?: string
+
+  // Container view style
+  containerStyles?: StyleProp<ViewStyle>
 }
 
 export function TextInput(props: InputProps) {
-  const { error, ...rest } = props
+  const { error, label, containerStyles, ...rest } = props
+  const errorStyle = error ? styles.error : {}
   return (
-    <>
-      <Input mode='flat' style={styles.input} {...rest} error={!!error} />
+    <View style={[styles.container, containerStyles]}>
+      {!!label && (
+        <Text preset='label' size='xs'>
+          {label}
+        </Text>
+      )}
+      <Input style={styles.input} {...rest} />
+      <Separator style={errorStyle} />
       {!!error && <Text preset='error'>{error}</Text>}
-    </>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
-  input: {
+  container: {
     backgroundColor: '#ffffff',
+    paddingVertical: 8,
+  },
+  input: {
+    height: 36,
+    fontSize: 18,
+  },
+  error: {
+    backgroundColor: '#FE3B2F',
   },
 })

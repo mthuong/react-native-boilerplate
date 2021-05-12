@@ -44,11 +44,11 @@ export const dimensions = {
     height: 50,
     leftIcon: {
       width: 60,
-      fontSize: fontSizes.huge,
+      fontSize: fontSizes.hg,
     },
     rightIcon: {
       width: 60,
-      fontSize: fontSizes.huge,
+      fontSize: fontSizes.hg,
     },
   },
   ...Platform.select({

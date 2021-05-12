@@ -1,9 +1,9 @@
 const fontSizes = {
-  tiny: 12,
-  small: 14,
-  medium: 16,
-  large: 20,
-  huge: 26,
-}
+  xs: 12,
+  sm: 14,
+  md: 16,
+  lg: 20,
+  hg: 26,
+} as const
 
 export default fontSizes

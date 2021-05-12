@@ -1,10 +1,11 @@
-import { Icon, IconTypes } from 'components/Icon'
+import { Icon } from 'components/Icon'
 import { RootNavigation } from 'navigator'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useTheme } from 'theme'
 import { Text } from 'components/text'
+import { IconTypes } from 'components/Icon/types'
 
 type HeaderProps = {
   leftIcon?: IconTypes

@@ -34,8 +34,8 @@ function _SignIn() {
   const styles = makeStyles(theme)
 
   const initialValues: ISignIn = {
-    email: '',
-    password: '',
+    email: 'tom@gmail.com',
+    password: 'Init1234567',
   }
 
   const signInSchema = yup.object().shape({
@@ -78,12 +78,12 @@ function _SignIn() {
           <View style={styles.form}>
             <TextInput
               label={languages.Email}
-              keyboardType='default'
+              error={errors.email}
+              keyboardType='email-address'
               autoCapitalize='none'
               onChangeText={handleChange(FieldNames.email)}
               onBlur={handleBlur(FieldNames.email)}
               value={values.email}
-              error={errors.email}
               clearButtonMode='while-editing'
             />
             <TextInput

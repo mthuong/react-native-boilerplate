@@ -11,7 +11,6 @@
 import React, { Fragment } from 'react'
 import { enableScreens } from 'react-native-screens'
 import { Provider as StoreProvider } from 'react-redux'
-import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper'
 import store from './src/stores/store'
 import Navigator from './src/navigator/Navigator'
 import { GlobalSnackBar } from './src/components/SnackBar/GlobalSnackBar'
@@ -26,16 +25,14 @@ enableScreens()
 const App = () => {
   return (
     <StoreProvider store={store}>
-      <PaperProvider theme={DefaultTheme}>
-        <ThemeProvider>
-          <LocalizationProvider>
-            <Fragment>
-              <Navigator />
-              <GlobalSnackBar />
-            </Fragment>
-          </LocalizationProvider>
-        </ThemeProvider>
-      </PaperProvider>
+      <ThemeProvider>
+        <LocalizationProvider>
+          <Fragment>
+            <Navigator />
+            <GlobalSnackBar />
+          </Fragment>
+        </LocalizationProvider>
+      </ThemeProvider>
     </StoreProvider>
   )
 }

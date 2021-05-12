@@ -23,7 +23,7 @@ export function Separator(props: SeparatorProps) {
     style: customStyle,
   } = props
 
-  let style: ViewStyle = { ...customStyle, ...styles.SEPARATOR }
+  let style: ViewStyle = { ...styles.SEPARATOR, ...customStyle }
   if (typeof marginLeft === 'number') {
     style.marginLeft = marginLeft
   }

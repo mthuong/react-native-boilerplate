@@ -6,13 +6,14 @@ import { NAV_SCREENS } from 'navigator/RouteNames'
 import { Container } from 'components/Container'
 import { Header } from 'components/Header'
 import { useLocalizationContext } from 'localization'
-import { Searchbar } from 'react-native-paper'
 import List from './components/List'
 import { TUser } from 'models'
 import { useAppSelector } from 'stores/hook'
 import { getCurrentUser } from 'stores/authSelectors'
 import { ChatServices } from 'scenes/chat/services/ChatServices'
 import { getUsers } from '../store/usersSelectors'
+import { TextInput } from 'components/TextInput'
+import { ScaledSheet } from 'rn-scaled-sheet'
 
 type CreateConversationScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -71,14 +72,22 @@ export function CreateConversationScreen(props: Props) {
     <Container>
       <Header title={languages.ConversationNew} backEnabled />
       {/* Search field */}
-      <Searchbar
+      <TextInput
         value={search}
         placeholder={languages.Search}
         onChangeText={onSearch}
         onEndEditing={onEndEditing}
+        style={styles.searchInput}
       />
 
       <List users={users} onPressUser={onPressUser} />
     </Container>
   )
 }
+
+const styles = ScaledSheet.create({
+  searchInput: {
+    paddingHorizontal: 16,
+    height: 36,
+  },
+})

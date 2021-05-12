@@ -8,7 +8,7 @@ import { snackbarSlice } from './snackbarReducer'
 import { AuthState } from './types'
 
 const initialState: AuthState = {
-  isLoading: true,
+  isLoading: false,
   isSignOut: false,
   user: null,
   error: undefined,
