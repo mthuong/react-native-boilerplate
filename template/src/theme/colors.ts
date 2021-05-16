@@ -20,9 +20,10 @@ export const LightTheme = {
 
   primaryButton: '#53B175',
   secondaryButton: '#F2F3F2',
-} as const
+}
 
 export type Color = typeof LightTheme
+export type ColorKey = keyof Color
 
 export const DarkTheme: Color = {
   statusBar: '#000000',
@@ -46,6 +47,6 @@ export const DarkTheme: Color = {
 
   primaryButton: '#53B175',
   secondaryButton: '#F2F3F2',
-} as const
+}
 
 export type ThemeName = 'light' | 'dark'

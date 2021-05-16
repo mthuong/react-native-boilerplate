@@ -16,6 +16,8 @@ import Navigator from './src/navigator/Navigator'
 import { GlobalSnackBar } from './src/components/SnackBar/GlobalSnackBar'
 import LocalizationProvider from './src/localization'
 import { ThemeProvider } from './src/theme'
+import StorybookUI from './storybook'
+import Config from 'react-native-config'
 
 // Enable screens support before any of your navigation screens renders
 enableScreens()
@@ -37,4 +39,4 @@ const App = () => {
   )
 }
 
-export default App
+export default Config.LOAD_STORYBOOK === 'true' ? StorybookUI : App

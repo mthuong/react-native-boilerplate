@@ -14,3 +14,12 @@ export function injectValue(
 export function notEmpty<T>(value: T | null | undefined): value is T {
   return value !== null && value !== undefined
 }
+
+/**
+ * Get type-safe lookups
+ * @param obj
+ * @param key
+ */
+export function getProperty<T, K extends keyof T>(obj: T, key: K) {
+  return obj[key] // Inferred type is T[K]
+}

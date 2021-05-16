@@ -1,6 +1,6 @@
 import React from 'react'
 import { ActivityIndicator, View, StyleSheet } from 'react-native'
-import { Text } from 'components/text'
+import { Text } from 'components/Text'
 
 interface Props {
   text?: string

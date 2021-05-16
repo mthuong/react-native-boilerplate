@@ -7,7 +7,7 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native'
-import { Text } from 'components/text'
+import { Text } from 'components/Text'
 import { Separator } from 'components/modal-picker/components/separator'
 
 export interface InputProps extends TextInputProps {

@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React from 'react'
 import {
   Text as ReactNativeText,
   TextProperties,
@@ -107,10 +107,10 @@ const presets = {
   error: { ...styles.BASE, ...fonts.light, color: '#FE3B2F' },
 }
 
-type TextPresets = keyof typeof presets
+export type TextPresets = keyof typeof presets
 
 const sizes = {
   ...fontSizes,
 }
 
-type TextSizes = keyof typeof sizes
+export type TextSizes = keyof typeof sizes

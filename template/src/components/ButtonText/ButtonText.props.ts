@@ -1,5 +1,5 @@
 import { ViewStyle, TextStyle } from 'react-native'
-import { TextPresets } from 'components/text'
+import { TextPresets } from 'components/Text'
 import { ImageAssetTypes } from 'theme/images'
 
 export interface ButtonTextProps {
