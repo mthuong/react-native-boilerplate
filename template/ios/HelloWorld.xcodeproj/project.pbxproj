@@ -15,6 +15,7 @@
 		26964ECF11424BBBAF5C6246 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9FD5FE6F2AF9442CA8A73334 /* FontAwesome.ttf */; };
 		27AB936DBA814D1A95CC2BD5 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 652DB4899AB641598A408686 /* Feather.ttf */; };
 		2895505E0EA94CC99A67ECD6 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83D82A594DB24F6794F576B6 /* Zocial.ttf */; };
+		2C5B7E7658654308A66515A9 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D987AA3C470B4B6D8E7B951D /* icomoon.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -36,7 +37,6 @@
 		EDAEA73BE383B20D3A6898BA /* libPods-HelloWorld-HelloWorldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 423C233C1047685AB6DE5C98 /* libPods-HelloWorld-HelloWorldTests.a */; };
 		F0DD979CBF1A451780BFD516 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DD2DFCFA9744CA0A48D60A7 /* Fontisto.ttf */; };
 		F329BEF7894D474AB323705B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72657EBC53EF451484F32F03 /* Entypo.ttf */; };
-		2C5B7E7658654308A66515A9 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D987AA3C470B4B6D8E7B951D /* icomoon.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +62,7 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* HelloWorldTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldTests.m; sourceTree = "<group>"; };
 		0367AE3825F8D56300111423 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* App Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07F961A680F5B00A75B9A /* App Storybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App Storybook.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HelloWorld/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = HelloWorld/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = HelloWorld/Images.xcassets; sourceTree = "<group>"; };
@@ -94,6 +94,7 @@
 		C9D941D303494C60B0D42452 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		D16B5A06970DB36EE09E589A /* Pods-HelloWorld.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld.debug.xcconfig"; path = "Target Support Files/Pods-HelloWorld/Pods-HelloWorld.debug.xcconfig"; sourceTree = "<group>"; };
 		D2E9F9FB75E641BF8ACAF327 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
+		D987AA3C470B4B6D8E7B951D /* icomoon.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = icomoon.ttf; path = ../src/components/Icon/fonts/icomoon.ttf; sourceTree = "<group>"; };
 		DAFA8EA6E5BA432B9A2C1EB2 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		DB11BE7D1E5F4D4184084058 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		E299D1654D30617409BC8F5B /* Pods-HelloWorld.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld.release.xcconfig"; path = "Target Support Files/Pods-HelloWorld/Pods-HelloWorld.release.xcconfig"; sourceTree = "<group>"; };
@@ -101,7 +102,6 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F56F8457B82FEE136A5126B7 /* Pods-HelloWorld-HelloWorldTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld-HelloWorldTests.release.xcconfig"; path = "Target Support Files/Pods-HelloWorld-HelloWorldTests/Pods-HelloWorld-HelloWorldTests.release.xcconfig"; sourceTree = "<group>"; };
-		D987AA3C470B4B6D8E7B951D /* icomoon.ttf */ = {isa = PBXFileReference; name = "icomoon.ttf"; path = "../src/components/Icon/fonts/icomoon.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,7 +235,7 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* App Dev.app */,
+				13B07F961A680F5B00A75B9A /* App Storybook.app */,
 				00E356EE1AD99517003FC87E /* HelloWorldTests.xctest */,
 				2D02E47B1E0B4A5D006451C7 /* HelloWorld-tvOS.app */,
 				2D02E4901E0B4A5D006451C7 /* HelloWorld-tvOSTests.xctest */,
@@ -302,7 +302,7 @@
 			);
 			name = HelloWorld;
 			productName = HelloWorld;
-			productReference = 13B07F961A680F5B00A75B9A /* App Dev.app */;
+			productReference = 13B07F961A680F5B00A75B9A /* App Storybook.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2D02E47A1E0B4A5D006451C7 /* HelloWorld-tvOS */ = {

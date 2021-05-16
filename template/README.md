@@ -65,6 +65,7 @@
 ## Getting Started
 
 ### Firebase setup
+![image](https://user-images.githubusercontent.com/1086057/118397628-29018780-b67f-11eb-941a-8adeb02cb697.png)
 
 <details close><summary><b>Show instructions</b></summary>
 
@@ -87,6 +88,7 @@
 </details>
   
 ### Firestore setup for Chat function
+![image](https://user-images.githubusercontent.com/1086057/118397565-d88a2a00-b67e-11eb-8f01-737f5841fbc2.png)
 
 <details close><summary><b>Show instructions</b></summary>
 
@@ -134,6 +136,7 @@ service cloud.firestore {
 </details>
  
 ### Icomoon
+![image](https://user-images.githubusercontent.com/1086057/118397752-c6f55200-b67f-11eb-86bc-7921b44a0565.png)
 
 <details close><summary><b>Show instructions</b></summary>
   
@@ -163,6 +166,7 @@ service cloud.firestore {
 </details>
 
 ### Fonts
+![image](https://user-images.githubusercontent.com/1086057/118397857-3bc88c00-b680-11eb-932a-3722f738b942.png)
 
 <details close><summary><b>Show instructions</b></summary>
 
@@ -182,9 +186,31 @@ src/theme/fonts/index.tsx
 </details>
 
 ### Storybook
+![image](https://user-images.githubusercontent.com/1086057/118398015-ef318080-b680-11eb-9cdf-24bbb26503e9.png)
+
+Unmuted and enjoy 🤣🤣🤣 🇻🇳🇻🇳🇻🇳
+
+https://user-images.githubusercontent.com/1086057/118398672-e1312f00-b683-11eb-80c0-f3f37513010c.mp4
 
 <details close><summary><b>Show instructions</b></summary>
-- Storybook - https://github.com/storybookjs/react-native -
+1. Storybook document - https://storybook.js.org/tutorials/intro-to-storybook/react-native/en/get-started/
+
+2. iOS
+```ruby
+yarn istorybook
+```
+
+3. Android
+```ruby
+yarn astorybook
+```
+
+4. Use Storybook server (Optional)
+```ruby
+yarn storybook
+```
+Then reload your simulator or device
+
 </details>
 
 <!-- CONTACT -->

@@ -1,4 +1,4 @@
-import { Text } from 'components/text'
+import { Text } from 'components/Text'
 import { TUser, TUserFunc } from 'models'
 import React, { useCallback } from 'react'
 import { FlatList, TouchableOpacity, View } from 'react-native'

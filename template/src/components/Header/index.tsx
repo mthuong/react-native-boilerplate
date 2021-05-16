@@ -4,7 +4,7 @@ import React from 'react'
 import { StyleSheet, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useTheme } from 'theme'
-import { Text } from 'components/text'
+import { Text } from 'components/Text'
 import { IconTypes } from 'components/Icon/types'
 
 type HeaderProps = {
