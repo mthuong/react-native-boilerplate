@@ -45,7 +45,7 @@
   </ul>
 </details>
 
-## Features
+## 🎆 Features
 
 <details close><summary><b>Show features</b></summary>
   
@@ -62,9 +62,9 @@
 </details>
 
 <!-- GETTING STARTED -->
-## Getting Started
+## 🍔 Getting Started
 
-### Firebase setup
+### 🔥 Firebase setup
 ![image](https://user-images.githubusercontent.com/1086057/118397628-29018780-b67f-11eb-941a-8adeb02cb697.png)
 
 <details close><summary><b>Show instructions</b></summary>
@@ -87,7 +87,7 @@
   
 </details>
   
-### Firestore setup for Chat function
+### 📮 Firestore setup for Chat function
 ![image](https://user-images.githubusercontent.com/1086057/118397565-d88a2a00-b67e-11eb-8f01-737f5841fbc2.png)
 
 <details close><summary><b>Show instructions</b></summary>
@@ -135,7 +135,7 @@ service cloud.firestore {
 
 </details>
  
-### Icomoon
+### 🦄 Icomoon
 ![image](https://user-images.githubusercontent.com/1086057/118397752-c6f55200-b67f-11eb-86bc-7921b44a0565.png)
 
 <details close><summary><b>Show instructions</b></summary>
@@ -165,7 +165,7 @@ service cloud.firestore {
 
 </details>
 
-### Fonts
+### 🥓 Fonts
 ![image](https://user-images.githubusercontent.com/1086057/118397857-3bc88c00-b680-11eb-932a-3722f738b942.png)
 
 <details close><summary><b>Show instructions</b></summary>
@@ -185,7 +185,7 @@ src/theme/fonts/index.tsx
 
 </details>
 
-### Storybook
+### 📖 Storybook
 ![image](https://user-images.githubusercontent.com/1086057/118398015-ef318080-b680-11eb-9cdf-24bbb26503e9.png)
 
 Unmuted and enjoy 🤣🤣🤣 🇻🇳🇻🇳🇻🇳
@@ -214,6 +214,6 @@ Then reload your simulator or device
 </details>
 
 <!-- CONTACT -->
-## Contact
+## 📫 Contact
 
 Thuong Nguyen - [@mthuong](https://twitter.com/mthuong) - mttbit@gmail.com
