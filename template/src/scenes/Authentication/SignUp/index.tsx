@@ -8,7 +8,7 @@ import { useLocalizationContext } from 'localization'
 import { strings } from 'localization/strings'
 import { registerScreen } from 'navigator/RouteGeneric'
 import React from 'react'
-import { Dimensions, View } from 'react-native'
+import { Dimensions, View, Alert } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { ScaledSheet } from 'rn-scaled-sheet'
 import { ISignUp } from 'api'
@@ -52,6 +52,7 @@ function _SignUp() {
   const styles = makeStyles(theme)
 
   const onRegister = async (values: ISignUp) => {
+    Alert.alert('onRegister')
     dispatch(authAsyncActions.signUp(values))
   }
 

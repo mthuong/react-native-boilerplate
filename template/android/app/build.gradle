@@ -22,7 +22,7 @@ apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.grad
 //         if (project.env.get("ENVIRONMENT") == "development") {
 //             from "$rootDir/app/appicons/development"
 //             into "$rootDir/app/src/main/res"
-//         } else if (project.env.get("ENVIRONMENT") == "qa" || project.env.get("ENVIRONMENT") == "e2e_") {
+//         } else if (project.env.get("ENVIRONMENT") == "qa") {
 //             from "$rootDir/app/appicons/qa"
 //             into "$rootDir/app/src/main/res"
 //         } else {
@@ -153,6 +153,8 @@ def jscFlavor = 'org.webkit:android-jsc:+'
 def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
+    ndkVersion rootProject.ext.ndkVersion
+
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     compileOptions {

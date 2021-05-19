@@ -41,6 +41,3 @@ if (__DEV__) {
     error: noop,
   }
 }
-
-// ignore specific yellow box warnings
-// LogBox.ignoreLogs(['Require cycle:'])

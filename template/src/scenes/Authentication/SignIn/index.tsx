@@ -35,7 +35,7 @@ function _SignIn() {
 
   const initialValues: ISignIn = {
     email: 'tom@gmail.com',
-    password: 'Init1234567',
+    password: 'Init123456',
   }
 
   const signInSchema = yup.object().shape({
@@ -48,7 +48,7 @@ function _SignIn() {
       .required(languages.ErrorRequiredPassword)
       .matches(
         regex.passwordPattern,
-        injectValue(languages.ErrorInvalidPassword, 8)
+        injectValue(languages.ErrorInvalidPassword, 8),
       )
       .min(8, injectValue(languages.ErrorInvalidPassword, 8)),
   })
@@ -121,7 +121,7 @@ function _SignIn() {
 
 const SignIn = registerScreen<RootStackParamList, NAV_SCREENS.SignIn>(
   NAV_SCREENS.SignIn,
-  _SignIn
+  _SignIn,
 )
 
 export default SignIn
