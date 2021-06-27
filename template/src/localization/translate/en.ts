@@ -1,5 +1,5 @@
-import { conversations } from './en/conversations'
 import { common } from './en/common'
+import { conversations } from './en/conversations'
 
 export const en = {
   SignIn: 'Sign In',

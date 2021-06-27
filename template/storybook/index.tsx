@@ -1,23 +1,23 @@
 // if you use expo remove this line
-import { AppRegistry, Platform } from 'react-native'
-import React from 'react'
-
-import AsyncStorage from '@react-native-community/async-storage'
-import {
-  getStorybookUI,
-  configure,
-  addDecorator,
-} from '@storybook/react-native'
-import { withKnobs } from '@storybook/addon-knobs'
-
 import './rn-addons'
-import { name as appName } from '../app.json'
-import { loadStories } from './storyLoader'
 
+import React from 'react'
+import { AppRegistry, Platform } from 'react-native'
 import { Provider as StoreProvider } from 'react-redux'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { withKnobs } from '@storybook/addon-knobs'
+import {
+  addDecorator,
+  configure,
+  getStorybookUI,
+} from '@storybook/react-native'
+import LocalizationProvider from 'localization'
 import store from 'stores/store'
 import { ThemeProvider } from 'theme'
-import LocalizationProvider from 'localization'
+
+import { name as appName } from '../app.json'
+
+import { loadStories } from './storyLoader'
 
 // enables knobs for all stories
 addDecorator(withKnobs)

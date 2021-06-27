@@ -1,5 +1,6 @@
-import React, { createContext, useState, useContext } from 'react'
-import { strings, DEFAULT_LANGUAGE } from './strings'
+import React, { createContext, useContext, useState } from 'react'
+
+import { DEFAULT_LANGUAGE, strings } from './strings'
 
 const defaultData = {
   ...strings,

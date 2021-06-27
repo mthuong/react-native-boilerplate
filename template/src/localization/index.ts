@@ -1,7 +1,7 @@
 import LocalizationProvider, {
   LocalizationContext,
-  useLocalizationContext,
   LocalizationContextType,
+  useLocalizationContext,
 } from './hook'
 
 export default LocalizationProvider

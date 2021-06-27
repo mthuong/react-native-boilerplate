@@ -10,12 +10,9 @@ module.exports = {
     'eslint-plugin-no-inline-styles',
     'jest',
     'react-hooks',
+    'simple-import-sort',
   ],
-  extends: [
-    // 'airbnb-typescript-prettier',
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   globals: {
     __DEV__: true,
     device: false,
@@ -64,6 +61,22 @@ module.exports = {
     'react-hooks/exhaustive-deps': 'warn',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
+    'simple-import-sort/imports': [
+      'error',
+      {
+        groups: [
+          // Side effect imports.
+          ['^\\u0000'],
+          // Packages. `react` related packages come first.
+          ['^react', '^@?\\w'],
+          // Parent imports. Put `..` last.
+          ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+          // Other relative imports. Put same-folder imports and `.` last.
+          ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+        ],
+      },
+    ],
+    'simple-import-sort/exports': 'error',
   },
   settings: {
     'import/resolver': {

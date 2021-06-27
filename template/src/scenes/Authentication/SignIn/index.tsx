@@ -1,19 +1,18 @@
+import React from 'react'
+import { Dimensions, ScrollView, TouchableOpacity, View } from 'react-native'
+import { ISignIn } from 'api'
 import { injectValue } from 'common/func'
 import regex from 'common/regex'
 import { ButtonText } from 'components/ButtonText'
 import { Image } from 'components/image'
 import { Text } from 'components/Text'
 import { TextInput } from 'components/TextInput'
-import { Formik } from 'formik'
 import { useLocalizationContext } from 'localization'
 import { RootStackParamList } from 'navigator/Navigator'
 import { navigate } from 'navigator/RootNavigation'
 import { registerScreen } from 'navigator/RouteGeneric'
 import { NAV_SCREENS } from 'navigator/RouteNames'
-import React from 'react'
-import { Dimensions, View, TouchableOpacity, ScrollView } from 'react-native'
 import { ScaledSheet } from 'rn-scaled-sheet'
-import { ISignIn } from 'api'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
 import { Theme, useTheme } from 'theme'
@@ -48,7 +47,7 @@ function _SignIn() {
       .required(languages.ErrorRequiredPassword)
       .matches(
         regex.passwordPattern,
-        injectValue(languages.ErrorInvalidPassword, 8),
+        injectValue(languages.ErrorInvalidPassword, 8)
       )
       .min(8, injectValue(languages.ErrorInvalidPassword, 8)),
   })
@@ -70,41 +69,35 @@ function _SignIn() {
       />
       <Text text={languages.SignIn} preset='bold' />
       <Text text={languages.SignInSubTitle} preset='header' />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={signInSchema}
-        onSubmit={onSignIn}>
-        {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-          <View style={styles.form}>
-            <TextInput
-              label={languages.Email}
-              error={errors.email}
-              keyboardType='email-address'
-              autoCapitalize='none'
-              onChangeText={handleChange(FieldNames.email)}
-              onBlur={handleBlur(FieldNames.email)}
-              value={values.email}
-              clearButtonMode='while-editing'
-            />
-            <TextInput
-              secureTextEntry
-              label={languages.Password}
-              maxLength={100}
-              onChangeText={handleChange(FieldNames.password)}
-              onBlur={handleBlur(FieldNames.password)}
-              value={values.password}
-              error={errors.password}
-            />
-            <ButtonText
-              preset='primary'
-              textPresets='bold'
-              text={languages.SignIn}
-              onPress={handleSubmit}
-              style={styles.buttonSignIn}
-            />
-          </View>
-        )}
-      </Formik>
+
+      {/* <View style={styles.form}>
+        <TextInput
+          label={languages.Email}
+          error={errors.email}
+          keyboardType='email-address'
+          autoCapitalize='none'
+          onChangeText={handleChange(FieldNames.email)}
+          onBlur={handleBlur(FieldNames.email)}
+          value={values.email}
+          clearButtonMode='while-editing'
+        />
+        <TextInput
+          secureTextEntry
+          label={languages.Password}
+          maxLength={100}
+          onChangeText={handleChange(FieldNames.password)}
+          onBlur={handleBlur(FieldNames.password)}
+          value={values.password}
+          error={errors.password}
+        />
+        <ButtonText
+          preset='primary'
+          textPresets='bold'
+          text={languages.SignIn}
+          onPress={handleSubmit}
+          style={styles.buttonSignIn}
+        />
+      </View> */}
 
       <View style={styles.spacingView}>
         <Text>{languages.DontHaveAccount}</Text>
@@ -121,7 +114,7 @@ function _SignIn() {
 
 const SignIn = registerScreen<RootStackParamList, NAV_SCREENS.SignIn>(
   NAV_SCREENS.SignIn,
-  _SignIn,
+  _SignIn
 )
 
 export default SignIn

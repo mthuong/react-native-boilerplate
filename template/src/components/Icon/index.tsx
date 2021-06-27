@@ -2,6 +2,7 @@ import React from 'react'
 import { StyleProp, StyleSheet, TextStyle, ViewStyle } from 'react-native'
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons'
 import { Theme, useTheme } from 'theme'
+
 import icoMoonConfig from './selection.json'
 import { IconTypes } from './types'
 
@@ -26,10 +27,10 @@ export const Icon = (props: IconProps) => {
   }
   const textStyles = Object.keys(props)
     // @ts-ignore
-    .filter((key) => props[key])
+    .filter(key => props[key])
     // @ts-ignore
-    .map((key) => styles[key])
-    .filter((t) => t)
+    .map(key => styles[key])
+    .filter(t => t)
   return (
     <IcoMoonIcon
       {...props}

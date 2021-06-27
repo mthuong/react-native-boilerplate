@@ -1,14 +1,14 @@
 import * as React from 'react'
 import {
-  StyleSheet,
-  TextInputProps,
-  TextInput as Input,
-  View,
   StyleProp,
+  StyleSheet,
+  TextInput as Input,
+  TextInputProps,
+  View,
   ViewStyle,
 } from 'react-native'
+import { Separator } from 'components/separator'
 import { Text } from 'components/Text'
-import { Separator } from 'components/modal-picker/components/separator'
 
 export interface InputProps extends TextInputProps {
   /**
@@ -20,25 +20,27 @@ export interface InputProps extends TextInputProps {
   error?: string
 
   // Container view style
-  containerStyles?: StyleProp<ViewStyle>
+  containerStyle?: StyleProp<ViewStyle>
 }
 
-export function TextInput(props: InputProps) {
-  const { error, label, containerStyles, ...rest } = props
-  const errorStyle = error ? styles.error : {}
-  return (
-    <View style={[styles.container, containerStyles]}>
-      {!!label && (
-        <Text preset='label' size='xs'>
-          {label}
-        </Text>
-      )}
-      <Input style={styles.input} {...rest} />
-      <Separator style={errorStyle} />
-      {!!error && <Text preset='error'>{error}</Text>}
-    </View>
-  )
-}
+export const TextInput = React.forwardRef<any, InputProps>(
+  (props, ref): React.ReactElement => {
+    const { error, label, containerStyle, ...rest } = props
+    const errorStyle = error ? styles.error : {}
+    return (
+      <View style={[styles.container, containerStyle]}>
+        {!!label && (
+          <Text preset='label' size='xs'>
+            {label}
+          </Text>
+        )}
+        <Input ref={ref} style={styles.input} {...rest} />
+        <Separator style={errorStyle} />
+        {!!error && <Text preset='error'>{error}</Text>}
+      </View>
+    )
+  }
+)
 
 const styles = StyleSheet.create({
   container: {

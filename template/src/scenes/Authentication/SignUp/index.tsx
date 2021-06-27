@@ -1,26 +1,26 @@
+import React from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import { Alert, Button, Dimensions, View } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { ISignUp } from 'api'
 import { injectValue } from 'common/func'
 import regex from 'common/regex'
 import { ButtonText } from 'components/ButtonText'
+import { Container } from 'components/Container'
+import { Header } from 'components/Header'
 import { Image } from 'components/image'
 import { Text } from 'components/Text'
-import { Formik } from 'formik'
+import { TextInput } from 'components/TextInput'
 import { useLocalizationContext } from 'localization'
 import { strings } from 'localization/strings'
+import { RootStackParamList } from 'navigator/Navigator'
 import { registerScreen } from 'navigator/RouteGeneric'
-import React from 'react'
-import { Dimensions, View, Alert } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { NAV_SCREENS } from 'navigator/RouteNames'
 import { ScaledSheet } from 'rn-scaled-sheet'
-import { ISignUp } from 'api'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
 import { Theme, useTheme } from 'theme'
 import * as Yup from 'yup'
-import { TextInput } from '../../../components/TextInput'
-import { RootStackParamList } from '../../../navigator/Navigator'
-import { NAV_SCREENS } from '../../../navigator/RouteNames'
-import { Container } from 'components/Container'
-import { Header } from 'components/Header'
 
 // type SignUpNavigationProp = StackNavigationProp<
 //   RootStackParamList,
@@ -37,19 +37,18 @@ export type SignUpParams = {
 // route: SignUpRoute
 // }
 
-const FieldNames = {
-  email: 'email',
-  password: 'password',
-  confirmPassword: 'confirmPassword',
-  name: 'name',
-}
-
 function _SignUp() {
   const languages = useLocalizationContext()
   const dispatch = useAppDispatch()
 
   const theme = useTheme()
   const styles = makeStyles(theme)
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ISignUp & { firstName: string }>()
 
   const onRegister = async (values: ISignUp) => {
     Alert.alert('onRegister')
@@ -79,24 +78,20 @@ function _SignUp() {
       )
       .min(8, injectValue(languages.ErrorInvalidPassword, 8)),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref(FieldNames.password)], languages.ErrorPasswordNotMatch)
+      .oneOf([Yup.ref('password')], languages.ErrorPasswordNotMatch)
       .required(languages.ErrorRequiredConfirmPassword),
   })
 
+  console.log(errors)
+
   return (
     <Container>
-      <Header leftIcon='arrow_back_ios' backEnabled>
-        {/* <TouchableOpacity full center horizontal>
-          <Text f17 primary style={styles.title}>
-            {props.category.name}
-          </Text>
-          <Icon secondary tiny name='arrow-bottom' />
-        </TouchableOpacity> */}
-      </Header>
-      <KeyboardAwareScrollView
+      <Header leftIcon='arrow_back_ios' backEnabled></Header>
+      <View
         style={styles.CONTAINER}
-        extraScrollHeight={theme.dimensions.scrollViewExtraHeight}
-        enableOnAndroid>
+        // extraScrollHeight={theme.dimensions.scrollViewExtraHeight}
+        // enableOnAndroid
+      >
         <View style={styles.inner}>
           <Image
             url='https://image.freepik.com/free-vector/abstract-colorful-floral-shape-with-logo_1035-8982.jpg'
@@ -106,67 +101,100 @@ function _SignUp() {
           <Text text={languages.SignUp} preset='bold' style={styles.title} />
           <Text text={languages.SignUpSubTitle} preset='header' />
 
-          <Formik
-            initialValues={initialValues}
-            validationSchema={signUpSchema}
-            onSubmit={onRegister}>
-            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-              <View style={styles.form}>
+          <View style={styles.form}>
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value } }) => (
+                <TextInput
+                  // style={styles.input}
+                  onBlur={onBlur}
+                  onChangeText={onChange}
+                  value={value}
+                />
+              )}
+              name='firstName'
+              rules={{ required: true }}
+            />
+            {errors.firstName && <Text>This is required.</Text>}
+
+            <Controller
+              control={control}
+              render={({ field: { onChange, onBlur, value }, fieldState }) => (
                 <TextInput
                   label={languages.Name}
                   keyboardType='default'
                   autoCapitalize='words'
-                  onChangeText={handleChange(FieldNames.name)}
-                  onBlur={handleBlur(FieldNames.name)}
-                  value={values.name}
-                  error={errors.name}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  error={fieldState.error?.message}
                   clearButtonMode='while-editing'
                 />
-
-                <TextInput
-                  label={languages.Email}
-                  keyboardType='email-address'
-                  autoCapitalize='none'
-                  maxLength={100}
-                  onChangeText={handleChange(FieldNames.email)}
-                  onBlur={handleBlur(FieldNames.email)}
-                  value={values.email}
-                  error={errors.email}
-                  clearButtonMode='while-editing'
-                />
-
-                <TextInput
-                  secureTextEntry
-                  label={languages.Password}
-                  maxLength={100}
-                  onChangeText={handleChange(FieldNames.password)}
-                  onBlur={handleBlur(FieldNames.password)}
-                  value={values.password}
-                  error={errors.password}
-                />
-
-                <TextInput
-                  secureTextEntry
-                  label={languages.ConfirmPassword}
-                  maxLength={100}
-                  onChangeText={handleChange(FieldNames.confirmPassword)}
-                  onBlur={handleBlur(FieldNames.confirmPassword)}
-                  value={values.confirmPassword}
-                  error={errors.confirmPassword}
-                />
-
-                <ButtonText
-                  style={styles.buttonSignUp}
-                  preset='primary'
-                  text={languages.SignUp}
-                  textPresets='bold'
-                  onPress={handleSubmit}
-                />
-              </View>
+              )}
+              name='name'
+              rules={{
+                required: true,
+                // min: {
+                //   value: 3,
+                //   message: injectValue(languages.ErrorMinName, `${3}`),
+                // },
+                // minLength: {
+                //   value: 3,
+                //   message: injectValue(languages.ErrorMinName, `${3}`),
+                // },
+                // maxLength: {
+                //   value: 50,
+                //   message: injectValue(languages.ErrorMaxName, `${50}`),
+                // },
+              }}
+              defaultValue=''
+            />
+            {errors.name && (
+              <Text>{`This is required. ${JSON.stringify(errors)}`}</Text>
             )}
-          </Formik>
+
+            {/* <TextInput
+              label={languages.Email}
+              keyboardType='email-address'
+              autoCapitalize='none'
+              maxLength={100}
+              onChangeText={handleChange(FieldNames.email)}
+              onBlur={handleBlur(FieldNames.email)}
+              value={values.email}
+              error={errors.email}
+              clearButtonMode='while-editing'
+            />
+
+            <TextInput
+              secureTextEntry
+              label={languages.Password}
+              maxLength={100}
+              onChangeText={handleChange(FieldNames.password)}
+              onBlur={handleBlur(FieldNames.password)}
+              value={values.password}
+              error={errors.password}
+            />
+
+            <TextInput
+              secureTextEntry
+              label={languages.ConfirmPassword}
+              maxLength={100}
+              onChangeText={handleChange(FieldNames.confirmPassword)}
+              onBlur={handleBlur(FieldNames.confirmPassword)}
+              value={values.confirmPassword}
+              error={errors.confirmPassword}
+            /> */}
+
+            <Button
+              // style={styles.buttonSignUp}
+              // preset='primary'
+              title={languages.SignUp}
+              // textPresets='bold'
+              onPress={handleSubmit(onRegister)}
+            />
+          </View>
         </View>
-      </KeyboardAwareScrollView>
+      </View>
     </Container>
   )
 }

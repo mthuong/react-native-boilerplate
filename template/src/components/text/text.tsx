@@ -1,15 +1,15 @@
 import React from 'react'
 import {
-  Text as ReactNativeText,
-  TextProperties,
   StyleProp,
-  TextStyle,
   StyleSheet,
+  Text as ReactNativeText,
+  TextProps,
+  TextStyle,
 } from 'react-native'
 import fonts from 'theme/fonts'
 import fontSizes from 'theme/fonts/sizes'
 
-export interface TextProps extends TextProperties {
+export interface ITextProps extends TextProps {
   /**
    * Children components
    *
@@ -56,7 +56,7 @@ export interface TextProps extends TextProperties {
  *
  * This component is a HOC over the built-in React Native one.
  */
-export function Text(props: TextProps) {
+export function Text(props: ITextProps) {
   // grab the props
   const {
     preset = 'default',

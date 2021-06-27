@@ -1,35 +1,40 @@
 /**
  * Navigator
  */
+import * as React from 'react'
+import { StyleSheet, View } from 'react-native'
+import Config from 'react-native-config'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import { connect } from 'react-redux'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useLocalizationContext } from 'localization'
-import * as React from 'react'
-import { StyleSheet, View } from 'react-native'
-import { connect } from 'react-redux'
 import SignIn, { SignInParams } from 'scenes/Authentication/SignIn'
 import SignUp, { SignUpParams } from 'scenes/Authentication/SignUp'
 import SplashScreen from 'scenes/Authentication/SplashScreen'
+import {
+  ConversationScreen,
+  ConversationScreenParams,
+} from 'scenes/chat/conversation'
+import {
+  ConversationsScreen,
+  ConversationsScreenParams,
+} from 'scenes/chat/conversations'
+import {
+  CreateConversationScreen,
+  CreateConversationScreenParams,
+} from 'scenes/chat/create-conversation'
+import { StoryBook } from 'scenes/storybook'
 import { ReduxState } from 'stores/types'
+
 import { DetailsScreen, DetailsScreenParams } from '../scenes/Details'
 import { HomeScreen, HomeScreenParams } from '../scenes/Home'
 import { authAsyncActions, authSlice } from '../stores/authReducer'
 import { useAppDispatch, useAppSelector } from '../stores/hook'
+
 import { navigationRef, navigationState } from './RootNavigation'
 import { NAV_SCREENS } from './RouteNames'
-import {
-  ConversationScreenParams,
-  ConversationScreen,
-} from 'scenes/chat/conversation'
-import {
-  ConversationsScreenParams,
-  ConversationsScreen,
-} from 'scenes/chat/conversations'
-import {
-  CreateConversationScreenParams,
-  CreateConversationScreen,
-} from 'scenes/chat/create-conversation'
 
 export type RootStackParamList = {
   [NAV_SCREENS.Splash]: undefined
@@ -60,7 +65,8 @@ export const MainStack = createStackNavigator<RootStackParamList>()
 type NavigationProps = ReturnType<typeof mapStateToProps>
 
 function Navigator(props: NavigationProps) {
-  const useToken = useAppSelector((state) => state.auth.user)
+  const isStoryBook = Config.ENVIRONMENT === 'storybook'
+  const useToken = useAppSelector(state => state.auth.user)
   // const isLoading = useAppSelector((state) => state.auth.isLoading)
   const { isLoading } = props
   const dispatch = useAppDispatch()
@@ -81,6 +87,14 @@ function Navigator(props: NavigationProps) {
   }, [dispatch])
 
   const localization = useLocalizationContext()
+
+  if (isStoryBook) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <StoryBook />
+      </SafeAreaView>
+    )
+  }
 
   return (
     <View style={styles.container}>

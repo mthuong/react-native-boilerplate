@@ -1,9 +1,10 @@
-import { Image } from 'components/image'
-import { Text } from 'components/Text'
 import * as React from 'react'
 import { StyleSheet, TouchableOpacity, View } from 'react-native'
-import { ButtonTextProps } from './ButtonText.props'
+import { Image } from 'components/image'
+import { Text } from 'components/Text'
 import { spacing } from 'theme/spacing'
+
+import { ButtonTextProps } from './ButtonText.props'
 
 export function ButtonText(props: ButtonTextProps) {
   const {
