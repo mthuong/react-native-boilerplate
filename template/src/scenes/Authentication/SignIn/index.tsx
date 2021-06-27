@@ -1,9 +1,9 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Dimensions, ScrollView, TouchableOpacity, View } from 'react-native'
 import { ISignIn } from 'api'
 import { injectValue } from 'common/func'
 import regex from 'common/regex'
-import { ButtonText } from 'components/ButtonText'
 import { Image } from 'components/image'
 import { Text } from 'components/Text'
 import { TextInput } from 'components/TextInput'
@@ -28,6 +28,7 @@ const FieldNames = {
 function _SignIn() {
   const dispatch = useAppDispatch()
   const languages = useLocalizationContext()
+  const { t, i18n } = useTranslation()
 
   const theme = useTheme()
   const styles = makeStyles(theme)
@@ -40,7 +41,7 @@ function _SignIn() {
   const signInSchema = yup.object().shape({
     email: yup
       .string()
-      .email(languages.ErrorInvalidEmail)
+      .email(t('ErrorInvalidEmail'))
       .required(languages.ErrorRequiredEmail),
     password: yup
       .string()

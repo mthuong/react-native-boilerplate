@@ -2,7 +2,7 @@
 import { initReactI18next } from 'react-i18next'
 import i18n, { LanguageDetectorAsyncModule } from 'i18next'
 
-import { resources } from './locales'
+import { defaultNS, resources } from './locales'
 
 const languageDetector: LanguageDetectorAsyncModule = {
   type: 'languageDetector',
@@ -25,8 +25,8 @@ i18n
     resources: resources,
 
     // have a common namespace used around the full app
-    ns: ['common'],
-    defaultNS: 'common',
+    ns: ['en'],
+    defaultNS,
     debug: false,
 
     // cache: {
