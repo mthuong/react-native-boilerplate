@@ -27,6 +27,7 @@ export const TextInput = React.forwardRef<any, InputProps>(
   (props, ref): React.ReactElement => {
     const { error, label, containerStyle, ...rest } = props
     const errorStyle = error ? styles.error : {}
+    console.tron.log('error', error)
     return (
       <View style={[styles.container, containerStyle]}>
         {!!label && (

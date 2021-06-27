@@ -1,7 +1,8 @@
-import { TConversation } from 'scenes/chat/models'
 import React from 'react'
-import { ConversationItem } from './Item'
 import { FlatList } from 'react-native'
+import { TConversation } from 'scenes/chat/models'
+
+import { ConversationItem } from './Item'
 
 type ConversationListProps = {
   conversations: TConversation[]

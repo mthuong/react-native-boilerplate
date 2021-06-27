@@ -7,7 +7,6 @@ import regex from 'common/regex'
 import { Image } from 'components/image'
 import { Text } from 'components/Text'
 import { TextInput } from 'components/TextInput'
-import { useLocalizationContext } from 'localization'
 import { RootStackParamList } from 'navigator/Navigator'
 import { navigate } from 'navigator/RootNavigation'
 import { registerScreen } from 'navigator/RouteGeneric'
@@ -27,8 +26,7 @@ const FieldNames = {
 
 function _SignIn() {
   const dispatch = useAppDispatch()
-  const languages = useLocalizationContext()
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   const theme = useTheme()
   const styles = makeStyles(theme)
@@ -41,16 +39,16 @@ function _SignIn() {
   const signInSchema = yup.object().shape({
     email: yup
       .string()
-      .email(t('ErrorInvalidEmail'))
-      .required(languages.ErrorRequiredEmail),
+      .email(t('error:ErrorInvalidEmail'))
+      .required(t('error:ErrorRequiredEmail')),
     password: yup
       .string()
-      .required(languages.ErrorRequiredPassword)
+      .required(t('error:ErrorRequiredPassword'))
       .matches(
         regex.passwordPattern,
-        injectValue(languages.ErrorInvalidPassword, 8)
+        injectValue(t('error:ErrorInvalidPassword'), 8)
       )
-      .min(8, injectValue(languages.ErrorInvalidPassword, 8)),
+      .min(8, injectValue(t('error:ErrorInvalidPassword'), 8)),
   })
 
   const onSignIn = (values: ISignIn) => {
@@ -68,8 +66,8 @@ function _SignIn() {
         style={styles.logo}
         containerStyle={styles.logoView}
       />
-      <Text text={languages.SignIn} preset='bold' />
-      <Text text={languages.SignInSubTitle} preset='header' />
+      <Text text={t('signin:SignIn')} preset='bold' />
+      <Text text={t('signin:SignInSubTitle')} preset='header' />
 
       {/* <View style={styles.form}>
         <TextInput
@@ -101,12 +99,12 @@ function _SignIn() {
       </View> */}
 
       <View style={styles.spacingView}>
-        <Text>{languages.DontHaveAccount}</Text>
+        <Text>{t('signin:DontHaveAccount')}</Text>
         <TouchableOpacity
           onPress={() => {
             navigate(NAV_SCREENS.SignUp)
           }}>
-          <Text style={styles.textSignUp} text={languages.SignUp} />
+          <Text style={styles.textSignUp} text={t('signin:SignUp')} />
         </TouchableOpacity>
       </View>
     </ScrollView>

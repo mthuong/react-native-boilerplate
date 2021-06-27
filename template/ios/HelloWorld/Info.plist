@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -72,6 +72,7 @@
 		<string>Zocial.ttf</string>
 		<string>Fontisto.ttf</string>
 		<string>icomoon.ttf</string>
+		<string>icomoon.woff</string>
 	</array>
 </dict>
 </plist>

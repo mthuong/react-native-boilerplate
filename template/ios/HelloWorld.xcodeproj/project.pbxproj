@@ -31,6 +31,8 @@
 		EDAEA73BE383B20D3A6898BA /* libPods-HelloWorld-HelloWorldTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 423C233C1047685AB6DE5C98 /* libPods-HelloWorld-HelloWorldTests.a */; };
 		F0DD979CBF1A451780BFD516 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DD2DFCFA9744CA0A48D60A7 /* Fontisto.ttf */; };
 		F329BEF7894D474AB323705B /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72657EBC53EF451484F32F03 /* Entypo.ttf */; };
+		D5C57FA3F1F64CB690699206 /* icomoon.svg in Resources */ = {isa = PBXBuildFile; fileRef = B043F47599744C10A331F0B0 /* icomoon.svg */; };
+		ECDEA2712957407EAC59CAC2 /* icomoon.woff in Resources */ = {isa = PBXBuildFile; fileRef = DFA018D38E1A403EB6E0124F /* icomoon.woff */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F56F8457B82FEE136A5126B7 /* Pods-HelloWorld-HelloWorldTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloWorld-HelloWorldTests.release.xcconfig"; path = "Target Support Files/Pods-HelloWorld-HelloWorldTests/Pods-HelloWorld-HelloWorldTests.release.xcconfig"; sourceTree = "<group>"; };
+		B043F47599744C10A331F0B0 /* icomoon.svg */ = {isa = PBXFileReference; name = "icomoon.svg"; path = "../src/components/Icon/fonts/icomoon.svg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DFA018D38E1A403EB6E0124F /* icomoon.woff */ = {isa = PBXFileReference; name = "icomoon.woff"; path = "../src/components/Icon/fonts/icomoon.woff"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +169,8 @@
 				C9D941D303494C60B0D42452 /* SimpleLineIcons.ttf */,
 				83D82A594DB24F6794F576B6 /* Zocial.ttf */,
 				D987AA3C470B4B6D8E7B951D /* icomoon.ttf */,
+				B043F47599744C10A331F0B0 /* icomoon.svg */,
+				DFA018D38E1A403EB6E0124F /* icomoon.woff */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -329,6 +335,8 @@
 				6F4C1ECF5C8D4888B1F80ECD /* SimpleLineIcons.ttf in Resources */,
 				2895505E0EA94CC99A67ECD6 /* Zocial.ttf in Resources */,
 				2C5B7E7658654308A66515A9 /* icomoon.ttf in Resources */,
+				D5C57FA3F1F64CB690699206 /* icomoon.svg in Resources */,
+				ECDEA2712957407EAC59CAC2 /* icomoon.woff in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

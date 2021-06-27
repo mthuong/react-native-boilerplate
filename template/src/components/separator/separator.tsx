@@ -1,5 +1,5 @@
 import React from 'react'
-import { ViewStyle, View, StyleSheet } from 'react-native'
+import { StyleSheet, View, ViewStyle } from 'react-native'
 
 interface SeparatorProps {
   marginTop?: number

@@ -1,5 +1,6 @@
 import React from 'react'
 import { Controller, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { Alert, Button, Dimensions, View } from 'react-native'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { ISignUp } from 'api'
@@ -11,8 +12,7 @@ import { Header } from 'components/Header'
 import { Image } from 'components/image'
 import { Text } from 'components/Text'
 import { TextInput } from 'components/TextInput'
-import { useLocalizationContext } from 'localization'
-import { strings } from 'localization/strings'
+import i18n from 'localization/i18n'
 import { RootStackParamList } from 'navigator/Navigator'
 import { registerScreen } from 'navigator/RouteGeneric'
 import { NAV_SCREENS } from 'navigator/RouteNames'
@@ -38,7 +38,7 @@ export type SignUpParams = {
 // }
 
 function _SignUp() {
-  const languages = useLocalizationContext()
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const theme = useTheme()
@@ -64,22 +64,22 @@ function _SignUp() {
 
   const signUpSchema = Yup.object().shape({
     email: Yup.string()
-      .email(languages.ErrorInvalidEmail)
-      .required(languages.ErrorRequiredEmail),
+      .email(t('error:ErrorInvalidEmail'))
+      .required(t('error:ErrorRequiredEmail')),
     name: Yup.string()
-      .required(languages.ErrorRequiredName)
-      .min(3, ({ min }) => injectValue(languages.ErrorMinName, `${min}`))
-      .max(50, ({ max }) => injectValue(languages.ErrorMaxName, `${max}`)),
+      .required(t('error:ErrorRequiredName'))
+      .min(3, ({ min }) => injectValue(t('error:ErrorMinName'), `${min}`))
+      .max(50, ({ max }) => injectValue(t('error:ErrorMaxName'), `${max}`)),
     password: Yup.string()
-      .required(languages.ErrorRequiredPassword)
+      .required(t('error:ErrorRequiredPassword'))
       .matches(
         regex.passwordPattern,
-        injectValue(languages.ErrorInvalidPassword, 8)
+        injectValue(t('error:ErrorInvalidPassword'), 8)
       )
-      .min(8, injectValue(languages.ErrorInvalidPassword, 8)),
+      .min(8, injectValue(t('error:ErrorInvalidPassword'), 8)),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password')], languages.ErrorPasswordNotMatch)
-      .required(languages.ErrorRequiredConfirmPassword),
+      .oneOf([Yup.ref('password')], t('error:ErrorPasswordNotMatch'))
+      .required(t('error:ErrorRequiredConfirmPassword')),
   })
 
   console.log(errors)
@@ -98,42 +98,33 @@ function _SignUp() {
             style={styles.logo}
             containerStyle={styles.logoView}
           />
-          <Text text={languages.SignUp} preset='bold' style={styles.title} />
-          <Text text={languages.SignUpSubTitle} preset='header' />
+          <Text text={t('signin:SignUp')} preset='bold' style={styles.title} />
+          <Text text={t('signin:SignUpSubTitle')} preset='header' />
 
           <View style={styles.form}>
             <Controller
               control={control}
-              render={({ field: { onChange, onBlur, value } }) => (
+              render={({
+                field: { onChange, onBlur, value },
+                fieldState: { error },
+              }) => (
                 <TextInput
-                  // style={styles.input}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  value={value}
-                />
-              )}
-              name='firstName'
-              rules={{ required: true }}
-            />
-            {errors.firstName && <Text>This is required.</Text>}
-
-            <Controller
-              control={control}
-              render={({ field: { onChange, onBlur, value }, fieldState }) => (
-                <TextInput
-                  label={languages.Name}
+                  label={t('signin:Name')}
                   keyboardType='default'
                   autoCapitalize='words'
                   onChangeText={onChange}
                   onBlur={onBlur}
                   value={value}
-                  error={fieldState.error?.message}
+                  error={error?.message}
                   clearButtonMode='while-editing'
                 />
               )}
               name='name'
               rules={{
-                required: true,
+                required: {
+                  value: true,
+                  message: t('error:ErrorRequiredName'),
+                },
                 // min: {
                 //   value: 3,
                 //   message: injectValue(languages.ErrorMinName, `${3}`),
@@ -149,9 +140,6 @@ function _SignUp() {
               }}
               defaultValue=''
             />
-            {errors.name && (
-              <Text>{`This is required. ${JSON.stringify(errors)}`}</Text>
-            )}
 
             {/* <TextInput
               label={languages.Email}
@@ -188,7 +176,7 @@ function _SignUp() {
             <Button
               // style={styles.buttonSignUp}
               // preset='primary'
-              title={languages.SignUp}
+              title={t('signin:SignUp')}
               // textPresets='bold'
               onPress={handleSubmit(onRegister)}
             />
@@ -200,7 +188,7 @@ function _SignUp() {
 }
 
 const defaultOptions: SignUpParams = {
-  title: strings.SignUp,
+  title: i18n.t('signin:SignUp'),
 }
 
 const SignUp = registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(

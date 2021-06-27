@@ -1,12 +1,9 @@
 import React from 'react'
 import {
   ActivityIndicator,
-  Alert,
   Dimensions,
-  LayoutChangeEvent,
-  Modal,
+  Platform,
   StyleProp,
-  StyleSheet,
   TextInput,
   TextInputProps,
   TextStyle,
@@ -14,37 +11,34 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { delay } from 'common/func'
 import { Box } from 'components/Box'
 import { Icon } from 'components/Icon'
 import { List } from 'components/List'
-import { Separator } from 'components/separator'
 import { Text } from 'components/Text'
-import { TextInput as CustomTextInput } from 'components/TextInput'
+import { useKeyboard } from 'hook/use-keyboard-hook'
 import { debounce } from 'lodash'
 import { ScaledSheet } from 'rn-scaled-sheet'
 import { Theme, useTheme } from 'theme'
 
 import { ErrorView } from './ErrorView'
 
-const { height: screenHeight } = Dimensions.get('window')
+const LIST_ITEM_HEIGHT = 50
 
 export type Option = {
-  value: any
   name: string
-  [key: string]: any
+  value: string
 }
 
 type ForwardedProps = {
   data: Option[]
-  onOptionSelected?: (option: Option) => void
+  onOptionSelected?: (option?: Option) => void
   selectedOption?: Option
   handleSearch?: (text: string) => Promise<Option[]>
-
   // allow user to tap outside to dismiss
   tapToDismiss?: boolean
   optionContainerStyle?: ViewStyle
   optionTextStyle?: TextStyle
-  noError?: boolean
 }
 
 type DropDownListModalProps = {
@@ -58,10 +52,7 @@ type DropDownListModalProps = {
   selectedOption?: Option
 } & ForwardedProps
 
-const PADDING = 100
-const OFFSET = 4
-
-function DropDownListModal(props: DropDownListModalProps) {
+function DropDownListView(props: DropDownListModalProps) {
   const {
     visible,
     data,
@@ -75,94 +66,89 @@ function DropDownListModal(props: DropDownListModalProps) {
     selectedOption,
     maxHeight,
   } = props
-  const [heightState, setHeightState] = React.useState(0)
-  const styles = optionStyles(useTheme())
 
-  const onLayout = React.useCallback(
-    (event: LayoutChangeEvent) =>
-      setHeightState(event.nativeEvent.layout.height),
-    []
-  )
+  const [keyboardHeight] = useKeyboard()
+
+  const SCREEN_HEIGHT = Dimensions.get('window').height
+
+  const optionStyles = useOptionStyles(useTheme())
 
   const keyExtractor = React.useCallback(
     (option: Option) => option.value + option.name,
     []
   )
 
+  const listHeight = maxHeight || 200
+  const maxItems = Math.min(data.length, 5)
   // calculate position of view
-  const x = pageX
   let y = pageY
-
-  if (pageY + height + heightState > screenHeight - PADDING) {
-    // go top
-    y = pageY - OFFSET - heightState
+  if (
+    SCREEN_HEIGHT - keyboardHeight - (pageY + height) <
+    maxItems * LIST_ITEM_HEIGHT
+  ) {
+    console.log('go top')
+    y = -(LIST_ITEM_HEIGHT * maxItems < listHeight
+      ? LIST_ITEM_HEIGHT * maxItems
+      : listHeight)
   } else {
-    // go bottom
-    y = pageY + height + OFFSET
+    console.log('go bottom')
+    y = height
+  }
+
+  if (!visible) {
+    return null
   }
 
   const viewStyle: ViewStyle = {
     position: 'absolute',
-    left: x,
     top: y,
-    width,
-    opacity: heightState ? 1 : 0,
+    maxHeight: listHeight,
+    backgroundColor: 'green',
+    zIndex: 10,
   }
 
   return (
-    <Modal
-      transparent
-      visible={visible}
-      animated
-      animationType='fade'
-      onRequestClose={onRequestClose}>
-      <View style={[StyleSheet.absoluteFill]}>
-        {tapToDismiss && (
-          <TouchableOpacity
-            onPress={onRequestClose}
-            style={[StyleSheet.absoluteFill]}
-            activeOpacity={1}
-          />
-        )}
-        <View
-          onLayout={onLayout}
-          style={[styles.list, { maxHeight: maxHeight || 300 }, viewStyle]}>
-          <List
-            extraData={selectedOption}
-            ItemSeparatorComponent={() => <Separator />}
-            ListFooterComponent={null}
-            keyExtractor={keyExtractor}
-            data={data}>
-            {(option: { [x: string]: any; value: any; name: any }) => {
-              const selected =
-                selectedOption && selectedOption.value === option.value
-              return (
-                <TouchableOpacity
-                  onPress={() => onOptionSelected && onOptionSelected(option)}
-                  style={[styles.container]}>
-                  <Text preset={selected ? 'bold' : 'default'}>
-                    {option.name}
-                  </Text>
-                </TouchableOpacity>
-              )
-            }}
-          </List>
-        </View>
-      </View>
-    </Modal>
+    <View style={[optionStyles.list, viewStyle]}>
+      <List
+        keyboardShouldPersistTaps='handled'
+        extraData={selectedOption}
+        ItemSeparatorComponent={() => <Box style={optionStyles.separator} />}
+        ListFooterComponent={null}
+        keyExtractor={keyExtractor}
+        data={data}
+        style={{ height: LIST_ITEM_HEIGHT * maxItems }}>
+        {option => {
+          const selected =
+            selectedOption && selectedOption.value === option.value
+          return (
+            <TouchableOpacity
+              onPress={() => onOptionSelected && onOptionSelected(option)}
+              style={[optionStyles.container]}>
+              <Text numberOfLines={1} preset={selected ? 'bold' : 'default'}>
+                {option.name}
+              </Text>
+            </TouchableOpacity>
+          )
+        }}
+      </List>
+    </View>
   )
 }
 
-const optionStyles = ({ sharedStyle, colors }: Theme) =>
+const useOptionStyles = ({ sharedStyle, colors }: Theme) =>
   ScaledSheet.create({
     list: {
       ...sharedStyle.shadow,
       backgroundColor: colors.backgroundColor,
       borderRadius: 4,
+      width: '100%',
     },
     container: {
-      paddingVertical: 15,
-      paddingHorizontal: 20,
+      height: 50,
+      justifyContent: 'center',
+      // paddingHorizontal: CONTAINER_PADDING,
+      paddingHorizontal: 10,
+      backgroundColor: 'white',
     },
     text: {
       color: colors.primaryText,
@@ -170,22 +156,9 @@ const optionStyles = ({ sharedStyle, colors }: Theme) =>
     separator: {
       // ...sharedStyles.container,
       height: 0.5,
-      backgroundColor: colors.secondaryText,
+      backgroundColor: colors.borderColor,
     },
   })
-
-type DropDownButtonProps = {
-  isLoadingData?: boolean
-  placeholder?: string
-  error?: any
-  label?: string
-  style?: StyleProp<ViewStyle>
-  hideError?: boolean
-  containerStyle?: StyleProp<ViewStyle>
-
-  inputProps?: TextInputProps
-  primary?: boolean
-} & ForwardedProps
 
 type AutocompleteInputProps = {
   error?: any
@@ -202,119 +175,6 @@ type DropDownButtonState = {
   visible: boolean
 }
 
-export function DropDownButton({
-  onOptionSelected,
-  isLoadingData,
-  placeholder,
-  selectedOption,
-  style,
-  error,
-  label,
-  inputProps,
-  primary,
-  containerStyle,
-  hideError,
-  ...rest
-}: DropDownButtonProps) {
-  const ref = React.useRef<TouchableOpacity>() as React.MutableRefObject<TouchableOpacity>
-  const styles = cStyles(useTheme())
-
-  const [state, setState] = React.useState<DropDownButtonState>({
-    width: 0,
-    height: 0,
-    pageX: 0,
-    pageY: 0,
-    visible: false,
-  })
-
-  const handlePress = React.useCallback(() => {
-    if (!ref.current) {
-      return
-    }
-    ref.current.measure((_, __, width, height, pageX, pageY) => {
-      setState({
-        ...state,
-        width,
-        height,
-        pageX,
-        pageY,
-        visible: true,
-      })
-    })
-  }, [state, ref])
-
-  const _onOptionSelected = React.useCallback(
-    (option: Option) => {
-      setState({
-        ...state,
-        visible: false,
-      })
-      // console.log(onOptionSelected);
-      onOptionSelected && onOptionSelected(option)
-    },
-    [state, onOptionSelected]
-  )
-
-  const { width, height, pageX, pageY, visible } = state
-
-  const displayText =
-    (selectedOption && selectedOption.name) ||
-    selectedOption ||
-    placeholder ||
-    'Select'
-  const textStyle =
-    (selectedOption && selectedOption.name) || selectedOption
-      ? undefined
-      : styles.placeholderText
-
-  return (
-    <Box style={[styles.container, containerStyle]}>
-      {label && <Text style={styles.label}>{label}</Text>}
-      <TouchableOpacity
-        activeOpacity={0.7}
-        disabled={isLoadingData}
-        onPress={handlePress}
-        ref={ref}
-        style={[styles.inputContainer, style]}>
-        <DropDownListModal
-          {...rest}
-          visible={visible}
-          width={width}
-          onOptionSelected={_onOptionSelected}
-          height={height}
-          pageX={pageX}
-          pageY={pageY}
-          selectedOption={selectedOption}
-          onRequestClose={() => setState({ ...state, visible: false })}
-        />
-        <Text preset='default' style={textStyle}>
-          {displayText}
-        </Text>
-        <View style={styles.indicatorContainer}>
-          {isLoadingData ? (
-            <ActivityIndicator animating />
-          ) : (
-            <Icon
-              style={[styles.inputIconColor, primary && styles.primary]}
-              name='chevron-down'
-            />
-          )}
-        </View>
-      </TouchableOpacity>
-      {inputProps && (
-        <CustomTextInput
-          // error=""
-          containerStyle={{ marginTop: 10 }}
-          // eslint-disable-next-line no-inline-styles/no-inline-styles
-          style={{ paddingLeft: 10 }}
-          {...inputProps}
-        />
-      )}
-      {!hideError && <ErrorView error={error} />}
-    </Box>
-  )
-}
-
 export function AutoCompleteInput({
   onOptionSelected,
   selectedOption,
@@ -329,8 +189,11 @@ export function AutoCompleteInput({
   const inputRef = React.useRef<TextInput>() as React.MutableRefObject<TextInput>
   const [isLoading, setIsLoading] = React.useState(false)
   const [data, setData] = React.useState<Option[]>([])
+  const [text, setText] = React.useState('')
 
-  const styles = cStyles(useTheme())
+  const theme = useTheme()
+  const { colors } = theme
+  const styles = useStyles(theme)
 
   const [state, setState] = React.useState<DropDownButtonState>({
     width: 0,
@@ -341,7 +204,7 @@ export function AutoCompleteInput({
   })
 
   const _onOptionSelected = React.useCallback(
-    (option: Option) => {
+    (option?: Option) => {
       setState({
         ...state,
         visible: false,
@@ -354,35 +217,46 @@ export function AutoCompleteInput({
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const handlerChange = React.useCallback(
-    debounce(async (text: string) => {
-      console.log('handlerChange')
+    debounce(async (t: string) => {
       try {
-        if (handleSearch && text) {
-          console.log('handleSearch', text)
+        if (handleSearch && t) {
+          setIsLoading(true)
+          const locas = await handleSearch(t)
+          setIsLoading(false)
 
-          const filterResults = await handleSearch(text)
-          console.log('filterResults', filterResults)
-          setData(filterResults)
-          if (filterResults.length) {
-            ref.current.measure((_, __, width, height, pageX, pageY) => {
-              console.log(width, height, pageX, pageY)
-              setState({
-                ...state,
-                width,
-                height,
-                pageX,
-                pageY,
-                visible: true,
-              })
+          setData(locas)
+          ref.current.measure((_, __, width, height, pageX, pageY) => {
+            console.log({ width, height, pageX, pageY })
+
+            setState({
+              ...state,
+              width,
+              height,
+              pageX,
+              pageY,
+              visible: !!locas.length,
             })
-          }
+          })
+        } else {
+          setState({
+            ...state,
+            visible: false,
+          })
         }
       } catch (e) {
+        setIsLoading(false)
         console.log(e)
       }
     }, 1000),
     []
   )
+
+  const onPressClear = React.useCallback(async () => {
+    setText('')
+    onOptionSelected && onOptionSelected(undefined)
+    await delay(300)
+    inputRef.current?.focus()
+  }, [inputRef, onOptionSelected])
 
   const { width, height, pageX, pageY, visible } = state
 
@@ -390,141 +264,91 @@ export function AutoCompleteInput({
     (selectedOption && selectedOption.name) || selectedOption || 'Select'
   const textStyle =
     (selectedOption && selectedOption.name) || selectedOption
-      ? undefined
+      ? styles.input
       : styles.placeholderText
 
+  const customStyle =
+    Platform.OS === 'ios'
+      ? { zIndex: inputRef?.current?.isFocused() ? 3 : 1 }
+      : undefined
+
   return (
-    <Box style={styles.container}>
-      {label && <Text style={styles.label}>{label}</Text>}
-      <TouchableOpacity
-        disabled={true}
-        ref={ref}
-        style={[styles.inputAutocompleteContainer, style]}>
-        <DropDownListModal
-          {...rest}
-          visible={visible}
-          width={width}
-          onOptionSelected={_onOptionSelected}
-          height={height}
-          pageX={pageX}
-          pageY={pageY}
-          selectedOption={selectedOption}
-          data={data}
-          onRequestClose={() => setState({ ...state, visible: false })}
-        />
-        {/* <Text primary={primary} style={[textStyle]}>
-          {displayText}
-        </Text> */}
-        <Box full horizontal>
-          <Box center>
-            <Icon name='location_on' />
-          </Box>
-          <TextInput
-            ref={inputRef}
-            style={styles.input}
-            {...inputProps}
-            onChangeText={handlerChange}
-          />
-          <View style={styles.indicatorContainer}>
-            {isLoading ? (
-              <ActivityIndicator animating />
+    <Box style={[styles.container, customStyle]}>
+      <View renderToHardwareTextureAndroid ref={ref}>
+        {label && <Text style={styles.label}>{label}</Text>}
+        <View
+          style={[
+            styles.inputAutocompleteContainer,
+            { borderColor: error ? colors.errorText : colors.borderColor },
+            style,
+          ]}>
+          <Box full horizontal>
+            {selectedOption ? (
+              <Text style={[textStyle]}>{displayText}</Text>
             ) : (
-              <Icon style={[styles.inputIconColor]} name='chevron-down' />
+              <TextInput
+                value={text}
+                ref={inputRef}
+                style={styles.input}
+                {...inputProps}
+                onChangeText={(t: string) => {
+                  setText(t)
+                  handlerChange(t)
+                }}
+              />
             )}
-          </View>
-        </Box>
-      </TouchableOpacity>
+            <TouchableOpacity
+              onPress={onPressClear}
+              disabled={!selectedOption}
+              style={styles.iconContainer}>
+              {isLoading ? (
+                <ActivityIndicator animating />
+              ) : (
+                <Icon
+                  // size={20}
+                  style={[styles.inputIconColor]}
+                  name={'chevron-down'}
+                />
+              )}
+            </TouchableOpacity>
+          </Box>
+        </View>
+      </View>
       <ErrorView error={error} />
+
+      <DropDownListView
+        {...rest}
+        visible={visible}
+        width={width}
+        onOptionSelected={_onOptionSelected}
+        height={height}
+        pageX={pageX}
+        pageY={pageY}
+        selectedOption={selectedOption}
+        data={data}
+        onRequestClose={() => setState({ ...state, visible: false })}
+      />
     </Box>
   )
 }
 
-// export class AutoCompleteInput extends BasePureComponent<DropDownButtonProps, DropDownButtonState> {
-//   view: TouchableOpacity | null = null;
-
-//   state = {
-//     width: 0,
-//     height: 0,
-//     pageX: 0,
-//     pageY: 0,
-//     visible: false,
-//   };
-
-//   _handlePress = () => {
-//     if (!this.view) {
-//       return;
-//     }
-//     this.view.measure((_, __, width, height, pageX, pageY) => {
-//       this.setState({ width, height, pageX, pageY, visible: true });
-//     });
-//   };
-
-//   _onOptionSelected = (option: Option) => {
-//     this.setState({ visible: false });
-//     console.log(this.props.onOptionSelected);
-//     this.props.onOptionSelected && this.props.onOptionSelected(option);
-//   };
-
-//   render() {
-//     const { isLoadingData, placeholder, selectedOption } = this.props;
-//     const { width, height, pageX, pageY, visible } = this.state;
-//     const displayText = (selectedOption && selectedOption.value) || placeholder || '';
-//     const styles = this.useStyles(appStyles);
-//     return (
-//       <TouchableOpacity
-//         activeOpacity={0.7}
-//         disabled={isLoadingData}
-//         onPress={this._handlePress}
-//         ref={(r) => (this.view = r)}
-//         style={styles.inputContainer}>
-//         <DropDownListModal
-//           {...this.props}
-//           visible={visible}
-//           width={width}
-//           onOptionSelected={this._onOptionSelected}
-//           height={height}
-//           pageX={pageX}
-//           pageY={pageY}
-//           onRequestClose={() => this.setState({ visible: false })}
-//         />
-//         <Text>{displayText}</Text>
-//         <View style={styles.indicatorContainer}>
-//           {isLoadingData ? <ActivityIndicator animating /> : <MyIcon name="md-arrow-dropdown" />}
-//         </View>
-//       </TouchableOpacity>
-//     );
-//   }
-// }
-
-const cStyles = ({ sharedStyle, colors, fonts }: Theme) =>
+const useStyles = ({ colors, sharedStyle, fonts }: Theme) =>
   ScaledSheet.create({
     container: {
       marginBottom: 10,
     },
-    inputContainer: {
-      paddingLeft: 20,
-      height: 50,
-      justifyContent: 'center',
-      borderRadius: 5,
+    inputAutocompleteContainer: {
+      paddingLeft: 10,
+      // backgroundColor: Colors.inputBackgroundColor,
       borderWidth: 1,
       borderColor: colors.borderColor,
-      // backgroundColor: colors.inputBackgroundColor,
-      ...sharedStyle.shadow,
-    },
-    inputAutocompleteContainer: {
-      paddingLeft: 20,
-      backgroundColor: colors.backgroundColor,
       height: 50,
       justifyContent: 'center',
       borderRadius: 5,
       // ...sharedStyles.shadow1,
     },
-    indicatorContainer: {
-      position: 'absolute',
-      right: 0,
-      top: 0,
-      bottom: 0,
-      paddingHorizontal: 15,
+    iconContainer: {
+      width: 50,
       alignItems: 'center',
       justifyContent: 'center',
     },
@@ -537,21 +361,24 @@ const cStyles = ({ sharedStyle, colors, fonts }: Theme) =>
     },
     label: {
       color: colors.primaryText,
-      // FIXME: Set style
       // ...sharedStyle.inputLabelMarginBottom,
     },
     errorContainer: {
-      // FIXME: Set style
       // ...sharedStyle.errorContainer,
     },
     placeholderText: {
       color: colors.secondaryText,
     },
     input: {
-      color: colors.primaryText,
       flex: 1,
-      marginLeft: 20,
-      fontSize: 15,
-      ...fonts.bold,
+      color: colors.primaryText,
+      // marginLeft: 10,
+      fontSize: 16,
+      ...fonts.regular,
+      alignSelf: 'center',
+    },
+    button: {
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   })

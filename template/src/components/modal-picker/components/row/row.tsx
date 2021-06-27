@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { View, ViewStyle, StyleProp } from 'react-native'
+import { StyleProp, View, ViewStyle } from 'react-native'
 
 export interface RowProps {
   style?: StyleProp<ViewStyle>

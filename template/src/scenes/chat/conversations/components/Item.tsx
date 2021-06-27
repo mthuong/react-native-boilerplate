@@ -1,12 +1,12 @@
-import { ChatServices } from 'scenes/chat/services/ChatServices'
-import { ConversationFunc, TConversation } from 'scenes/chat/models'
 import * as React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { ScaledSheet } from 'rn-scaled-sheet'
+import { ConversationFunc, TConversation } from 'scenes/chat/models'
+import { ChatServices } from 'scenes/chat/services/ChatServices'
 import { conversationsFunctions } from 'scenes/chat/store/conversationsFunctions'
+import { getCurrentUser } from 'stores/authSelectors'
 import { useAppDispatch, useAppSelector } from 'stores/hook'
 import { Theme, useTheme } from 'theme'
-import { getCurrentUser } from 'stores/authSelectors'
 
 type ConversationItemProps = {
   currentUserId: string

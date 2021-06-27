@@ -1,7 +1,7 @@
-import en from './en.json'
-import vi from './vi.json'
+import { en } from './en'
+import { vi } from './vi'
 
-export const defaultNS = 'en'
+export const defaultNS = 'common,chat,error,signin'
 
 export const resources = {
   en: en,

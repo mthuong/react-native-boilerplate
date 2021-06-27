@@ -1,5 +1,5 @@
-import * as userService from './UserService'
 import crashlyticService from './CrashlyticService'
+import * as userService from './UserService'
 
 export * from './types'
-export { userService, crashlyticService }
+export { crashlyticService, userService }

@@ -1,12 +1,13 @@
 import {
-  configureStore,
   combineReducers,
+  configureStore,
   getDefaultMiddleware,
 } from '@reduxjs/toolkit'
-import authReducer from './authReducer'
-import snackbarReducer from './snackbarReducer'
 import conversationsReducer from 'scenes/chat/store/conversationsReducer'
 import usersReducer from 'scenes/chat/store/usersReducer'
+
+import authReducer from './authReducer'
+import snackbarReducer from './snackbarReducer'
 
 const rootReducer = combineReducers({
   auth: authReducer,

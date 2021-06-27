@@ -4,7 +4,12 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 if (Reactotron && Reactotron.setAsyncStorageHandler) {
   Reactotron.setAsyncStorageHandler(AsyncStorage) // AsyncStorage would either come from `react-native` or `@react-native-community/async-storage` depending on where you get it from
     .configure() // controls connection & communication settings
-    .useReactNative() // add all built-in react native plugins
+    .useReactNative({
+      networking: {
+        // optionally, you can turn it off with false.
+        ignoreUrls: /symbolicate/,
+      },
+    }) // add all built-in react native plugins
     .connect() // let's connect!
 }
 

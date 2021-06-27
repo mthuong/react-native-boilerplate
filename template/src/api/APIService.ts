@@ -1,8 +1,10 @@
 import Axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import lodash from 'lodash'
+
 // import store from 'stores/store'
 import { RootNavigation } from '../navigator'
 import { NAV_SCREENS } from '../navigator/RouteNames'
+
 import API from './API'
 import { APIServiceType, IAPIService } from './IAPIService'
 // import { loggingService } from './LoggingService'
@@ -43,12 +45,12 @@ export class AxiosAPIService implements IAPIService {
 
     // Add response interceptor for token timeout or service offline
     this.responseInterceptor = instance.interceptors.response.use(
-      (response) => {
+      response => {
         // Any status code that lie within the range of 2xx cause this function to trigger
         // loggingService.logAxiosResponse(response)
         return response
       },
-      (error) => {
+      error => {
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         if (error && error.response) {
           if (error.response.status === 401) {

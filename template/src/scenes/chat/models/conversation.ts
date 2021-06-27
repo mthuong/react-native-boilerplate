@@ -1,5 +1,5 @@
-import { TUser, TUserFunc } from 'models'
 import dayjs from 'dayjs'
+import { TUser, TUserFunc } from 'models'
 
 export type TConversation = {
   id: string
@@ -18,9 +18,7 @@ export const ConversationFunc = {
     if (conversation.name && conversation.name?.length > 0) {
       return conversation.name
     }
-    const otherUser = conversation.users.filter(
-      (t) => t.id !== currentUserId
-    )[0]
+    const otherUser = conversation.users.filter(t => t.id !== currentUserId)[0]
     if (otherUser) {
       return TUserFunc.userDisplayName(otherUser)
     }
@@ -33,12 +31,10 @@ export const ConversationFunc = {
   },
 
   getDefaultUnread(conversation: TConversation, currentUserId: string) {
-    return conversation.users
-      .filter((t) => t.id !== currentUserId)
-      .map((t) => t.id)
+    return conversation.users.filter(t => t.id !== currentUserId).map(t => t.id)
   },
 
   findUser(conversation: TConversation, userId: string) {
-    return conversation.users.filter((t) => t.id === userId)[0]
+    return conversation.users.filter(t => t.id === userId)[0]
   },
 }

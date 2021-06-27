@@ -25,7 +25,7 @@ i18n
     resources: resources,
 
     // have a common namespace used around the full app
-    ns: ['en'],
+    ns: ['common', 'error', 'signin', 'chat'],
     defaultNS,
     debug: false,
 

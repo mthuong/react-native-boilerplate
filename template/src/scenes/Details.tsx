@@ -1,8 +1,9 @@
-import { View, Text, StyleSheet } from 'react-native'
 import React from 'react'
-import { StackNavigationProp } from '@react-navigation/stack'
-import { RootStackParamList } from '../navigator/Navigator'
+import { StyleSheet, Text, View } from 'react-native'
 import { RouteProp } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+
+import { RootStackParamList } from '../navigator/Navigator'
 import { NAV_SCREENS } from '../navigator/RouteNames'
 
 type DetailsScreenNavigationProp = StackNavigationProp<

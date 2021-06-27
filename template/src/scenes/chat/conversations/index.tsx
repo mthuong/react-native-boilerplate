@@ -1,17 +1,19 @@
+import React from 'react'
+import { useTranslation } from 'react-i18next'
+import { View } from 'react-native'
 import { RouteProp } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { Container } from 'components/Container'
 import { Header } from 'components/Header'
 import { Text } from 'components/Text'
-import { useLocalizationContext } from 'localization'
-import { TConversation } from 'scenes/chat/models'
 import { RootStackParamList } from 'navigator/Navigator'
 import { NAV_SCREENS } from 'navigator/RouteNames'
-import React from 'react'
-import { View } from 'react-native'
+import { TConversation } from 'scenes/chat/models'
 import { useAppSelector } from 'stores/hook'
-import { ConversationList } from './components/List'
+
 import { getConversations } from '../store/conversationsSelectors'
+
+import { ConversationList } from './components/List'
 
 type ConversationsScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -32,8 +34,8 @@ export type ConversationsScreenParams = undefined
 export function ConversationsScreen(props: Props) {
   const { navigation } = props
 
-  const user = useAppSelector((state) => state.auth.user)
-  const languages = useLocalizationContext()
+  const user = useAppSelector(state => state.auth.user)
+  const { t } = useTranslation()
   const conversations = useAppSelector(getConversations)
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -58,7 +60,7 @@ export function ConversationsScreen(props: Props) {
   return (
     <Container>
       <Header
-        title={languages.Conversations_Title}
+        title={t('chat:Conversations_Title')}
         backEnabled
         rightIcon='comment-o'
         onPressRight={onPressNewConversation}

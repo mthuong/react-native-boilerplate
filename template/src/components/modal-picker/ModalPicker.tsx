@@ -16,11 +16,12 @@ import {
   View,
   ViewStyle,
 } from 'react-native'
+import { ScaledSheet } from 'rn-scaled-sheet'
+import { Theme, useTheme } from 'theme'
+
 import { ButtonImage } from './components/ButtonImage'
 import { Row } from './components/row'
 import { Separator } from './components/separator'
-import { Theme, useTheme } from 'theme'
-import { ScaledSheet } from 'rn-scaled-sheet'
 
 const icInputSearch = require('./assets/icInputSearch.png')
 const icCloseCircle = require('./assets/icCloseCircle.png')
@@ -79,7 +80,7 @@ export interface ModalPickerProps {
   onDismiss(): void
 }
 
-const ModalPicker: React.FunctionComponent<ModalPickerProps> = (props) => {
+const ModalPicker: React.FunctionComponent<ModalPickerProps> = props => {
   const { isVisible, onDismiss } = props
 
   const [position, setPosition] = React.useState({

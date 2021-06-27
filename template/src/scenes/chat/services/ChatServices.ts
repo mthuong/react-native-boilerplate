@@ -2,8 +2,8 @@ import firestore, {
   FirebaseFirestoreTypes,
 } from '@react-native-firebase/firestore'
 import { notEmpty } from 'common/func'
-import { TConversation, TMessage, TMessageType } from 'scenes/chat/models'
 import { TUser } from 'models'
+import { TConversation, TMessage, TMessageType } from 'scenes/chat/models'
 
 enum CollectionNames {
   users = 'users',
@@ -16,7 +16,7 @@ enum CollectionNames {
  * @param users list of user
  */
 function createConversationKey(users: TUser[]): string {
-  const array = users.map((u) => u.id)
+  const array = users.map(u => u.id)
   array.sort((a, b) => (a > b ? 1 : -1))
 
   const key = array.join('_')
@@ -42,7 +42,7 @@ async function loadConversations(
     .collection(CollectionNames.conversations)
     .get()
   const promises = conversationsPromise.docs
-    .map((c) => c.data())
+    .map(c => c.data())
     .map(({ id }) => {
       return loadConversation(id, user)
     })
@@ -56,7 +56,7 @@ async function loadUsers() {
   const userPromise = await firestore()
     .collection<TUser>(CollectionNames.users)
     .get()
-  const users = userPromise.docs.map((t) => t.data())
+  const users = userPromise.docs.map(t => t.data())
   return users
 }
 
@@ -66,17 +66,17 @@ function listenForUserAdded(
 ) {
   return firestore()
     .collection<TUser>(CollectionNames.users)
-    .onSnapshot((snapshot) => {
+    .onSnapshot(snapshot => {
       let users = snapshot
         ?.docChanges()
-        .filter((t) => t.type === 'added')
-        .map((doc) => {
+        .filter(t => t.type === 'added')
+        .map(doc => {
           // user added
           const user = doc.doc.data()
           return user
         })
       // Filter out current user
-      users = users.filter((u) => u.id != currentUser.id)
+      users = users.filter(u => u.id != currentUser.id)
       if (users.length > 0) {
         onUserAdded(users)
       }
@@ -91,11 +91,11 @@ function listenForConversationAdd(
     .collection(CollectionNames.users)
     .doc(user.id)
     .collection(CollectionNames.conversations)
-    .onSnapshot(async (snapshot) => {
+    .onSnapshot(async snapshot => {
       const conversationsPromises = snapshot
         ?.docChanges()
-        .filter((t) => t.type === 'added')
-        .map(async (doc) => {
+        .filter(t => t.type === 'added')
+        .map(async doc => {
           const conversationId = doc.doc.data().id
           console.tron.log('conversationId', conversationId)
           const conversation = await loadConversation(conversationId, user)
@@ -132,7 +132,7 @@ async function loadConversation(
 
   // get users array
   const usersRef = conversation.users
-  const usersPromises = usersRef.map(async (userRef) => {
+  const usersPromises = usersRef.map(async userRef => {
     if (userRef.id === user.id) {
       return user
     }
@@ -159,7 +159,7 @@ async function filterConversation(
     .collection<TConversation>(CollectionNames.conversations)
     .where('conversationKey', '==', conversationKey)
 
-  const conversations = (await conversationsRef.get()).docs.map((t) => {
+  const conversations = (await conversationsRef.get()).docs.map(t => {
     const data = t.data()
     data.users = users
     return data
@@ -212,7 +212,7 @@ async function createConversation(
     .doc(conversationId)
 
   try {
-    await firestore().runTransaction(async (t) => {
+    await firestore().runTransaction(async t => {
       // Create new conversation in /conversations
       await t.set(createConversationRef, data)
 
@@ -265,8 +265,8 @@ function listenForMessages(
     .doc(conversation.id)
     .collection(CollectionNames.messages)
     .orderBy('createdAt')
-    .onSnapshot((snapshot) => {
-      snapshot?.docChanges().forEach((doc) => {
+    .onSnapshot(snapshot => {
+      snapshot?.docChanges().forEach(doc => {
         switch (doc.type) {
           case 'added':
             // message arrived;
@@ -305,7 +305,7 @@ async function sendMessage(
     .doc()
 
   try {
-    await firestore().runTransaction(async (t) => {
+    await firestore().runTransaction(async t => {
       // send message to /conversations/{id}/messages
       t.set(doc, {
         id: doc.id,
@@ -347,13 +347,13 @@ function listenForConversationChanged(
   return firestore()
     .collection(CollectionNames.conversations)
     .doc(conversationId)
-    .onSnapshot(async (snapshot) => {
+    .onSnapshot(async snapshot => {
       // conversation data
       const data = snapshot?.data()
       const conversation = data as TConversation
       // get users array
       const usersRef = conversation.users
-      const usersPromises = usersRef.map(async (userRef) => {
+      const usersPromises = usersRef.map(async userRef => {
         if (userRef.id === currentUser?.id) {
           return { ...currentUser }
         }

@@ -1,7 +1,7 @@
-import { Text } from 'components/Text'
-import { TUser, TUserFunc } from 'models'
 import React, { useCallback } from 'react'
 import { FlatList, TouchableOpacity, View } from 'react-native'
+import { Text } from 'components/Text'
+import { TUser, TUserFunc } from 'models'
 import { ScaledSheet } from 'rn-scaled-sheet'
 import { Theme, useTheme } from 'theme'
 
