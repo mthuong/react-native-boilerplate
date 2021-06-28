@@ -12,6 +12,7 @@ import React, { Fragment, Suspense } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { enableScreens } from 'react-native-screens'
 import { Provider as StoreProvider } from 'react-redux'
+import LoadingHud from 'components/LoadingHud'
 import i18n from 'localization/i18n'
 
 import { GlobalSnackBar } from './src/components/SnackBar/GlobalSnackBar'
@@ -33,6 +34,7 @@ const App = () => {
             <Fragment>
               <Navigator />
               <GlobalSnackBar />
+              <LoadingHud />
             </Fragment>
           </Suspense>
         </I18nextProvider>
