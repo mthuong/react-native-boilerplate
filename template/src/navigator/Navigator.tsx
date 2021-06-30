@@ -2,6 +2,7 @@
  * Navigator
  */
 import * as React from 'react'
+import { useTranslation } from 'react-i18next'
 import { StyleSheet, View } from 'react-native'
 import Config from 'react-native-config'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -9,7 +10,6 @@ import { connect } from 'react-redux'
 import auth, { FirebaseAuthTypes } from '@react-native-firebase/auth'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
-import { useLocalizationContext } from 'localization'
 import SignIn, { SignInParams } from 'scenes/Authentication/SignIn'
 import SignUp, { SignUpParams } from 'scenes/Authentication/SignUp'
 import SplashScreen from 'scenes/Authentication/SplashScreen'
@@ -86,7 +86,7 @@ function Navigator(props: NavigationProps) {
     return subscriber // unsubscribe on unmount
   }, [dispatch])
 
-  const localization = useLocalizationContext()
+  const { t } = useTranslation()
 
   if (isStoryBook) {
     return (
@@ -113,14 +113,14 @@ function Navigator(props: NavigationProps) {
                   {...SignIn.screen}
                   options={{
                     ...SignIn.defaultOptions,
-                    title: localization.SignIn,
+                    title: t('SignIn'),
                   }}
                 />
                 <MainStack.Screen
                   {...SignUp.screen}
                   options={{
                     ...SignUp.defaultOptions,
-                    title: localization.SignUp,
+                    title: t('SignUp'),
                   }}
                 />
               </>
@@ -129,7 +129,7 @@ function Navigator(props: NavigationProps) {
                 <MainStack.Screen
                   name={NAV_SCREENS.Home}
                   component={HomeScreen}
-                  options={{ title: localization.Home }}
+                  options={{ title: t('Home') }}
                 />
                 <MainStack.Screen
                   name={NAV_SCREENS.Details}
@@ -140,21 +140,21 @@ function Navigator(props: NavigationProps) {
                   name={NAV_SCREENS.Conversations}
                   component={ConversationsScreen}
                   options={{
-                    title: localization.Conversations_Title,
+                    title: t('Conversations_Title'),
                   }}
                 />
                 <MainStack.Screen
                   name={NAV_SCREENS.CreateConversation}
                   component={CreateConversationScreen}
                   options={{
-                    title: localization.ConversationNew,
+                    title: t('ConversationNew'),
                   }}
                 />
                 <MainStack.Screen
                   name={NAV_SCREENS.Conversation}
                   component={ConversationScreen}
                   options={{
-                    title: localization.ConversationDetail,
+                    title: t('ConversationDetail'),
                   }}
                 />
               </>

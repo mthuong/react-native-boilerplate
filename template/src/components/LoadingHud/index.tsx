@@ -17,7 +17,6 @@ type LoadingHudState = {
 type Props = {
   // Props
 }
-
 export default class LoadingHud extends Component<Props, LoadingHudState> {
   static show = () => {
     EventEmitter.notify('showHud')
