@@ -9,13 +9,17 @@ export function DropDownGuide(props: DropDownGuideProps) {
   props
 
   // IMPORTANT: iOS must set zIndex. Android don't set backgroundColor
+  
   const containerStyle = Platform.OS === 'ios' ? { zIndex: 1 } : undefined
 
   return (
     <View style={containerStyle}>
       {/* THIS IS INPUT/BUTTON Component to show dropdown */}
+
       <TextInput />
+
       {/* Dropdown view with absolute. Only need to use measure function to calculate top position against Component above */}
+
       <View style={styles.dropdown}>
         <TouchableOpacity />
       </View>
