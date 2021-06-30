@@ -3,9 +3,9 @@
  */
 
 import {
+  NavigationProp,
   ParamListBase,
   RouteProp,
-  NavigationProp,
 } from '@react-navigation/native'
 
 // Define Screen component type

@@ -1,7 +1,8 @@
 import { Dispatch } from '@reduxjs/toolkit'
-import { ChatServices } from 'scenes/chat/services/ChatServices'
-import { usersActions } from './usersReducer'
 import { TUser } from 'models'
+import { ChatServices } from 'scenes/chat/services/ChatServices'
+
+import { usersActions } from './usersReducer'
 
 let userAddedSubscriber: (() => void) | null = null
 
@@ -26,7 +27,7 @@ export const usersFunctions = {
 
       userAddedSubscriber = ChatServices.listenForUserAdded(
         currentUser,
-        (users) => {
+        users => {
           // Insert users into store
           dispatch(usersActions.userReceived(users))
         }

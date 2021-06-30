@@ -1,6 +1,6 @@
-import PropTypes from 'prop-types'
 import React, { ReactNode } from 'react'
 import { StyleSheet, View } from 'react-native'
+import PropTypes from 'prop-types'
 
 interface Props {
   children?: ReactNode

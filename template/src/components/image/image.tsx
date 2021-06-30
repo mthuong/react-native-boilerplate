@@ -1,14 +1,15 @@
 import * as React from 'react'
 import {
-  View,
+  ActivityIndicator,
   Image as RNImage,
   ImageStyle,
-  StyleSheet,
-  ActivityIndicator,
-  ViewStyle,
   StyleProp,
+  StyleSheet,
+  View,
+  ViewStyle,
 } from 'react-native'
 import FastImage from 'react-native-fast-image'
+
 import images, { ImageAssetTypes } from '../../theme/images'
 
 export interface ImageProps {

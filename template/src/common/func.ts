@@ -23,3 +23,14 @@ export function notEmpty<T>(value: T | null | undefined): value is T {
 export function getProperty<T, K extends keyof T>(obj: T, key: K) {
   return obj[key] // Inferred type is T[K]
 }
+
+/**
+ * Delay function
+ *
+ * @export
+ * @param {number} [milliseconds=300]
+ * @returns
+ */
+export async function delay(milliseconds = 300) {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}

@@ -1,7 +1,8 @@
 // RootNavigation.js
 
-import { CommonActions, NavigationContainerRef } from '@react-navigation/native'
 import * as React from 'react'
+import { CommonActions, NavigationContainerRef } from '@react-navigation/native'
+
 import { RootStackParamTypes } from './Navigator'
 import { NAV_SCREENS } from './RouteNames'
 

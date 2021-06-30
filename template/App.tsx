@@ -8,16 +8,17 @@
  * @format
  */
 
-import React, { Fragment } from 'react'
+import React, { Fragment, Suspense } from 'react'
+import { I18nextProvider } from 'react-i18next'
 import { enableScreens } from 'react-native-screens'
 import { Provider as StoreProvider } from 'react-redux'
-import store from './src/stores/store'
-import Navigator from './src/navigator/Navigator'
+import LoadingHud from 'components/LoadingHud'
+import i18n from 'localization/i18n'
+
 import { GlobalSnackBar } from './src/components/SnackBar/GlobalSnackBar'
-import LocalizationProvider from './src/localization'
+import Navigator from './src/navigator/Navigator'
+import store from './src/stores/store'
 import { ThemeProvider } from './src/theme'
-import StorybookUI from './storybook'
-import Config from 'react-native-config'
 
 // Enable screens support before any of your navigation screens renders
 enableScreens()
@@ -28,15 +29,19 @@ const App = () => {
   return (
     <StoreProvider store={store}>
       <ThemeProvider>
-        <LocalizationProvider>
-          <Fragment>
-            <Navigator />
-            <GlobalSnackBar />
-          </Fragment>
-        </LocalizationProvider>
+        <I18nextProvider i18n={i18n}>
+          <Suspense fallback={null}>
+            <Fragment>
+              <Navigator />
+              <GlobalSnackBar />
+              <LoadingHud />
+            </Fragment>
+          </Suspense>
+        </I18nextProvider>
       </ThemeProvider>
     </StoreProvider>
   )
 }
 
-export default Config.LOAD_STORYBOOK === 'true' ? StorybookUI : App
+// export default Config.LOAD_STORYBOOK === 'true' ? StorybookUI : App
+export default App

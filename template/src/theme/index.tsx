@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Appearance } from 'react-native'
+
 import { DarkTheme, LightTheme, ThemeName } from './colors'
 import fonts from './fonts'
 import { spacing } from './spacing'

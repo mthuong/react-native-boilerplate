@@ -1,7 +1,7 @@
 import React from 'react'
-import { StyleSheet, Platform, View, ViewProps } from 'react-native'
-import { Theme, useTheme } from 'theme'
+import { Platform, StyleSheet, View, ViewProps } from 'react-native'
 import { hasNotch } from 'react-native-device-info'
+import { Theme, useTheme } from 'theme'
 
 type Props = {
   noStatusbar?: boolean

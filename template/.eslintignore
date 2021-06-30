@@ -7,3 +7,4 @@
 metro.config.js
 babel.config.js
 react-native.config.js
+.eslintrc.js

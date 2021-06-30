@@ -1,10 +1,12 @@
 import * as React from 'react'
-import Snackbar from './index'
+
 import { snackbarSlice } from '../../stores'
 import { useAppDispatch, useAppSelector } from '../../stores/hook'
 
+import Snackbar from './index'
+
 export function GlobalSnackBar() {
-  const { visible, message } = useAppSelector((state) => state.snackbar)
+  const { visible, message } = useAppSelector(state => state.snackbar)
   const dispatch = useAppDispatch()
 
   return (

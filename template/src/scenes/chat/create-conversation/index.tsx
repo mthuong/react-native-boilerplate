@@ -1,19 +1,21 @@
 import * as React from 'react'
-import { StackNavigationProp } from '@react-navigation/stack'
+import { useTranslation } from 'react-i18next'
 import { RouteProp } from '@react-navigation/native'
-import { RootStackParamList } from 'navigator/Navigator'
-import { NAV_SCREENS } from 'navigator/RouteNames'
+import { StackNavigationProp } from '@react-navigation/stack'
 import { Container } from 'components/Container'
 import { Header } from 'components/Header'
-import { useLocalizationContext } from 'localization'
-import List from './components/List'
-import { TUser } from 'models'
-import { useAppSelector } from 'stores/hook'
-import { getCurrentUser } from 'stores/authSelectors'
-import { ChatServices } from 'scenes/chat/services/ChatServices'
-import { getUsers } from '../store/usersSelectors'
 import { TextInput } from 'components/TextInput'
+import { TUser } from 'models'
+import { RootStackParamList } from 'navigator/Navigator'
+import { NAV_SCREENS } from 'navigator/RouteNames'
 import { ScaledSheet } from 'rn-scaled-sheet'
+import { ChatServices } from 'scenes/chat/services/ChatServices'
+import { getCurrentUser } from 'stores/authSelectors'
+import { useAppSelector } from 'stores/hook'
+
+import { getUsers } from '../store/usersSelectors'
+
+import List from './components/List'
 
 type CreateConversationScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
@@ -34,7 +36,7 @@ type Props = {
 export function CreateConversationScreen(props: Props) {
   const { navigation } = props
 
-  const languages = useLocalizationContext()
+  const { t } = useTranslation()
 
   const users = useAppSelector(getUsers)
   const currentUser = useAppSelector(getCurrentUser)
@@ -70,11 +72,11 @@ export function CreateConversationScreen(props: Props) {
 
   return (
     <Container>
-      <Header title={languages.ConversationNew} backEnabled />
+      <Header title={t('chat:ConversationNew')} backEnabled />
       {/* Search field */}
       <TextInput
         value={search}
-        placeholder={languages.Search}
+        placeholder={t('common:Search')}
         onChangeText={onSearch}
         onEndEditing={onEndEditing}
         style={styles.searchInput}

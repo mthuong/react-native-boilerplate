@@ -1,63 +1,42 @@
-import { injectValue } from 'common/func'
-import regex from 'common/regex'
-import { ButtonText } from 'components/ButtonText'
+import React, { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Dimensions, ScrollView, TouchableOpacity, View } from 'react-native'
+import { ISignIn } from 'api'
 import { Image } from 'components/image'
 import { Text } from 'components/Text'
-import { TextInput } from 'components/TextInput'
-import { Formik } from 'formik'
-import { useLocalizationContext } from 'localization'
 import { RootStackParamList } from 'navigator/Navigator'
 import { navigate } from 'navigator/RootNavigation'
 import { registerScreen } from 'navigator/RouteGeneric'
 import { NAV_SCREENS } from 'navigator/RouteNames'
-import React from 'react'
-import { Dimensions, View, TouchableOpacity, ScrollView } from 'react-native'
 import { ScaledSheet } from 'rn-scaled-sheet'
-import { ISignIn } from 'api'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
 import { Theme, useTheme } from 'theme'
-import * as yup from 'yup'
+
+import { LoginForm } from './components/LoginForm'
 
 export type SignInParams = undefined
 
-const FieldNames = {
-  email: 'email',
-  password: 'password',
-}
-
 function _SignIn() {
   const dispatch = useAppDispatch()
-  const languages = useLocalizationContext()
+  const { t } = useTranslation()
 
   const theme = useTheme()
   const styles = makeStyles(theme)
 
   const initialValues: ISignIn = {
     email: 'tom@gmail.com',
-    password: 'Init1234567',
+    password: 'Init123456',
   }
 
-  const signInSchema = yup.object().shape({
-    email: yup
-      .string()
-      .email(languages.ErrorInvalidEmail)
-      .required(languages.ErrorRequiredEmail),
-    password: yup
-      .string()
-      .required(languages.ErrorRequiredPassword)
-      .matches(
-        regex.passwordPattern,
-        injectValue(languages.ErrorInvalidPassword, 8)
-      )
-      .min(8, injectValue(languages.ErrorInvalidPassword, 8)),
-  })
+  const onSignIn = useCallback(
+    (values: ISignIn) => {
+      console.tron.log('Sign in')
 
-  const onSignIn = (values: ISignIn) => {
-    console.tron.log('Sign in')
-
-    dispatch(authAsyncActions.signIn(values))
-  }
+      dispatch(authAsyncActions.signIn(values))
+    },
+    [dispatch]
+  )
 
   return (
     <ScrollView
@@ -68,51 +47,18 @@ function _SignIn() {
         style={styles.logo}
         containerStyle={styles.logoView}
       />
-      <Text text={languages.SignIn} preset='bold' />
-      <Text text={languages.SignInSubTitle} preset='header' />
-      <Formik
-        initialValues={initialValues}
-        validationSchema={signInSchema}
-        onSubmit={onSignIn}>
-        {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-          <View style={styles.form}>
-            <TextInput
-              label={languages.Email}
-              error={errors.email}
-              keyboardType='email-address'
-              autoCapitalize='none'
-              onChangeText={handleChange(FieldNames.email)}
-              onBlur={handleBlur(FieldNames.email)}
-              value={values.email}
-              clearButtonMode='while-editing'
-            />
-            <TextInput
-              secureTextEntry
-              label={languages.Password}
-              maxLength={100}
-              onChangeText={handleChange(FieldNames.password)}
-              onBlur={handleBlur(FieldNames.password)}
-              value={values.password}
-              error={errors.password}
-            />
-            <ButtonText
-              preset='primary'
-              textPresets='bold'
-              text={languages.SignIn}
-              onPress={handleSubmit}
-              style={styles.buttonSignIn}
-            />
-          </View>
-        )}
-      </Formik>
+      <Text text={t('signin:SignIn')} preset='bold' />
+      <Text text={t('signin:SignInSubTitle')} preset='header' />
+
+      <LoginForm onSubmit={onSignIn} />
 
       <View style={styles.spacingView}>
-        <Text>{languages.DontHaveAccount}</Text>
+        <Text>{t('signin:DontHaveAccount')}</Text>
         <TouchableOpacity
           onPress={() => {
             navigate(NAV_SCREENS.SignUp)
           }}>
-          <Text style={styles.textSignUp} text={languages.SignUp} />
+          <Text style={styles.textSignUp} text={t('signin:SignUp')} />
         </TouchableOpacity>
       </View>
     </ScrollView>
@@ -144,7 +90,6 @@ const makeStyles = (theme: Theme) =>
       aspectRatio: 1,
       height: Dimensions.get('window').height * 0.2,
     },
-    form: {},
     spacingView: {
       flex: 1,
       flexDirection: 'row',
@@ -152,9 +97,6 @@ const makeStyles = (theme: Theme) =>
       alignItems: 'flex-end',
       bottom: theme.dimensions.paddingBottom,
       marginTop: 50, // I dont know why need add margin here to prevent spacing view does not overlap form view
-    },
-    buttonSignIn: {
-      marginTop: theme.spacing[5],
     },
     textSignUp: {
       color: theme.colors.primaryButton,

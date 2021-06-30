@@ -12,6 +12,7 @@ document.body.addEventListener('click', function (e) {
     target.select()
   }
 })
+
 ;(function () {
   var fontSize = document.getElementById('fontSize'),
     testDrive = document.getElementById('testDrive'),

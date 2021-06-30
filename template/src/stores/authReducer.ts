@@ -1,9 +1,11 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { TUser } from 'models'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ISignIn, ISignUp } from 'api/types'
+import { TUser } from 'models'
 import { conversationsFunctions } from 'scenes/chat/store/conversationsFunctions'
 import { usersFunctions } from 'scenes/chat/store/usersFunctions'
+
 import { userService } from '../api'
+
 import { snackbarSlice } from './snackbarReducer'
 import { AuthState } from './types'
 
@@ -91,7 +93,7 @@ export const authSlice = createSlice({
     // signIn: (state, action: PayloadAction<SignInAction>) => {
     //   state.userToken = action.payload.username
     // },
-    finishLoading: (state) => {
+    finishLoading: state => {
       state.isLoading = false
     },
   },
@@ -117,12 +119,12 @@ export const authSlice = createSlice({
       state.user = action.payload
       state.isLoading = false
     },
-    [getUser.rejected.type]: (state) => {
+    [getUser.rejected.type]: state => {
       state.user = undefined
       state.isLoading = false
     },
 
-    [signOut.fulfilled.type]: (state) => {
+    [signOut.fulfilled.type]: state => {
       state.user = undefined
       state.isLoading = false
     },

@@ -20,6 +20,8 @@ export const LightTheme = {
 
   primaryButton: '#53B175',
   secondaryButton: '#F2F3F2',
+
+  borderColor: '#999898',
 }
 
 export type Color = typeof LightTheme
@@ -47,6 +49,8 @@ export const DarkTheme: Color = {
 
   primaryButton: '#53B175',
   secondaryButton: '#F2F3F2',
+
+  borderColor: '#999898',
 }
 
 export type ThemeName = 'light' | 'dark'

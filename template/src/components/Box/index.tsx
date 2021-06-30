@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, ViewProps } from 'react-native'
+import { StyleSheet, View, ViewProps } from 'react-native'
 import { Theme, ThemeContext } from 'theme'
 
 export interface BoxProps extends ViewProps {
@@ -23,7 +23,7 @@ export const Box = (props: BoxProps) => {
     // @ts-ignore
     .filter((key: string): boolean => !!styles[key])
     // @ts-ignore
-    .map((key) => styles[key])
+    .map(key => styles[key])
   return (
     <View {...props} style={[customStyles, props.style]}>
       {props.children}

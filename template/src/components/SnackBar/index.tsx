@@ -4,10 +4,10 @@ import {
   SafeAreaView,
   StyleProp,
   StyleSheet,
-  ViewStyle,
-  View,
   Text,
   TouchableOpacity as Button,
+  View,
+  ViewStyle,
 } from 'react-native'
 
 export type SnackbarProps = React.ComponentPropsWithRef<typeof View> & {
@@ -218,7 +218,7 @@ const Snackbar = ({
         </Text>
         {action ? (
           <Button
-            onPress={(event) => {
+            onPress={event => {
               console.tron.log('onPress')
               onPressAction?.(event)
               onDismiss()

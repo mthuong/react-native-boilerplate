@@ -1,14 +1,14 @@
 import * as React from 'react'
 import {
-  StyleProp,
-  StyleSheet,
-  TextStyle,
-  TouchableOpacity,
-  ViewStyle,
   Image,
   ImageSourcePropType,
   ImageStyle,
+  StyleProp,
+  StyleSheet,
   Text,
+  TextStyle,
+  TouchableOpacity,
+  ViewStyle,
 } from 'react-native'
 import FastImage, { Source } from 'react-native-fast-image'
 import fonts from 'theme/fonts'
@@ -25,7 +25,7 @@ export interface ButtonIconProps {
   onPress?(): void
 }
 
-const ButtonImage: React.SFC<ButtonIconProps> = (props) => {
+const ButtonImage: React.SFC<ButtonIconProps> = props => {
   const {
     style,
     image,

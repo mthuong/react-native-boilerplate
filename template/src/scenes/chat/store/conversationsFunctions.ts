@@ -1,8 +1,9 @@
-import { ChatServices } from 'scenes/chat/services/ChatServices'
-import { conversationsActions } from './conversationsReducer'
-import { TUser } from 'models'
 import { Dispatch } from '@reduxjs/toolkit'
+import { TUser } from 'models'
 import { TConversation } from 'scenes/chat/models'
+import { ChatServices } from 'scenes/chat/services/ChatServices'
+
+import { conversationsActions } from './conversationsReducer'
 
 let conversationAddedSubscriber: (() => void) | null = null
 
@@ -27,7 +28,7 @@ export const conversationsFunctions = {
 
       conversationAddedSubscriber = ChatServices.listenForConversationAdd(
         user,
-        (conversations) => {
+        conversations => {
           // Insert conversations into store
           dispatch(conversationsActions.conversationsReceived(conversations))
         }

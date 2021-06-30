@@ -1,10 +1,11 @@
-import { navigate } from 'navigator/RootNavigation'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, StyleSheet, Text, View } from 'react-native'
+import { navigate } from 'navigator/RootNavigation'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch, useAppSelector } from 'stores/hook'
+
 import { NAV_SCREENS } from '../navigator/RouteNames'
-import { useLocalizationContext } from 'localization'
 
 // type HomeScreenNavigationProp = StackNavigationProp<
 //   RootStackParamList,
@@ -19,8 +20,9 @@ import { useLocalizationContext } from 'localization'
 
 export function HomeScreen() {
   const dispatch = useAppDispatch()
-  const languages = useLocalizationContext()
-  const user = useAppSelector((state) => state.auth.user)
+  const { t } = useTranslation()
+  const user = useAppSelector(state => state.auth.user)
+
   return (
     <View style={styles.container}>
       <Text>Home Screen</Text>
@@ -32,7 +34,7 @@ export function HomeScreen() {
       />
 
       <Button
-        title={languages.Conversations_Title}
+        title={t('chat:ConversationDetail')}
         onPress={() => {
           navigate(NAV_SCREENS.Conversations)
         }}

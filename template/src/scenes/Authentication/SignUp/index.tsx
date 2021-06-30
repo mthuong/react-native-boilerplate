@@ -1,26 +1,26 @@
+import React from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
+import { Alert, Button, Dimensions, View } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { ISignUp } from 'api'
 import { injectValue } from 'common/func'
 import regex from 'common/regex'
 import { ButtonText } from 'components/ButtonText'
+import { Container } from 'components/Container'
+import { Header } from 'components/Header'
 import { Image } from 'components/image'
 import { Text } from 'components/Text'
-import { Formik } from 'formik'
-import { useLocalizationContext } from 'localization'
-import { strings } from 'localization/strings'
+import { TextInput } from 'components/TextInput'
+import i18n from 'localization/i18n'
+import { RootStackParamList } from 'navigator/Navigator'
 import { registerScreen } from 'navigator/RouteGeneric'
-import React from 'react'
-import { Dimensions, View } from 'react-native'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { NAV_SCREENS } from 'navigator/RouteNames'
 import { ScaledSheet } from 'rn-scaled-sheet'
-import { ISignUp } from 'api'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
 import { Theme, useTheme } from 'theme'
 import * as Yup from 'yup'
-import { TextInput } from '../../../components/TextInput'
-import { RootStackParamList } from '../../../navigator/Navigator'
-import { NAV_SCREENS } from '../../../navigator/RouteNames'
-import { Container } from 'components/Container'
-import { Header } from 'components/Header'
 
 // type SignUpNavigationProp = StackNavigationProp<
 //   RootStackParamList,
@@ -37,21 +37,21 @@ export type SignUpParams = {
 // route: SignUpRoute
 // }
 
-const FieldNames = {
-  email: 'email',
-  password: 'password',
-  confirmPassword: 'confirmPassword',
-  name: 'name',
-}
-
 function _SignUp() {
-  const languages = useLocalizationContext()
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const theme = useTheme()
   const styles = makeStyles(theme)
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ISignUp & { firstName: string }>()
+
   const onRegister = async (values: ISignUp) => {
+    Alert.alert('onRegister')
     dispatch(authAsyncActions.signUp(values))
   }
 
@@ -64,114 +64,131 @@ function _SignUp() {
 
   const signUpSchema = Yup.object().shape({
     email: Yup.string()
-      .email(languages.ErrorInvalidEmail)
-      .required(languages.ErrorRequiredEmail),
+      .email(t('error:ErrorInvalidEmail'))
+      .required(t('error:ErrorRequiredEmail')),
     name: Yup.string()
-      .required(languages.ErrorRequiredName)
-      .min(3, ({ min }) => injectValue(languages.ErrorMinName, `${min}`))
-      .max(50, ({ max }) => injectValue(languages.ErrorMaxName, `${max}`)),
+      .required(t('error:ErrorRequiredName'))
+      .min(3, ({ min }) => injectValue(t('error:ErrorMinName'), `${min}`))
+      .max(50, ({ max }) => injectValue(t('error:ErrorMaxName'), `${max}`)),
     password: Yup.string()
-      .required(languages.ErrorRequiredPassword)
+      .required(t('error:ErrorRequiredPassword'))
       .matches(
         regex.passwordPattern,
-        injectValue(languages.ErrorInvalidPassword, 8)
+        injectValue(t('error:ErrorInvalidPassword'), 8)
       )
-      .min(8, injectValue(languages.ErrorInvalidPassword, 8)),
+      .min(8, injectValue(t('error:ErrorInvalidPassword'), 8)),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref(FieldNames.password)], languages.ErrorPasswordNotMatch)
-      .required(languages.ErrorRequiredConfirmPassword),
+      .oneOf([Yup.ref('password')], t('error:ErrorPasswordNotMatch'))
+      .required(t('error:ErrorRequiredConfirmPassword')),
   })
+
+  console.log(errors)
 
   return (
     <Container>
-      <Header leftIcon='arrow_back_ios' backEnabled>
-        {/* <TouchableOpacity full center horizontal>
-          <Text f17 primary style={styles.title}>
-            {props.category.name}
-          </Text>
-          <Icon secondary tiny name='arrow-bottom' />
-        </TouchableOpacity> */}
-      </Header>
-      <KeyboardAwareScrollView
+      <Header leftIcon='arrow_back_ios' backEnabled></Header>
+      <View
         style={styles.CONTAINER}
-        extraScrollHeight={theme.dimensions.scrollViewExtraHeight}
-        enableOnAndroid>
+        // extraScrollHeight={theme.dimensions.scrollViewExtraHeight}
+        // enableOnAndroid
+      >
         <View style={styles.inner}>
           <Image
             url='https://image.freepik.com/free-vector/abstract-colorful-floral-shape-with-logo_1035-8982.jpg'
             style={styles.logo}
             containerStyle={styles.logoView}
           />
-          <Text text={languages.SignUp} preset='bold' style={styles.title} />
-          <Text text={languages.SignUpSubTitle} preset='header' />
+          <Text text={t('signin:SignUp')} preset='bold' style={styles.title} />
+          <Text text={t('signin:SignUpSubTitle')} preset='header' />
 
-          <Formik
-            initialValues={initialValues}
-            validationSchema={signUpSchema}
-            onSubmit={onRegister}>
-            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-              <View style={styles.form}>
+          <View style={styles.form}>
+            <Controller
+              control={control}
+              render={({
+                field: { onChange, onBlur, value },
+                fieldState: { error },
+              }) => (
                 <TextInput
-                  label={languages.Name}
+                  label={t('signin:Name')}
                   keyboardType='default'
                   autoCapitalize='words'
-                  onChangeText={handleChange(FieldNames.name)}
-                  onBlur={handleBlur(FieldNames.name)}
-                  value={values.name}
-                  error={errors.name}
+                  onChangeText={onChange}
+                  onBlur={onBlur}
+                  value={value}
+                  error={error?.message}
                   clearButtonMode='while-editing'
                 />
+              )}
+              name='name'
+              rules={{
+                required: {
+                  value: true,
+                  message: t('error:ErrorRequiredName'),
+                },
+                // min: {
+                //   value: 3,
+                //   message: injectValue(languages.ErrorMinName, `${3}`),
+                // },
+                // minLength: {
+                //   value: 3,
+                //   message: injectValue(languages.ErrorMinName, `${3}`),
+                // },
+                // maxLength: {
+                //   value: 50,
+                //   message: injectValue(languages.ErrorMaxName, `${50}`),
+                // },
+              }}
+              defaultValue=''
+            />
 
-                <TextInput
-                  label={languages.Email}
-                  keyboardType='email-address'
-                  autoCapitalize='none'
-                  maxLength={100}
-                  onChangeText={handleChange(FieldNames.email)}
-                  onBlur={handleBlur(FieldNames.email)}
-                  value={values.email}
-                  error={errors.email}
-                  clearButtonMode='while-editing'
-                />
+            {/* <TextInput
+              label={languages.Email}
+              keyboardType='email-address'
+              autoCapitalize='none'
+              maxLength={100}
+              onChangeText={handleChange(FieldNames.email)}
+              onBlur={handleBlur(FieldNames.email)}
+              value={values.email}
+              error={errors.email}
+              clearButtonMode='while-editing'
+            />
 
-                <TextInput
-                  secureTextEntry
-                  label={languages.Password}
-                  maxLength={100}
-                  onChangeText={handleChange(FieldNames.password)}
-                  onBlur={handleBlur(FieldNames.password)}
-                  value={values.password}
-                  error={errors.password}
-                />
+            <TextInput
+              secureTextEntry
+              label={languages.Password}
+              maxLength={100}
+              onChangeText={handleChange(FieldNames.password)}
+              onBlur={handleBlur(FieldNames.password)}
+              value={values.password}
+              error={errors.password}
+            />
 
-                <TextInput
-                  secureTextEntry
-                  label={languages.ConfirmPassword}
-                  maxLength={100}
-                  onChangeText={handleChange(FieldNames.confirmPassword)}
-                  onBlur={handleBlur(FieldNames.confirmPassword)}
-                  value={values.confirmPassword}
-                  error={errors.confirmPassword}
-                />
+            <TextInput
+              secureTextEntry
+              label={languages.ConfirmPassword}
+              maxLength={100}
+              onChangeText={handleChange(FieldNames.confirmPassword)}
+              onBlur={handleBlur(FieldNames.confirmPassword)}
+              value={values.confirmPassword}
+              error={errors.confirmPassword}
+            /> */}
 
-                <ButtonText
-                  style={styles.buttonSignUp}
-                  preset='primary'
-                  text={languages.SignUp}
-                  textPresets='bold'
-                  onPress={handleSubmit}
-                />
-              </View>
-            )}
-          </Formik>
+            <Button
+              // style={styles.buttonSignUp}
+              // preset='primary'
+              title={t('signin:SignUp')}
+              // textPresets='bold'
+              onPress={handleSubmit(onRegister)}
+            />
+          </View>
         </View>
-      </KeyboardAwareScrollView>
+      </View>
     </Container>
   )
 }
 
 const defaultOptions: SignUpParams = {
-  title: strings.SignUp,
+  title: i18n.t('signin:SignUp'),
 }
 
 const SignUp = registerScreen<RootStackParamList, NAV_SCREENS.SignUp>(

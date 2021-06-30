@@ -1,11 +1,12 @@
-import { storiesOf } from '@storybook/react-native'
-import { Text } from 'components/Text'
 import React from 'react'
 import { StyleSheet, View } from 'react-native'
+import { storiesOf } from '@storybook/react-native'
+import { Text } from 'components/Text'
+
 import { Box } from '.'
 
 storiesOf('components/Box', module)
-  .addDecorator((story) => <View>{story()}</View>)
+  .addDecorator(story => <View>{story()}</View>)
   .add('center', () => (
     <Box center>
       <Text>center</Text>

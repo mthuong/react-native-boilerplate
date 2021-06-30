@@ -1,5 +1,6 @@
 import { ImageStyle, Platform, TextStyle, ViewStyle } from 'react-native'
 import { hasNotch } from 'react-native-device-info'
+
 import fontSizes from './fonts/sizes'
 
 type MergeStyle = ViewStyle | ImageStyle | TextStyle
