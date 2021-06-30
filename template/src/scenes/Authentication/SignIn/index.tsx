@@ -1,12 +1,9 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Dimensions, ScrollView, TouchableOpacity, View } from 'react-native'
 import { ISignIn } from 'api'
-import { injectValue } from 'common/func'
-import regex from 'common/regex'
 import { Image } from 'components/image'
 import { Text } from 'components/Text'
-import { TextInput } from 'components/TextInput'
 import { RootStackParamList } from 'navigator/Navigator'
 import { navigate } from 'navigator/RootNavigation'
 import { registerScreen } from 'navigator/RouteGeneric'
@@ -15,14 +12,10 @@ import { ScaledSheet } from 'rn-scaled-sheet'
 import { authAsyncActions } from 'stores/authReducer'
 import { useAppDispatch } from 'stores/hook'
 import { Theme, useTheme } from 'theme'
-import * as yup from 'yup'
+
+import { LoginForm } from './components/LoginForm'
 
 export type SignInParams = undefined
-
-const FieldNames = {
-  email: 'email',
-  password: 'password',
-}
 
 function _SignIn() {
   const dispatch = useAppDispatch()
@@ -36,26 +29,14 @@ function _SignIn() {
     password: 'Init123456',
   }
 
-  const signInSchema = yup.object().shape({
-    email: yup
-      .string()
-      .email(t('error:ErrorInvalidEmail'))
-      .required(t('error:ErrorRequiredEmail')),
-    password: yup
-      .string()
-      .required(t('error:ErrorRequiredPassword'))
-      .matches(
-        regex.passwordPattern,
-        injectValue(t('error:ErrorInvalidPassword'), 8)
-      )
-      .min(8, injectValue(t('error:ErrorInvalidPassword'), 8)),
-  })
+  const onSignIn = useCallback(
+    (values: ISignIn) => {
+      console.tron.log('Sign in')
 
-  const onSignIn = (values: ISignIn) => {
-    console.tron.log('Sign in')
-
-    dispatch(authAsyncActions.signIn(values))
-  }
+      dispatch(authAsyncActions.signIn(values))
+    },
+    [dispatch]
+  )
 
   return (
     <ScrollView
@@ -69,34 +50,7 @@ function _SignIn() {
       <Text text={t('signin:SignIn')} preset='bold' />
       <Text text={t('signin:SignInSubTitle')} preset='header' />
 
-      {/* <View style={styles.form}>
-        <TextInput
-          label={languages.Email}
-          error={errors.email}
-          keyboardType='email-address'
-          autoCapitalize='none'
-          onChangeText={handleChange(FieldNames.email)}
-          onBlur={handleBlur(FieldNames.email)}
-          value={values.email}
-          clearButtonMode='while-editing'
-        />
-        <TextInput
-          secureTextEntry
-          label={languages.Password}
-          maxLength={100}
-          onChangeText={handleChange(FieldNames.password)}
-          onBlur={handleBlur(FieldNames.password)}
-          value={values.password}
-          error={errors.password}
-        />
-        <ButtonText
-          preset='primary'
-          textPresets='bold'
-          text={languages.SignIn}
-          onPress={handleSubmit}
-          style={styles.buttonSignIn}
-        />
-      </View> */}
+      <LoginForm onSubmit={onSignIn} />
 
       <View style={styles.spacingView}>
         <Text>{t('signin:DontHaveAccount')}</Text>
@@ -136,7 +90,6 @@ const makeStyles = (theme: Theme) =>
       aspectRatio: 1,
       height: Dimensions.get('window').height * 0.2,
     },
-    form: {},
     spacingView: {
       flex: 1,
       flexDirection: 'row',
@@ -144,9 +97,6 @@ const makeStyles = (theme: Theme) =>
       alignItems: 'flex-end',
       bottom: theme.dimensions.paddingBottom,
       marginTop: 50, // I dont know why need add margin here to prevent spacing view does not overlap form view
-    },
-    buttonSignIn: {
-      marginTop: theme.spacing[5],
     },
     textSignUp: {
       color: theme.colors.primaryButton,
