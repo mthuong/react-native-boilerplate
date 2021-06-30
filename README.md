@@ -16,10 +16,10 @@ npx react-native init MyApp --template https://github.com/mthuong/react-native-b
 
 ### Usage with older versions of React Native
 
-#### e.g. `react-native@0.63.4`
+#### e.g. `react-native@0.64.2`
 
 ```sh
-npx react-native init MyApp --template https://github.com/mthuong/react-native-boilerplate/archive/refs/tags/0.63.5.tar.gz
+npx react-native init MyApp --template https://github.com/mthuong/react-native-boilerplate/archive/refs/tags/0.64.2.tar.gz
 ```
 
 See the below table to find out which version of the template to use.
@@ -28,6 +28,7 @@ See the below table to find out which version of the template to use.
 
 | React Native  	| Template  	|
 |---	            |---	        |
+| 0.64.2  	      | 0.64.2      |
 | 0.63.4  	      | 0.63.*      |
 
 ## 🍎 Guide
