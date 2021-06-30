@@ -270,7 +270,7 @@ export function AutoCompleteInput({
   const customStyle =
     Platform.OS === 'ios'
       ? { zIndex: inputRef?.current?.isFocused() ? 3 : 1 }
-      : { backgroundColor: 'red' }
+      : undefined // DO NOT CHANGE undefined FOR ANDROID HERE
 
   return (
     <Box style={[styles.container, customStyle]}>
