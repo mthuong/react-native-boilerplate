@@ -50,7 +50,7 @@ export class AxiosAPIService implements IAPIService {
         // loggingService.logAxiosResponse(response)
         return response
       },
-      error => {
+      async error => {
         // Any status codes that falls outside the range of 2xx cause this function to trigger
         if (error && error.response) {
           if (error.response.status === 401) {
@@ -104,7 +104,7 @@ export class AxiosAPIService implements IAPIService {
    * @param url path of the request.
    * @param config http request config.
    */
-  get(url: string, config?: any) {
+  async get(url: string, config?: any) {
     return this.axios.get(url, {
       headers: this.defaultHeaders,
       ...config,
@@ -117,7 +117,7 @@ export class AxiosAPIService implements IAPIService {
    * @param data json or form-data request body.
    * @param config http request config.
    */
-  post(url: string, data?: any, config?: AxiosRequestConfig) {
+  async post(url: string, data?: any, config?: AxiosRequestConfig) {
     return this.axios.post(url, data, {
       headers: this.defaultHeaders,
       ...config,
@@ -130,7 +130,7 @@ export class AxiosAPIService implements IAPIService {
    * @param data json or form-data request body
    * @param config http request config.
    */
-  put(url: string, data?: any, config?: AxiosRequestConfig) {
+  async put(url: string, data?: any, config?: AxiosRequestConfig) {
     return this.axios.put(url, data, {
       headers: this.defaultHeaders,
       ...config,
@@ -142,7 +142,7 @@ export class AxiosAPIService implements IAPIService {
    * @param url path of the request
    * @param config http request config.
    */
-  delete(url: string, config?: AxiosRequestConfig) {
+  async delete(url: string, config?: AxiosRequestConfig) {
     return this.axios.delete(url, {
       headers: this.defaultHeaders,
       ...config,
@@ -155,7 +155,7 @@ export class AxiosAPIService implements IAPIService {
    * @param data json or form-data request body.
    * @param config http request config.
    */
-  patch(url: string, data?: any, config?: AxiosRequestConfig) {
+  async patch(url: string, data?: any, config?: AxiosRequestConfig) {
     return this.axios.patch(url, data, {
       headers: this.defaultHeaders,
       ...config,

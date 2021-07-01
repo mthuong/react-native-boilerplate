@@ -56,15 +56,15 @@ function DropDownListView(props: DropDownListModalProps) {
   const {
     visible,
     data,
-    onRequestClose,
     onOptionSelected,
-    tapToDismiss,
     height,
-    width,
-    pageX,
     pageY,
     selectedOption,
     maxHeight,
+    // onRequestClose,
+    // tapToDismiss,
+    // width,
+    // pageX,
   } = props
 
   const [keyboardHeight] = useKeyboard()
@@ -221,10 +221,10 @@ export function AutoCompleteInput({
       try {
         if (handleSearch && t) {
           setIsLoading(true)
-          const locas = await handleSearch(t)
+          const results = await handleSearch(t)
           setIsLoading(false)
 
-          setData(locas)
+          setData(results)
           ref.current.measure((_, __, width, height, pageX, pageY) => {
             console.log({ width, height, pageX, pageY })
 
@@ -234,7 +234,7 @@ export function AutoCompleteInput({
               height,
               pageX,
               pageY,
-              visible: !!locas.length,
+              visible: !!results.length,
             })
           })
         } else {
@@ -339,13 +339,12 @@ const useStyles = ({ colors, sharedStyle, fonts }: Theme) =>
     },
     inputAutocompleteContainer: {
       paddingLeft: 10,
-      // backgroundColor: Colors.inputBackgroundColor,
       borderWidth: 1,
       borderColor: colors.borderColor,
       height: 50,
       justifyContent: 'center',
       borderRadius: 5,
-      // ...sharedStyles.shadow1,
+      ...sharedStyle.shadow,
     },
     iconContainer: {
       width: 50,

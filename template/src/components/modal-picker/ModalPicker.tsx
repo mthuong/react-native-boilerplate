@@ -55,6 +55,14 @@ export interface ModalPickerProps {
 
   rowHeight?: number
 
+  // Allow search
+  searchable?: boolean
+
+  // If disable, user can not click and the text is gray out.
+  disabled?: boolean
+
+  isVisible: boolean
+
   onSelect?(item: T, index: number): void
 
   // allow component to get value text to display
@@ -66,16 +74,8 @@ export interface ModalPickerProps {
   // callback when dropdown is completely hidden
   onDropdownHide?(): void
 
-  // Allow search
-  searchable?: boolean
-
   // Implement on search function
   onSearch?(searchText: string, dataSource: T[]): T[]
-
-  // If disable, user can not click and the text is gray out.
-  disabled?: boolean
-
-  isVisible: boolean
 
   onDismiss(): void
 }

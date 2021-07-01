@@ -50,7 +50,7 @@ function _SignIn() {
       <Text text={t('signin:SignIn')} preset='bold' />
       <Text text={t('signin:SignInSubTitle')} preset='header' />
 
-      <LoginForm onSubmit={onSignIn} />
+      <LoginForm onSubmit={onSignIn} initialValues={initialValues} />
 
       <View style={styles.spacingView}>
         <Text>{t('signin:DontHaveAccount')}</Text>

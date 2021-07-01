@@ -14,11 +14,12 @@ import { Theme, useTheme } from 'theme'
 import { object, string } from 'yup'
 
 export type LoginFormProps = {
+  initialValues?: ISignIn
   onSubmit: (values: ISignIn) => void
 } & WithTranslation
 
 function _LoginForm(props: LoginFormProps) {
-  const { onSubmit, t } = props
+  const { onSubmit, t, initialValues } = props
 
   const theme = useTheme()
   const styles = makeStyles(theme)
@@ -48,6 +49,7 @@ function _LoginForm(props: LoginFormProps) {
       <Controller
         control={control}
         name='email'
+        defaultValue={initialValues?.email}
         render={({
           field: { onChange, onBlur, value },
           fieldState: { error },
@@ -67,6 +69,7 @@ function _LoginForm(props: LoginFormProps) {
       <Controller
         control={control}
         name='password'
+        defaultValue={initialValues?.password}
         render={({
           field: { onChange, onBlur, value },
           fieldState: { error },

@@ -43,7 +43,7 @@ async function loadConversations(
     .get()
   const promises = conversationsPromise.docs
     .map(c => c.data())
-    .map(({ id }) => {
+    .map(async ({ id }) => {
       return loadConversation(id, user)
     })
 
@@ -211,31 +211,27 @@ async function createConversation(
     .collection(CollectionNames.conversations)
     .doc(conversationId)
 
-  try {
-    await firestore().runTransaction(async t => {
-      // Create new conversation in /conversations
-      await t.set(createConversationRef, data)
+  await firestore().runTransaction(async t => {
+    // Create new conversation in /conversations
+    t.set(createConversationRef, data)
 
-      // create conversation in users/{id}/conversations
-      const conversationData = {
-        id: conversationId,
-        conversationKey: createConversationKey([user1, user2]),
-        createdAt: now,
-        updatedAt: now,
-      }
-      const user1ConversationRef = user1Ref
-        .collection(CollectionNames.conversations)
-        .doc(conversationId)
-      await t.set(user1ConversationRef, conversationData)
+    // create conversation in users/{id}/conversations
+    const conversationData = {
+      id: conversationId,
+      conversationKey: createConversationKey([user1, user2]),
+      createdAt: now,
+      updatedAt: now,
+    }
+    const user1ConversationRef = user1Ref
+      .collection(CollectionNames.conversations)
+      .doc(conversationId)
+    t.set(user1ConversationRef, conversationData)
 
-      const user2ConversationRef = user2Ref
-        .collection(CollectionNames.conversations)
-        .doc(conversationId)
-      await t.set(user2ConversationRef, conversationData)
-    })
-  } catch (e) {
-    throw e
-  }
+    const user2ConversationRef = user2Ref
+      .collection(CollectionNames.conversations)
+      .doc(conversationId)
+    t.set(user2ConversationRef, conversationData)
+  })
 
   const conversation: TConversation = {
     id: conversationId,
@@ -269,10 +265,12 @@ function listenForMessages(
       snapshot?.docChanges().forEach(doc => {
         switch (doc.type) {
           case 'added':
-            // message arrived;
-            const message = doc.doc.data() as TMessage
+            {
+              // message arrived;
+              const message = doc.doc.data() as TMessage
 
-            onMessageReceived(message)
+              onMessageReceived(message)
+            }
             break
 
           case 'modified':

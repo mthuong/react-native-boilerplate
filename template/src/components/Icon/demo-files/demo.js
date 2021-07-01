@@ -12,7 +12,6 @@ document.body.addEventListener('click', function (e) {
     target.select()
   }
 })
-
 ;(function () {
   var fontSize = document.getElementById('fontSize'),
     testDrive = document.getElementById('testDrive'),
@@ -24,7 +23,7 @@ document.body.addEventListener('click', function (e) {
     }
   }
   function updateSize() {
-    testDrive.style.fontSize = fontSize.value + 'px'
+    testDrive.style.fontSize = `${fontSize.value}px`
   }
   fontSize.addEventListener('change', updateSize, false)
   testText.addEventListener('input', updateTest, false)

@@ -21,9 +21,9 @@ export interface ButtonTextProps {
   // Right icon.
   rightAsset?: ImageAssetTypes
 
-  // Event on press button
-  onPress?(): void
-
   // One of different types of button presets
   preset?: 'primary' | 'secondary' | 'flat'
+
+  // Event on press button
+  onPress?(): void
 }

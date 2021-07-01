@@ -17,18 +17,20 @@ type LoadingHudState = {
 type Props = {
   // Props
 }
+
+// FIXME: Convert to functional component and use ref rather than use EventEmitter
 export default class LoadingHud extends Component<Props, LoadingHudState> {
+  state = {
+    animation: new Animated.Value(0),
+    count: 0,
+  }
+
   static show = () => {
     EventEmitter.notify('showHud')
   }
 
   static hide = () => {
     EventEmitter.notify('hideHud')
-  }
-
-  state = {
-    animation: new Animated.Value(0),
-    count: 0,
   }
 
   componentDidMount = () => {

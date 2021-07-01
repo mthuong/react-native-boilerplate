@@ -11,7 +11,7 @@ export const Keys = {
 }
 
 export default class EventEmitter {
-  static _registerEvents: Array<Event> = []
+  static _registerEvents: Event[] = []
 
   static notify = (type: string, data?: any) => {
     EventEmitter._registerEvents

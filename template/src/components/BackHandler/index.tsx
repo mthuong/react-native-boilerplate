@@ -1,4 +1,4 @@
-import { Component, useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { BackHandler as BH } from 'react-native'
 
 type BackHandlerProps = {

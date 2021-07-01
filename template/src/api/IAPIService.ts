@@ -11,6 +11,8 @@ export interface IAPIService {
   baseURL: string
   type: APIServiceType
 
+  readonly defaultHeaders: Record<string, any>
+
   createInstance(baseURL: string): any
 
   get(url: string, config?: any): Promise<any>
@@ -22,8 +24,6 @@ export interface IAPIService {
   delete(url: string, config?: any): Promise<any>
 
   patch(url: string, data?: any, config?: any): Promise<any>
-
-  readonly defaultHeaders: Record<string, any>
 
   /**
    * Parse errors.
