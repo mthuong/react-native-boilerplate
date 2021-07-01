@@ -90,7 +90,6 @@ module.exports = {
     '@typescript-eslint/restrict-plus-operands': 'error',
     '@typescript-eslint/type-annotation-spacing': 'error',
     '@typescript-eslint/unified-signatures': 'error',
-
     '@typescript-eslint/ban-ts-comment': [
       'error',
       {
