@@ -37,7 +37,7 @@
     "@react-navigation/native": "5.9.2",
     "@react-navigation/stack": "5.14.4",
     "@reduxjs/toolkit": "^1.5.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "dayjs": "^1.10.4",
     "i18next": "^20.3.2",
     "proxy-polyfill": "^0.3.2",
